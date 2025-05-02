@@ -1,17 +1,15 @@
 let canvas;
-let ctx;
-let charcter = new Image();
+let world
+
 
 
 function init() {
     canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    charcter.src = "../img/2_character_pepe/2_walk/W-21.png"
+    world = new World(canvas);
 
-    setTimeout(function () {
-        ctx.drawImage(charcter, 20, 20, 50, 150);
 
-    }, 1000);
+    console.log("My charater ist ", world.character);
+    console.log("My enemies are ", world.enemies);
 
 }
 
