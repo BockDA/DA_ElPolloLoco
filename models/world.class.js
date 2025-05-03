@@ -6,15 +6,45 @@ class World {
         new Chicken(),
     ];
 
+    clouds = [
+        new Cloud()
+    ];
+
+    backroundObjects = [
+        new BackgroundObjekt('img/5_background/layers/3_third_layer/1.png', 0),
+        new BackgroundObjekt('img/5_background/layers/2_second_layer/1.png', 0),
+        new BackgroundObjekt('img/5_background/layers/1_first_layer/1.png', 0),
+
+    ];
+    canvas;
+    ctx;
 
     constructor(canvas) {
-        this.ctx = canvas.getContext("2d");
-        this.draw
+        this.ctx = canvas.getContext('2d');
+        this.canvas = canvas;
+        this.draw();
     }
 
     draw() {
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, 100, 100);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.addObjectsToMap(this.backroundObjects);
+        this.addObjectsToMap(this.clouds);
+        this.addObjectsToMap(this.enemies);
+        this.addzoMap(this.character);
+        requestAnimationFrame(() => {
+            this.draw();
+        });
 
     }
 
+    addObjectsToMap(objekts) {
+        objekts.forEach(o => [
+            this.addzoMap(o)
+        ]);
+    }
+
+
+    addzoMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    }
 }

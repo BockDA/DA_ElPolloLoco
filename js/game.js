@@ -1,15 +1,18 @@
 let canvas;
-let world
+
+let world;
 
 
 
 function init() {
+    console.log("Starte");
+
     canvas = document.getElementById('canvas');
     world = new World(canvas);
 
 
     console.log("My charater ist ", world.character);
-    console.log("My enemies are ", world.enemies);
+
 
 }
 
