@@ -11,7 +11,7 @@ class Character extends MovableObject {
 
     ];
 
-
+    world;
 
 
     constructor() {
