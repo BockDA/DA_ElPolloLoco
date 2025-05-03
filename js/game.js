@@ -3,7 +3,6 @@ let canvas;
 let world;
 
 
-
 function init() {
     console.log("Starte");
 
