@@ -9,27 +9,25 @@ function init() {
     world = new World(canvas, keyboard);
 
 
-    console.log("My charater ist ", world.character);
-
 }
 
 
 window.addEventListener('keydown', (event) => {
-    console.log(event);
 
-    if (event.key == 39) {
+
+    if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }
-    if (event.key == 37) {
+    if (event.key == 'ArrowLeft') {
         keyboard.LEFT = true;
     }
-    if (event.key == 38) {
+    if (event.key == 'ArrowUp"') {
         keyboard.UP = true;
     }
-    if (event.key == 40) {
+    if (event.key == 'ArrowDown') {
         keyboard.DOWN = true;
     }
-    if (event.key == 32) {
+    if (event.key == 'Space') {
         keyboard.SPACE = true;
     }
 
@@ -37,21 +35,20 @@ window.addEventListener('keydown', (event) => {
 
 
 window.addEventListener('keyup', (event) => {
-    console.log(event);
 
-    if (event.key == 39) {
+    if (event.key == 'ArrowRight') {
         keyboard.RIGHT = false;
     }
-    if (event.key == 37) {
+    if (event.key == 'ArrowLeft') {
         keyboard.LEFT = false;
     }
-    if (event.key == 38) {
+    if (event.key == 'ArrowUp"') {
         keyboard.UP = false;
     }
-    if (event.key == 40) {
-        keyboard.DOWN = falseue;
+    if (event.key == 'ArrowDown') {
+        keyboard.DOWN = false;
     }
-    if (event.key == 32) {
+    if (event.key == 'Space') {
         keyboard.SPACE = false;
     }
 
