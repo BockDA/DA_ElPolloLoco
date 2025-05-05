@@ -28,7 +28,8 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    console.log('Collosion with ', enemy)
+                    this.character.hit();
+                    console.log('Collosion with, energs ', this.character.energy);
                 }
             });
         }, 200);
@@ -37,22 +38,14 @@ class World {
 
 
     draw() {
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
-
         this.addObjectsToMap(this.level.backroundObjects);
         this.addToMap(this.character);
-
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-
-
-
         this.ctx.translate(-this.camera_x, 0);
-
-
         requestAnimationFrame(() => {
             this.draw();
         });
