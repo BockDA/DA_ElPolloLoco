@@ -4,11 +4,8 @@ let keyboard = new Keyboard();
 
 function init() {
     console.log("Starte");
-
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
 }
 
 
@@ -21,7 +18,7 @@ window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowLeft') {
         keyboard.LEFT = true;
     }
-    if (event.key == 'ArrowUp"') {
+    if (event.key == 'ArrowUp') {
         keyboard.UP = true;
     }
     if (event.key == 'ArrowDown') {
@@ -42,7 +39,7 @@ window.addEventListener('keyup', (event) => {
     if (event.key == 'ArrowLeft') {
         keyboard.LEFT = false;
     }
-    if (event.key == 'ArrowUp"') {
+    if (event.key == 'ArrowUp') {
         keyboard.UP = false;
     }
     if (event.key == 'ArrowDown') {

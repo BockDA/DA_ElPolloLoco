@@ -15,7 +15,7 @@ class MovableObject {
 
     applyGravity() {
         setInterval(() => {
-            if (this.isAboveGround()) {
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration
             }
@@ -56,4 +56,35 @@ class MovableObject {
         }, 1000 / 60);
 
     }
+
+
+
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+
+    drawFrame(ctx) {
+        if (this instanceof Chicken || this instanceof Character) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+
+
+
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    }
+
+
 }
