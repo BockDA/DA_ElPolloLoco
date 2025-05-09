@@ -13,6 +13,9 @@ class MovableObject {
     energy = 100;
     lastHit = 0;
 
+    constructor() {
+
+    }
 
 
     applyGravity() {
