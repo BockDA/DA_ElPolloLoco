@@ -8,6 +8,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
+    coins = new Coins();
 
 
     constructor(canvas, keyboard) {
@@ -28,32 +30,34 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    console.log("Kollision");
 
+                    this.statusBar.setPercentage(this.character.energy);
                     this.character.hit();
-
                 }
             });
-        }, 200);
+        }, 100);
     }
 
 
 
     draw() {
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+
         this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.coins);
+
+        this.ctx.translate(-this.camera_x, 0);
+
         requestAnimationFrame(() => {
             this.draw();
         });
-
-
-
     }
 
     addObjectsToMap(objekts) {

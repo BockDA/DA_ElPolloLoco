@@ -1,11 +1,4 @@
-class MovableObject {
-    x = 120;
-    y = 280;
-    img;
-    height = 150;
-    width = 100;
-    imageCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -13,9 +6,14 @@ class MovableObject {
     energy = 100;
     lastHit = 0;
 
-    constructor() {
-
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
     }
+
+
 
 
     applyGravity() {
@@ -33,50 +31,30 @@ class MovableObject {
     }
 
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
 
+
+
+    playAnmimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i]
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-
-    }
 
 
     moveRight() {
         this.x += this.speed;
+        this.playAnmimation(this.IMAGES_WALKING);
     }
 
 
     moveLeft() {
         this.x -= this.speed;
-
+        this.playAnmimation(this.IMAGES_WALKING);
     }
 
 
-
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-
-    drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof Character) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
 
 
 
@@ -90,10 +68,10 @@ class MovableObject {
 
 
     hit() {
+
         this.energy -= 5;
-        console.log("Energie ", this.energy);
         if (this.energy <= 0) {
-            //this.energy = 100;
+            this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -104,15 +82,12 @@ class MovableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-
-        return timepassed <= 1;
-
+        return timepassed < 0.5;
     }
 
 
     isDead() {
         return this.energy == 0;
-
     }
 
 }
