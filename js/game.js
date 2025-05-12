@@ -11,6 +11,7 @@ function init() {
 
 window.addEventListener('keydown', (event) => {
 
+    console.log(event);
 
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
@@ -26,6 +27,10 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.key == 'Space') {
         keyboard.SPACE = true;
+    }
+
+    if (event.key == 'd' || 'D') {
+        keyboard.D = true;
     }
 
 });
@@ -48,6 +53,10 @@ window.addEventListener('keyup', (event) => {
     if (event.key == 'Space') {
         keyboard.SPACE = false;
     }
+    if (event.key == 'd' || 'D') {
+        keyboard.D = false;
+    }
+
 
 });
 

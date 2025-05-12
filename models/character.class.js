@@ -112,7 +112,32 @@ class Character extends MovableObject {
 
             this.world.camera_x = -this.x + 100;
 
+<<<<<<< HEAD
         }, 1000 / 20);
+=======
+        }, 1000 / 60);
+
+
+        setInterval(() => {
+            if (this.isAboveGround()) {
+                this.playAnmimation(this.IMAGES_JUMPING);
+            } else {
+
+
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnmimation(this.IMAGES_WALKING);
+                }
+            }
+        }, 50);
+    }
+
+
+    playAnmimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i]
+        this.img = this.imageCache[path];
+        this.currentImage++;
+>>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
     }
 
 

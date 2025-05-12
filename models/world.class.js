@@ -9,7 +9,11 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+<<<<<<< HEAD
     coins = new Coins();
+=======
+    throwableObjects = [];
+>>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
 
 
     constructor(canvas, keyboard) {
@@ -18,7 +22,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
@@ -26,8 +30,9 @@ class World {
     }
 
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
+<<<<<<< HEAD
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
 
@@ -36,6 +41,32 @@ class World {
                 }
             });
         }, 100);
+=======
+
+            this.checkCollisions();
+            this.checkThrowObjects();
+
+        }, 200);
+>>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
+    }
+
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }
+
     }
 
 
@@ -44,10 +75,17 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backroundObjects);
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+<<<<<<< HEAD
 
+=======
+        this.addObjectsToMap(this.throwableObjects);
+>>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
