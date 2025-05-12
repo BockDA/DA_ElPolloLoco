@@ -10,8 +10,6 @@ class ThrowableObject extends MovableObject {
         this.width = 50;
         this.trow();
 
-
-
     }
 
 

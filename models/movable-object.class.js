@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 class MovableObject extends DrawableObject {
-=======
-class MovableObject extends DrawableObjects {
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -38,7 +34,6 @@ class MovableObject extends DrawableObjects {
         }
     }
 
-<<<<<<< HEAD
 
 
 
@@ -52,8 +47,6 @@ class MovableObject extends DrawableObjects {
 
 
 
-=======
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
     moveRight() {
         this.x += this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
@@ -61,19 +54,10 @@ class MovableObject extends DrawableObjects {
 
     moveLeft() {
         this.x -= this.speed;
-<<<<<<< HEAD
         this.playAnmimation(this.IMAGES_WALKING);
     }
 
 
-=======
-    }
-
-
-    jump() {
-        this.speed = 30;
-    }
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
 
 
 
@@ -101,12 +85,7 @@ class MovableObject extends DrawableObjects {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-<<<<<<< HEAD
         return timepassed < 0.5;
-=======
-        return timepassed <= 1;
-
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
     }
 
 

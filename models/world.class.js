@@ -9,11 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
-<<<<<<< HEAD
     coins = new Coins();
-=======
-    throwableObjects = [];
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
 
 
     constructor(canvas, keyboard) {
@@ -32,7 +28,6 @@ class World {
 
     run() {
         setInterval(() => {
-<<<<<<< HEAD
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
 
@@ -41,13 +36,6 @@ class World {
                 }
             });
         }, 100);
-=======
-
-            this.checkCollisions();
-            this.checkThrowObjects();
-
-        }, 200);
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
     }
 
 
@@ -81,15 +69,11 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-<<<<<<< HEAD
-
-=======
-        this.addObjectsToMap(this.throwableObjects);
->>>>>>> d45d7e22fd3798550dc9d7352cc87094853b12df
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
-        this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.coins);
+        this.ctx.translate(this.camera_x, 0);
+
 
         this.ctx.translate(-this.camera_x, 0);
 
