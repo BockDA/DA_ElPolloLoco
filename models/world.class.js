@@ -9,7 +9,9 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    throwableObjects = [new ThrowableObject()];
     coins = new Coins();
+    bootle = new Boodle();
 
 
     constructor(canvas, keyboard) {
@@ -28,17 +30,18 @@ class World {
 
     run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
+            this.checkThrowObjects();
 
-                    this.statusBar.setPercentage(this.character.energy);
-                    this.character.hit();
-                }
-            });
+            if (this.checkCollisions()) {
+                this.statusBar.setPercentage(this.character.energy);
+                this.character.hit();
+            }
+
         }, 100);
     }
 
 
+    //prüfen auf Collision
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -49,8 +52,10 @@ class World {
     }
 
 
+
     checkThrowObjects() {
         if (this.keyboard.D) {
+            console.log("Werfe Flasche ", this.keyboard.D);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
@@ -69,14 +74,13 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coins);
+        this.addToMap(this.bootle);
         this.ctx.translate(this.camera_x, 0);
-
-
         this.ctx.translate(-this.camera_x, 0);
-
         requestAnimationFrame(() => {
             this.draw();
         });

@@ -10,6 +10,7 @@ class DrawableObject {
 
 
 
+    //Bider in ein Object laden
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
@@ -18,9 +19,10 @@ class DrawableObject {
 
 
 
+    //Bild aus Array holöen    
     loadImages(arr) {
         arr.forEach(path => {
-            let img = new Image();
+            let img = new Image();//Hier wird ein HTML Image Element erstellen
             img.src = path;
             this.imageCache[path] = img;
         });
@@ -28,13 +30,14 @@ class DrawableObject {
     }
 
 
-
+    //Zeichne Bild auf Canvas Fläche 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
 
 
+    //Rahmen zeichnen
     drawFrame(ctx) {
         if (this instanceof Chicken || this instanceof Character) {
             ctx.beginPath();
