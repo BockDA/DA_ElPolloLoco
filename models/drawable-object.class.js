@@ -39,7 +39,7 @@ class DrawableObject {
 
     //Rahmen zeichnen
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof Character) {
+        if (this instanceof Chicken || this instanceof Character || this instanceof ChickenSmall) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'blue';

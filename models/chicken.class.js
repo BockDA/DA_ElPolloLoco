@@ -9,6 +9,10 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
 
+    IMAGES_DEAD = [
+        "img/3_enemies_chicken/chicken_normal/2_dead/dead.png"
+    ]
+
 
     offset = {
         top: 0,
@@ -17,11 +21,13 @@ class Chicken extends MovableObject {
         bottom: 0
     }
 
+    dead = false;
 
 
     constructor() {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 600 + Math.random() * 800;
         this.speed = 0.15 + Math.random() * 0.4;
         this.animate();
@@ -35,10 +41,10 @@ class Chicken extends MovableObject {
             let path = this.IMAGES_WALKING[i]
             this.img = this.imageCache[path];
             this.currentImage++;
-
-
         }, 200);
     }
+
+
 
 
     moveLeft() {
@@ -49,6 +55,18 @@ class Chicken extends MovableObject {
             // }
 
         }, 1000 / 100);
+    }
+
+
+
+
+
+
+    deadChicken() {
+        console.log("Chciken coolisosn Animation aufrufen");
+
+
+
     }
 
 }

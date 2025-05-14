@@ -36,8 +36,6 @@ class MovableObject extends DrawableObject {
 
 
 
-
-
     playAnmimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i]
@@ -59,19 +57,27 @@ class MovableObject extends DrawableObject {
 
 
 
+    //collision rechts
+    isColliding(enemy) {
+        return this.x + this.width > enemy.x &&
+            this.y + this.height > enemy.y &&
+            this.x < enemy.x &&
+            this.y < enemy.y + enemy.height;
+    }
 
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+    //collision von oben
+    isCollidingButtom(enemy) {
+        return this.x + this.width - this.offset.right > enemy.x + enemy.offset.left &&
+            this.x + this.offset.left < enemy.x + enemy.width - enemy.offset.right &&
+            this.y + this.height - this.offset.bottom > enemy.y + enemy.offset.top &&
+            this.y + this.offset.top < enemy.y + enemy.height - enemy.offset.bottom;
     }
 
 
 
+    //Zusammenstoss noch Collision
     hit() {
-
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
@@ -82,6 +88,7 @@ class MovableObject extends DrawableObject {
 
 
 
+    //Charater ist verletzt
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
@@ -89,8 +96,19 @@ class MovableObject extends DrawableObject {
     }
 
 
+
+    //Charatuer ist tot
     isDead() {
         return this.energy == 0;
     }
+
+
+
+    dead() {
+        console.log("Zeichene Bild");
+
+        // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+    }
+
 
 }

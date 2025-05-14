@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    chicken = new Chicken();
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
@@ -37,6 +38,12 @@ class World {
                 this.character.hit();
             }
 
+            if (this.checkCollisonBottom()) {
+
+            };
+
+
+
         }, 100);
     }
 
@@ -52,6 +59,18 @@ class World {
     }
 
 
+    checkCollisonBottom() {
+        console.log("Checke kolliosion buutom");
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isCollidingButtom(enemy)) {
+                console.log("Kollison von oben mit ", enemy);
+                this.chicken.deadChicken();
+            }
+        });
+
+
+    }
+
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -61,8 +80,6 @@ class World {
         }
 
     }
-
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
