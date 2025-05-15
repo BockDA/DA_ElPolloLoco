@@ -38,12 +38,6 @@ class World {
                 this.character.hit();
             }
 
-            if (this.checkCollisonBottom()) {
-
-            };
-
-
-
         }, 100);
     }
 
@@ -52,30 +46,12 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                //console.log("Collission ist true");
-
+                console.log("Collission ist true");
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
+            this.character.getCollisionSide(enemy);
         });
-    }
-
-
-    checkCollisonBottom() {
-
-
-
-
-
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isCollidingButtom(enemy)) {
-                this.chicken.deadChicken();
-            }
-
-            this.character.getCollisionSide(enemy); //Test
-        });
-
-
     }
 
 
