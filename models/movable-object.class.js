@@ -57,22 +57,60 @@ class MovableObject extends DrawableObject {
 
 
 
-    //collision rechts
+    //collision erkennen
     isColliding(enemy) {
-        return this.x + this.width > enemy.x &&
+        const isCollision =
+            this.x + this.width > enemy.x &&
             this.y + this.height > enemy.y &&
             this.x < enemy.x &&
             this.y < enemy.y + enemy.height;
-    }
 
+
+        const bottomCollision = false;
+        return isCollision && !bottomCollision;
+    }
 
     //collision von oben
     isCollidingButtom(enemy) {
-        return this.x + this.width - this.offset.right > enemy.x + enemy.offset.left &&
-            this.x + this.offset.left < enemy.x + enemy.width - enemy.offset.right &&
-            this.y + this.height - this.offset.bottom > enemy.y + enemy.offset.top &&
-            this.y + this.offset.top < enemy.y + enemy.height - enemy.offset.bottom;
+        return false;
     }
+
+
+
+    getCollisionSide(enemy) {
+        let r1 = this;
+        let r2 = enemy;
+
+        const dx = r1.x + r1.width / 2 - (r2.x + r2.width / 2);
+        const dy = r1.y + r1.height / 2 - (r2.y + r2.height / 2);
+        const width = (r1.width + r2.width) / 2;
+        const height = (r1.height + r2.height) / 2;
+
+        const crossWidth = width * dy;
+        const crossHeight = height * dx;
+
+        if (Math.abs(dx) <= width && Math.abs(dy) <= height) {
+            if (crossWidth > crossHeight) {
+                if (crossWidth > -crossHeight) {
+                    console.log("Kollision: unten");
+                } else {
+                    console.log("Kollision: links");
+                }
+            } else {
+                if (crossWidth > -crossHeight) {
+                    console.log("Kollision: rechts");
+                } else {
+                    console.log("Kollision: oben");
+                }
+            }
+        }
+    }
+
+
+
+
+
+
 
 
 

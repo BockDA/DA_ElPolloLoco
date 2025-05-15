@@ -92,7 +92,7 @@ class Character extends MovableObject {
                 this.loadImage(this.IMAGES_IDLE[0]);
 
             } else if (this.isHurt()) {
-                console.log("Aktuelle Energie ", this.energy);
+                // console.log("Aktuelle Energie ", this.energy);
 
                 this.playAnmimation(this.IMAGES_HURT);
 
