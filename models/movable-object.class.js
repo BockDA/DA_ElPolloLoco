@@ -75,14 +75,14 @@ class MovableObject extends DrawableObject {
         // Nur wenn überhaupt Kollision
         if (overlapX > 0 && overlapY > 0) {
             if (overlapX < overlapY) {
-                this.collisonRight = false;
+
                 // horizontale Kollision
                 if (dx > 0) {
                     console.log("Kollision: links");
                     return false;
                 } else {
-                    this.collisonRight = true;
-                    console.log("Kollision: rechts! ", this.collisonRight);
+
+                    console.log("Kollision: rechts! ");
                     return true;
 
                 }
@@ -97,20 +97,18 @@ class MovableObject extends DrawableObject {
                     // r1 trifft mit Unterkante auf Oberkante von r2
                     console.log("Kollision: unten");
                     return false
+
+
                 } else {
-
-
-                    console.log("Kollision: oben ", this.collisonRight);
-                    if (!this.collisonRight) {
-                        this.collisonRight = true;
-                        this.collisionTop(enemy);
-                    }
+                    console.log("Kollision: oben ");
+                    this.collisionTop(enemy);
 
                 }
             }
         }
-
     }
+
+
 
 
     collisionLeft() {
