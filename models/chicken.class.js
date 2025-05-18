@@ -11,7 +11,7 @@ class Chicken extends MovableObject {
 
     IMAGES_DEAD = [
         "img/3_enemies_chicken/chicken_normal/2_dead/dead.png"
-    ]
+    ];
 
 
     offset = {
@@ -37,10 +37,12 @@ class Chicken extends MovableObject {
     animate() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_WALKING.length;
-            let path = this.IMAGES_WALKING[i]
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            if (!this.dead) {
+                let i = this.currentImage % this.IMAGES_WALKING.length;
+                let path = this.IMAGES_WALKING[i]
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
         }, 200);
     }
 
@@ -59,14 +61,19 @@ class Chicken extends MovableObject {
 
 
 
+    deadCollision() {
+        console.log("Chicken coolisosn Animation aufrufen");
 
-
-
-    deadChicken() {
-        console.log("Chciken coolisosn Animation aufrufen");
-
+        if (this.dead) {
+            this.playAnmimation(this.IMAGES_DEAD);
+            setInterval(() => {
+                this.y += this.speed;
+            }, 100 / 60);
+        }
+        this.dead = false;
 
 
     }
+
 
 }

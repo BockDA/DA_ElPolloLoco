@@ -5,6 +5,10 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    collisonRight = false;
+
+
+
 
     offset = {
         top: 0,
@@ -57,60 +61,67 @@ class MovableObject extends DrawableObject {
 
 
 
-    //collision erkennen
-    isColliding(enemy) {
-        const isCollision =
-            this.x + this.width > enemy.x &&
-            this.y + this.height > enemy.y &&
-            this.x < enemy.x &&
-            this.y < enemy.y + enemy.height;
-
-
-        const bottomCollision = false;
-        return isCollision && !bottomCollision;
-    }
-
-    //collision von oben
-    isCollidingButtom(enemy) {
-        return false;
-    }
-
-
-
     getCollisionSide(enemy) {
+
+
         let r1 = this;
         let r2 = enemy;
 
-        const dx = r1.x + r1.width / 2 - (r2.x + r2.width / 2);
-        const dy = r1.y + r1.height / 2 - (r2.y + r2.height / 2);
-        const width = (r1.width + r2.width) / 2;
-        const height = (r1.height + r2.height) / 2;
+        const dx = (r1.x + r1.width / 2) - (r2.x + r2.width / 2);
+        const dy = (r1.y + r1.height / 2) - (r2.y + r2.height / 2);
+        const overlapX = (r1.width + r2.width) / 2 - Math.abs(dx);
+        const overlapY = (r1.height + r2.height) / 2 - Math.abs(dy);
 
-        const crossWidth = width * dy;
-        const crossHeight = height * dx;
-
-        if (Math.abs(dx) <= width && Math.abs(dy) <= height) {
-            if (crossWidth > crossHeight) {
-                if (crossWidth > -crossHeight) {
-                    console.log("Kollision: unten");
-                } else {
+        // Nur wenn überhaupt Kollision
+        if (overlapX > 0 && overlapY > 0) {
+            if (overlapX < overlapY) {
+                this.collisonRight = false;
+                // horizontale Kollision
+                if (dx > 0) {
                     console.log("Kollision: links");
+                    return false;
+                } else {
+                    this.collisonRight = true;
+                    console.log("Kollision: rechts! ", this.collisonRight);
+                    return true;
+
                 }
             } else {
-                if (crossWidth > -crossHeight) {
-                    console.log("Kollision: rechts");
+
+
+                // vertikale Kollision → jetzt prüfen wir die genaue Richtung
+                const r1Bottom = r1.y + r1.height;
+                const r2Top = r2.y;
+
+                if (r1Bottom <= r2Top + 10) {
+                    // r1 trifft mit Unterkante auf Oberkante von r2
+                    console.log("Kollision: unten");
+                    return false
                 } else {
-                    console.log("Kollision: oben");
+
+
+                    console.log("Kollision: oben ", this.collisonRight);
+                    if (!this.collisonRight) {
+                        this.collisonRight = true;
+                        this.collisionTop(enemy);
+                    }
+
                 }
             }
         }
+
     }
 
 
+    collisionLeft() {
+        console.log("Collison LEFT");
+    }
 
 
-
-
+    collisionTop(enemy) {
+        enemy.dead = true;
+        enemy.deadCollision();
+    }
 
 
 
@@ -147,6 +158,10 @@ class MovableObject extends DrawableObject {
 
         // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
     }
+
+
+
+
 
 
 }
