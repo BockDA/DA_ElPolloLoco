@@ -52,11 +52,7 @@ class Chicken extends MovableObject {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;
-            //  if (this.x <= 0) {
-            //    this.x = 720;
-            // }
-
-        }, 1000 / 100);
+        }, 1000 / 120);
     }
 
 

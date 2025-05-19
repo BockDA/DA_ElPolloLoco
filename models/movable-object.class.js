@@ -61,27 +61,27 @@ class MovableObject extends DrawableObject {
 
 
 
+
     getCollisionSide(enemy) {
-
-
         let r1 = this;
         let r2 = enemy;
-
         const dx = (r1.x + r1.width / 2) - (r2.x + r2.width / 2);
         const dy = (r1.y + r1.height / 2) - (r2.y + r2.height / 2);
         const overlapX = (r1.width + r2.width) / 2 - Math.abs(dx);
         const overlapY = (r1.height + r2.height) / 2 - Math.abs(dy);
-
         // Nur wenn überhaupt Kollision
-        if (overlapX > 0 && overlapY > 0) {
-            if (overlapX < overlapY) {
+        const r1Bottom = r1.y + r1.height;
+        const r2Top = r2.y;
 
+
+        if (overlapX > 0 && overlapY > 0) {
+
+            if (overlapX < overlapY) {
                 // horizontale Kollision
                 if (dx > 0) {
                     console.log("Kollision: links");
-                    return false;
-                } else {
 
+                } else {
                     console.log("Kollision: rechts! ");
                     return true;
 
@@ -90,24 +90,24 @@ class MovableObject extends DrawableObject {
 
 
                 // vertikale Kollision → jetzt prüfen wir die genaue Richtung
-                const r1Bottom = r1.y + r1.height;
-                const r2Top = r2.y;
+
 
                 if (r1Bottom <= r2Top + 10) {
                     // r1 trifft mit Unterkante auf Oberkante von r2
                     console.log("Kollision: unten");
-                    return false
-
 
                 } else {
+
                     console.log("Kollision: oben ");
+
                     this.collisionTop(enemy);
 
+
                 }
+
             }
         }
     }
-
 
 
 
@@ -128,7 +128,9 @@ class MovableObject extends DrawableObject {
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
-        } else {
+        }
+
+        else {
             this.lastHit = new Date().getTime();
         }
     }
@@ -138,8 +140,8 @@ class MovableObject extends DrawableObject {
     //Charater ist verletzt
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        timepassed = timepassed / 500;
+        return timepassed < 2;
     }
 
 

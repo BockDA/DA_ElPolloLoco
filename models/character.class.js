@@ -1,7 +1,7 @@
 class Character extends MovableObject {
 
     height = 250;
-    y = 20;  //180
+    y = 180;
     speed = 10;
 
     IMAGES_WALKING = [
@@ -92,9 +92,8 @@ class Character extends MovableObject {
                 this.loadImage(this.IMAGES_IDLE[0]);
 
             } else if (this.isHurt()) {
-                // console.log("Aktuelle Energie ", this.energy);
-
                 this.playAnmimation(this.IMAGES_HURT);
+
 
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -112,7 +111,7 @@ class Character extends MovableObject {
 
             this.world.camera_x = -this.x + 100;
 
-        }, 1000 / 20);
+        }, 1000 / 25);
     }
 
 

@@ -32,15 +32,13 @@ class World {
     run() {
         setInterval(() => {
             this.checkThrowObjects();
+            this.checkCollisions();
 
-            if (this.checkCollisions()) {
-                this.statusBar.setPercentage(this.character.energy);
-                this.character.hit();
-            }
+
 
         }, 100);
     }
-    d
+
 
     //prüfen auf Collision
     checkCollisions() {
