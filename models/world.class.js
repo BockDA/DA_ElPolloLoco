@@ -4,6 +4,7 @@ class World {
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
+    coinscollectible = level1.coinscollectible;
     backroundObjects = level1.backroundObjects;
     canvas;
     ctx;
@@ -72,6 +73,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.coinscollectible);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
