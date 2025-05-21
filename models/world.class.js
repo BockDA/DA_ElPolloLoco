@@ -5,6 +5,7 @@ class World {
     enemies = level1.enemies;
     clouds = level1.clouds;
     coinscollectible = level1.coinscollectible;
+    bootlecollectible = level1.bootlecollectible;
     backroundObjects = level1.backroundObjects;
     canvas;
     ctx;
@@ -34,11 +35,27 @@ class World {
         setInterval(() => {
             this.checkThrowObjects();
             this.checkCollisions();
-
+            this.flaschenZeidhnen();
+            //sammlen bootle
+            //sammeln coins
 
 
         }, 100);
     }
+
+
+
+    flaschenZeidhnen() {
+
+        const bottele = new BootleCollectible();
+
+        bottele.zeichnen();
+
+
+
+
+    }
+
 
 
     //prüfen auf Collision
@@ -74,6 +91,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.coinscollectible);
+        this.addObjectsToMap(this.bootlecollectible);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
