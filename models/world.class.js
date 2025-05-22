@@ -24,7 +24,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.createBootle();
+        this.createNewBootle();
 
     }
 
@@ -130,7 +130,7 @@ class World {
 
 
 
-    createBootle(index) {
+    createNewBootle(index) {
         console.log("Zählr");
         setInterval(() => {
             console.log("index =10");

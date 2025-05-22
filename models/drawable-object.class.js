@@ -39,7 +39,7 @@ class DrawableObject {
 
     //Rahmen zeichnen
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof CoinsCollectible) {
+        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof CoinsCollectible || this instanceof BootleCollectible) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'blue';
@@ -52,6 +52,7 @@ class DrawableObject {
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';
             ctx.rect(this.x + 20, this.y + 20, this.width - 40, this.height - 40);
+            //  ctx.rect(this.x + this.offset.top, this.y + this.offset.left, this.width - this.offset.right, this.height - this.offset.bottom);
             ctx.stroke();
 
 
