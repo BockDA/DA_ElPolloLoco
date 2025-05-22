@@ -32,6 +32,10 @@ window.addEventListener('keydown', (event) => {
         keyboard.D = true;
     }
 
+    if (event.key == 'f') {
+        keyboard.F = true;
+    }
+
 });
 
 
@@ -54,6 +58,10 @@ window.addEventListener('keyup', (event) => {
     }
     if (event.key == 'd') {
         keyboard.D = false;
+    }
+
+    if (event.key == 'f') {
+        keyboard.F = false;
     }
 
 

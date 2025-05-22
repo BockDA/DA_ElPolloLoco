@@ -60,13 +60,4 @@ class DrawableObject {
 
 
 
-
-
-
-
-
-
-
-
-
 }

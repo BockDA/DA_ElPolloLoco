@@ -10,7 +10,7 @@ class CoinsCollectible extends MovableObject {
         super().loadImage('img/8_coin/coin_1.png');
         this.x = 100 + Math.random() * 2500;
         this.y = 30 + Math.random() * 100;
-        this, this.animate();
+        this.animate();
     }
 
     animate() {

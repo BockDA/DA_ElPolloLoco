@@ -9,7 +9,6 @@ class MovableObject extends DrawableObject {
 
 
 
-
     offset = {
         top: 0,
         left: 0,
@@ -52,6 +51,9 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
+
+
+
     }
 
     moveLeft() {
@@ -154,11 +156,10 @@ class MovableObject extends DrawableObject {
 
 
     dead() {
-        console.log("Zeichene Bild");
+        console.log("Zeichne Bild");
 
         // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
     }
-
 
 
 

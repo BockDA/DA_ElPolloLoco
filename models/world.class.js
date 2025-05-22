@@ -24,10 +24,13 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.createBootle();
+
     }
 
     setWorld() {
         this.character.world = this;
+
     }
 
 
@@ -35,26 +38,13 @@ class World {
         setInterval(() => {
             this.checkThrowObjects();
             this.checkCollisions();
-            this.flaschenZeidhnen();
+
             //sammlen bootle
             //sammeln coins
-
-
         }, 100);
     }
 
 
-
-    flaschenZeidhnen() {
-
-        const bottele = new BootleCollectible();
-
-        bottele.zeichnen();
-
-
-
-
-    }
 
 
 
@@ -71,18 +61,20 @@ class World {
 
 
 
-
-
     checkThrowObjects() {
         if (this.keyboard.D) {
             console.log("Werfe Flasche ", this.keyboard.D);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
-
     }
 
+
+
+
+
     draw() {
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backroundObjects);
@@ -100,6 +92,7 @@ class World {
         this.addToMap(this.bootle);
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
+
         requestAnimationFrame(() => {
             this.draw();
         });
@@ -134,5 +127,18 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
+
+    createBootle(index) {
+        console.log("Zählr");
+        setInterval(() => {
+            console.log("index =10");
+            console.log("F gedrüxckt");
+            let newbottle = new BootleCollectible(this.character.x + 700);
+            this.bootlecollectible.push(newbottle);
+        }, 2000);
+    }
+
 
 }

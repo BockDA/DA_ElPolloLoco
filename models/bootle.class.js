@@ -1,20 +1,20 @@
 class BootleCollectible extends MovableObject {
-    constructor() {
+
+    height = 100;
+    width = 80;
+    y = 330;
+    x = 300;
+
+
+
+    constructor(x) {
         super().loadImage('img/6_salsa_bottle/2_salsa_bottle_on_ground.png');
-        this.x = 300 + Math.random() * 1200;
-        this.y = 300;
 
-    }
-
-
-
-
-    zeichnen() {
-        console.log("Zeichen mich");
-        this.x += 100;
+        this.x = x //300 + Math.random() * 800;
 
 
     }
+
 
 
 };
