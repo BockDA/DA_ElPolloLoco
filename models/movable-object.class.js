@@ -64,6 +64,7 @@ class MovableObject extends DrawableObject {
 
 
 
+
     getCollisionSide(enemy) {
         let r1 = this;
         let r2 = enemy;
@@ -119,6 +120,8 @@ class MovableObject extends DrawableObject {
 
 
     collisionTop(enemy) {
+        console.log("Das oBjekt wurde getroffen ", enemy);
+
         enemy.dead = true;
         enemy.deadCollision();
     }
@@ -127,6 +130,7 @@ class MovableObject extends DrawableObject {
 
     //Zusammenstoss noch Collision
     hit() {
+        console.log("hit wird gestartet");
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
@@ -143,7 +147,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 500;
-        return timepassed < 2;
+        return timepassed < 1;
     }
 
 
@@ -162,6 +166,12 @@ class MovableObject extends DrawableObject {
     }
 
 
+
+    createBootle() {
+        console.log("F gedrüxckt");
+        let newbottle = new BootleCollectible(this.character.x + 200);
+        this.bootlecollectible.push(newbottle);
+    }
 
 
 

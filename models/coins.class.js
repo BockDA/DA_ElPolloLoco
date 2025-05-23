@@ -6,6 +6,15 @@ class CoinsCollectible extends MovableObject {
     ]
 
 
+    offset = {
+        top: 50,
+        left: 30,
+        right: 60,
+        bottom: 100
+    }
+
+
+
     constructor() {
         super().loadImage('img/8_coin/coin_1.png');
         this.x = 100 + Math.random() * 2500;

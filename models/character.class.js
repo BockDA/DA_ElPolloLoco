@@ -3,6 +3,7 @@ class Character extends MovableObject {
     height = 250;
     y = 180;
     speed = 10;
+    world; // was macht das
 
 
 
@@ -60,14 +61,14 @@ class Character extends MovableObject {
 
 
 
-    world;
+
 
 
     offset = {
-        top: 20,
+        top: 85,
         left: 20,
         right: 40,
-        bottom: 40
+        bottom: 85
     }
 
 
@@ -95,15 +96,14 @@ class Character extends MovableObject {
                 this.loadImage(this.IMAGES_IDLE[0]);
 
             } else if (this.isHurt()) {
+
                 this.playAnmimation(this.IMAGES_HURT);
+
 
 
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-
-
-
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
@@ -111,7 +111,6 @@ class Character extends MovableObject {
                 this.otherDirection = true;
 
             }
-
 
             if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();

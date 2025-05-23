@@ -51,17 +51,14 @@ const level1 = new Level(
         new CoinsCollectible(),
         new CoinsCollectible(),
         new CoinsCollectible(),
-        new CoinsCollectible(),
-        new CoinsCollectible(),
-        new CoinsCollectible(),
-        new CoinsCollectible(),
         new CoinsCollectible()
+
     ],
 
 
     [
         new BootleCollectible(),
-        new BootleCollectible(),
+
     ],
 
 

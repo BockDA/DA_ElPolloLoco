@@ -1,12 +1,16 @@
 class World {
     character = new Character();
+    test = new BootleCollectible();
     chicken = new Chicken();
+
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
     coinscollectible = level1.coinscollectible;
     bootlecollectible = level1.bootlecollectible;
     backroundObjects = level1.backroundObjects;
+
+
     canvas;
     ctx;
     keyboard;
@@ -15,6 +19,8 @@ class World {
     throwableObjects = [new ThrowableObject()];
     coins = new Coins();
     bootle = new Boodle();
+
+
 
 
     constructor(canvas, keyboard) {
@@ -30,14 +36,14 @@ class World {
 
     setWorld() {
         this.character.world = this;
-
     }
 
 
     run() {
         setInterval(() => {
-            this.checkThrowObjects();
             this.checkCollisions();
+            this.checkThrowObjects();
+            this.checkCollisonBootle();
 
             //sammlen bootle
             //sammeln coins
@@ -51,7 +57,7 @@ class World {
     //prüfen auf Collision
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getCollisionSide(enemy)) {
+            if (this.character.getCollisionSide(enemy)) {  //ist true oder false
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -60,7 +66,7 @@ class World {
     }
 
 
-
+    //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D) {
             console.log("Werfe Flasche ", this.keyboard.D);
@@ -69,6 +75,23 @@ class World {
         }
     }
 
+
+    //Kollision mit Flasche
+    checkCollisonBootle() {
+        this.level.bootlecollectible.forEach((bootle) => {
+            if (this.character.getCollisionSide(bootle)) {
+
+                console.log("Kollisiom mit Flasche");
+
+                this.test.bottleCollected();
+
+
+
+            };
+
+        });
+
+    }
 
 
 
@@ -129,16 +152,18 @@ class World {
     }
 
 
-
+    //Erzeuege neue Flasche 
     createNewBootle(index) {
-        console.log("Zählr");
+        let x = 0;
+
         setInterval(() => {
-            console.log("index =10");
-            console.log("F gedrüxckt");
-            let newbottle = new BootleCollectible(this.character.x + 700);
-            this.bootlecollectible.push(newbottle);
+            x++
+
+            if (x < level1.maxBottle) {
+                console.log("Setze Flasche ", x);
+                let newbottle = new BootleCollectible(this.character.x + 700);
+                this.bootlecollectible.push(newbottle);
+            }
         }, 2000);
     }
-
-
 }

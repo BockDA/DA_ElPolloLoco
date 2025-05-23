@@ -3,6 +3,11 @@ class ChickenSmall extends MovableObject {
     y = 380;
     height = 40;
     width = 40;
+    dead = false;
+
+
+
+
     IMAGES_WALKING_SMALL = [
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
@@ -23,7 +28,7 @@ class ChickenSmall extends MovableObject {
         bottom: 0
     }
 
-    dead = false;
+
 
     constructor() {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");

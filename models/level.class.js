@@ -5,6 +5,7 @@ class Level {
     coinscollectible;
     bootlecollectible;
 
+    maxBottle = 7;
 
     level_end_x = 2200;
 
