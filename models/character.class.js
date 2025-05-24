@@ -95,8 +95,11 @@ class Character extends MovableObject {
                 this.playAnmimation(this.IMAGES_DEAD);
                 this.loadImage(this.IMAGES_IDLE[0]);
 
+
             } else if (this.isHurt()) {
 
+                console.log("Is Hurt Variable")
+                //this.y += 200;
                 this.playAnmimation(this.IMAGES_HURT);
 
 

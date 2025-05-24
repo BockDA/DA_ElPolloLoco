@@ -53,15 +53,12 @@ class MovableObject extends DrawableObject {
         this.playAnmimation(this.IMAGES_WALKING);
 
 
-
     }
 
     moveLeft() {
         this.x -= this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
     }
-
-
 
 
 
@@ -83,13 +80,16 @@ class MovableObject extends DrawableObject {
                 // horizontale Kollision
                 if (dx > 0) {
                     console.log("Kollision: links");
+                    this.collisionLeft();
 
                 } else {
                     console.log("Kollision: rechts! ");
+
                     return true;
 
                 }
             } else {
+
 
 
                 // vertikale Kollision → jetzt prüfen wir die genaue Richtung
@@ -98,12 +98,16 @@ class MovableObject extends DrawableObject {
                 if (r1Bottom <= r2Top + 10) {
                     // r1 trifft mit Unterkante auf Oberkante von r2
                     console.log("Kollision: unten");
-
                 } else {
 
                     console.log("Kollision: oben ");
+                    console.log("enemmy ", enemy.y, enemy.height)
+                    console.log("charater ", this.y, this.height);
 
+                    //if (this.height - this.character.y < 70) {
                     this.collisionTop(enemy);
+                    //}
+
 
 
                 }
@@ -121,30 +125,33 @@ class MovableObject extends DrawableObject {
 
     collisionTop(enemy) {
         console.log("Das oBjekt wurde getroffen ", enemy);
-
         enemy.dead = true;
         enemy.deadCollision();
     }
 
 
 
-    //Zusammenstoss noch Collision
     hit() {
-        console.log("hit wird gestartet");
+        const now = Date.now();
+
+        // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
+        if (now - this.lastHit < 1000) {
+            return;
+        }
+        // Nun ausführen und Timestamp updaten
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
+            console.log("Keine Energie mehr übrig!");
         }
-
-        else {
-            this.lastHit = new Date().getTime();
-        }
+        this.lastHit = now;
     }
 
 
 
     //Charater ist verletzt
     isHurt() {
+
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 500;
         return timepassed < 1;
