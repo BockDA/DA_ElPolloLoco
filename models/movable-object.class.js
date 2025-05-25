@@ -63,71 +63,47 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionSide(enemy) {
-        let r1 = this;
-        let r2 = enemy;
-        const dx = (r1.x + r1.width / 2) - (r2.x + r2.width / 2);
-        const dy = (r1.y + r1.height / 2) - (r2.y + r2.height / 2);
-        const overlapX = (r1.width + r2.width) / 2 - Math.abs(dx);
-        const overlapY = (r1.height + r2.height) / 2 - Math.abs(dy);
-        // Nur wenn überhaupt Kollision
-        const r1Bottom = r1.y + r1.height;
-        const r2Top = r2.y;
+        return (
+            this.x + this.width > enemy.x &&
+            this.y + this.height > enemy.y &&
+            this.x < enemy.x &&
+            this.y < enemy.y + enemy.height) &&
+            this.y - this.height == -70;
+    }
 
 
-        if (overlapX > 0 && overlapY > 0) {
-
-            if (overlapX < overlapY) {
-                // horizontale Kollision
-                if (dx > 0) {
-                    console.log("Kollision: links");
-                    this.collisionLeft();
-
-                } else {
-                    console.log("Kollision: rechts! ");
-
-                    return true;
-
-                }
-            } else {
-
-
-
-                // vertikale Kollision → jetzt prüfen wir die genaue Richtung
-
-
-                if (r1Bottom <= r2Top + 10) {
-                    // r1 trifft mit Unterkante auf Oberkante von r2
-                    console.log("Kollision: unten");
-                } else {
-
-                    console.log("Kollision: oben ");
-                    console.log("enemmy ", enemy.y, enemy.height)
-                    console.log("charater ", this.y, this.height);
-
-                    //if (this.height - this.character.y < 70) {
-                    this.collisionTop(enemy);
-                    //}
-
-
-
-                }
-
-            }
-        }
+    getcollisionTop(enemy) {
+        const tolerance = 50;
+        const minX = this.x - tolerance;
+        const maxX = this.x + tolerance;
+        return (
+            (enemy.x >= minX && enemy.x <= maxX) && this.y < 180);
     }
 
 
 
-    collisionLeft() {
-        console.log("Collison LEFT");
+    isHorizontallyOverlappingWith(enemy) {
+        const characterLeft = this.x + this.offset.left;
+        const characterRight = this.x + this.width - this.offset.right;
+        const enemyLeft = enemy.x + enemy.offset.left;
+        const enemyRight = enemy.x + enemy.width - enemy.offset.right;
+        return characterRight > enemyLeft && characterLeft < enemyRight;
     }
 
 
-    collisionTop(enemy) {
-        console.log("Das oBjekt wurde getroffen ", enemy);
-        enemy.dead = true;
-        enemy.deadCollision();
+
+    isVerticallyLandingOn(enemy) {
+        const characterBottom = this.y + this.height - this.offset.bottom;
+        const enemyTop = enemy.y + enemy.offset.top;
+        const verticalBuffer = 8;
+        return (
+            characterBottom > (enemyTop - verticalBuffer) &&
+            characterBottom < (enemyTop + verticalBuffer)
+        );
     }
+
+
+
 
 
 

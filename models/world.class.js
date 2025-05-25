@@ -41,7 +41,8 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsRight();
+            this.checkCollisionTop();
             this.checkThrowObjects();
             this.checkCollisonBootle();
 
@@ -54,16 +55,50 @@ class World {
 
 
 
-    //prüfen auf Collision
-    checkCollisions() {
+    //prüfen auf Collision von rechts
+    checkCollisionsRight() {
+        console.log("Aktueller Y ", this.character.y);
+        console.log("Charater Height ", this.character.height);
+
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
+                //console.log(("Kollision rechts"));
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
 
         });
     }
+
+
+    checkCollisionTop() {
+
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.getcollisionTop(enemy)) {
+                console.log("Kollisoon von Oben");
+                enemy.dead = true;
+                enemy.deadCollision();
+            }
+
+        });
+
+    }
+
+
+
+    //Kollision mit Flasche
+    checkCollisonBootle() {
+        this.level.bootlecollectible.forEach((bootle) => {
+            if (this.character.getCollisionSide(bootle)) {
+                console.log("Kollisiom mit Flasche");
+                this.test.bottleCollected();
+            };
+        });
+    }
+
+
+
+
 
 
     //werfe Flasche
@@ -75,23 +110,6 @@ class World {
         }
     }
 
-
-    //Kollision mit Flasche
-    checkCollisonBootle() {
-        this.level.bootlecollectible.forEach((bootle) => {
-            if (this.character.getCollisionSide(bootle)) {
-
-                console.log("Kollisiom mit Flasche");
-
-                this.test.bottleCollected();
-
-
-
-            };
-
-        });
-
-    }
 
 
 
