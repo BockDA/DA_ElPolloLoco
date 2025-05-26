@@ -1,8 +1,6 @@
 class World {
     character = new Character();
-    test = new BootleCollectible();
     chicken = new Chicken();
-
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
@@ -42,7 +40,8 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsRight();
-            this.checkCollisionTop();
+            this.checkCollisionBottom();
+            this.checkCollisionCoins();
             this.checkThrowObjects();
             this.checkCollisonBootle();
 
@@ -55,10 +54,10 @@ class World {
 
 
 
-    //prüfen auf Collision von rechts
+    //Collision mit Chicken von rechts
     checkCollisionsRight() {
-        console.log("Aktueller Y ", this.character.y);
-        console.log("Charater Height ", this.character.height);
+        //console.log("Aktueller Y ", this.character.y);
+        //console.log("Charater Height ", this.character.height);
 
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
@@ -71,27 +70,36 @@ class World {
     }
 
 
-    checkCollisionTop() {
 
+    //Collision mit Chicken von oben
+    checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getcollisionTop(enemy)) {
-                console.log("Kollisoon von Oben");
+            if (this.character.getcollisionBottom(enemy)) {
+                console.log("Kollison von Oben");
                 enemy.dead = true;
                 enemy.deadCollision();
             }
-
         });
+    }
 
+
+
+    //Collision mit Münze
+    checkCollisionCoins() {
+        this.level.coinscollectible.forEach((coins) => {
+            if (this.character.getCollisionCoins(coins)) {
+                console.log("Kollisoon von unten");
+            }
+        });
     }
 
 
 
     //Kollision mit Flasche
     checkCollisonBootle() {
-        this.level.bootlecollectible.forEach((bootle) => {
-            if (this.character.getCollisionSide(bootle)) {
+        this.level.bootlecollectible.forEach((bootleCol) => {
+            if (this.character.getCollisionSide(bootleCol)) {
                 console.log("Kollisiom mit Flasche");
-                this.test.bottleCollected();
             };
         });
     }
@@ -99,12 +107,10 @@ class World {
 
 
 
-
-
     //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D) {
-            console.log("Werfe Flasche ", this.keyboard.D);
+            //console.log("Werfe Flasche ", this.keyboard.D);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
@@ -178,7 +184,7 @@ class World {
             x++
 
             if (x < level1.maxBottle) {
-                console.log("Setze Flasche ", x);
+                //console.log("Setze Flasche ", x);
                 let newbottle = new BootleCollectible(this.character.x + 700);
                 this.bootlecollectible.push(newbottle);
             }

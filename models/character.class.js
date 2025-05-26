@@ -8,6 +8,7 @@ class Character extends MovableObject {
 
 
 
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-22.png',
         'img/2_character_pepe/2_walk/W-23.png',
@@ -60,6 +61,18 @@ class Character extends MovableObject {
     ]
 
 
+    IMAGES_LONG_IDLE = [
+        'img/2_character_pepe/1_idle/long_idle/I-11.png',
+        'img/2_character_pepe/1_idle/long_idle/I-12.png',
+        'img/2_character_pepe/1_idle/long_idle/I-13.png',
+        'img/2_character_pepe/1_idle/long_idle/I-14.png',
+        'img/2_character_pepe/1_idle/long_idle/I-15.png',
+        'img/2_character_pepe/1_idle/long_idle/I-16.png',
+        'img/2_character_pepe/1_idle/long_idle/I-17.png',
+        'img/2_character_pepe/1_idle/long_idle/I-18.png',
+        'img/2_character_pepe/1_idle/long_idle/I-19.png',
+        'img/2_character_pepe/1_idle/long_idle/I-20.png',
+    ]
 
 
 
@@ -75,20 +88,35 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage("img/2_character_pepe/2_walk/W-21.png");
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_LONG_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
+        this.startAnimation();
         this.animate();
 
     }
 
 
+    startAnimation() {
+        setTimeout(() =>
+            console.log("Habe 1 sekunde gewartet", this.startGame),
+            3000);
+    }
 
     animate() {
+
+
+
+
+
         setInterval(() => {
+            console.log("Startgame ", this.startGame);
+
             this.playAnmimation(this.IMAGES_IDLE);
+
 
             if (this.isDead()) {
                 console.log("Bin Tod");
@@ -128,6 +156,15 @@ class Character extends MovableObject {
     jump() {
         this.speedY = 30;
         this.playAnmimation(this.IMAGES_JUMPING);
+
     }
+
+
+    sleep() {
+        this.playAnmimation(this.IMAGES_LONG_IDLE);
+
+    }
+
+
 
 }

@@ -13,6 +13,7 @@ class CoinsCollectible extends MovableObject {
         bottom: 100
     }
 
+    speed = 0.02;
 
 
     constructor() {
@@ -22,15 +23,25 @@ class CoinsCollectible extends MovableObject {
         this.animate();
     }
 
+
+
     animate() {
         setInterval(() => {
             this.x -= 1;
             if (this.x <= 10) {
                 this.x = 2000 + Math.random() * 800;
             }
-
         }, 1000 / 60);
+
+
 
     }
 
+
+
+
 }
+
+
+
+

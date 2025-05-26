@@ -44,6 +44,10 @@ class MovableObject extends DrawableObject {
         let path = images[i]
         this.img = this.imageCache[path];
         this.currentImage++;
+        // console.log("Springe-- ", this.y);
+        //if (this.y >= 500) {
+        //  debugger;
+        // }
     }
 
 
@@ -72,38 +76,19 @@ class MovableObject extends DrawableObject {
     }
 
 
-    getcollisionTop(enemy) {
+    getcollisionBottom(enemy) {
         const tolerance = 50;
         const minX = this.x - tolerance;
         const maxX = this.x + tolerance;
         return (
-            (enemy.x >= minX && enemy.x <= maxX) && this.y < 180);
+            (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
     }
 
 
 
-    isHorizontallyOverlappingWith(enemy) {
-        const characterLeft = this.x + this.offset.left;
-        const characterRight = this.x + this.width - this.offset.right;
-        const enemyLeft = enemy.x + enemy.offset.left;
-        const enemyRight = enemy.x + enemy.width - enemy.offset.right;
-        return characterRight > enemyLeft && characterLeft < enemyRight;
+    getCollisionCoins(coins) {
+        return
     }
-
-
-
-    isVerticallyLandingOn(enemy) {
-        const characterBottom = this.y + this.height - this.offset.bottom;
-        const enemyTop = enemy.y + enemy.offset.top;
-        const verticalBuffer = 8;
-        return (
-            characterBottom > (enemyTop - verticalBuffer) &&
-            characterBottom < (enemyTop + verticalBuffer)
-        );
-    }
-
-
-
 
 
 

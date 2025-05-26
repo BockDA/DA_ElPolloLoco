@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+
 function init() {
     console.log("Starte");
     canvas = document.getElementById('canvas');
@@ -10,6 +11,9 @@ function init() {
 
 
 window.addEventListener('keydown', (event) => {
+
+    console.log("Taste gerückt");
+
 
 
     if (event.key == 'ArrowRight') {
