@@ -4,7 +4,7 @@ class Character extends MovableObject {
     y = 180;
     speed = 10;
     world; // was macht das
-
+    sleep = false;
 
 
 
@@ -101,22 +101,22 @@ class Character extends MovableObject {
 
 
     startAnimation() {
-        setTimeout(() =>
-            console.log("Habe 1 sekunde gewartet", this.startGame),
-            3000);
+        setInterval(() => {
+            this.sleep = true
+        }, 5000);
     }
+
 
     animate() {
 
-
-
-
-
         setInterval(() => {
-            console.log("Startgame ", this.startGame);
+            console.log("Startgame ");
 
-            this.playAnmimation(this.IMAGES_IDLE);
-
+            if (this.sleep) {
+                this.playAnmimation(this.IMAGES_LONG_IDLE);
+            } else {
+                this.playAnmimation(this.IMAGES_IDLE);
+            }
 
             if (this.isDead()) {
                 console.log("Bin Tod");
@@ -134,16 +134,19 @@ class Character extends MovableObject {
 
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                this.sleep = false;
                 this.otherDirection = false;
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
+                this.sleep = false;
                 this.otherDirection = true;
 
             }
 
             if (this.world.keyboard.UP && !this.isAboveGround()) {
+                this.sleep = false;
                 this.jump();
             }
 

@@ -86,6 +86,9 @@ class MovableObject extends DrawableObject {
 
 
 
+
+
+
     getCollisionCoins(coins) {
         return
     }
@@ -134,13 +137,14 @@ class MovableObject extends DrawableObject {
     }
 
 
-
-    createBootle() {
-        console.log("F gedrüxckt");
-        let newbottle = new BootleCollectible(this.character.x + 200);
-        this.bootlecollectible.push(newbottle);
-    }
-
+    /*
+        createBootle() {
+    
+            console.log("F gedrüxckt");
+            let newbottle = new BootleCollectible(this.character.x + 200);
+            this.bootlecollectible.push(newbottle);
+        }
+    */
 
 
 }

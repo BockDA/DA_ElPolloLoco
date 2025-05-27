@@ -97,9 +97,12 @@ class World {
 
     //Kollision mit Flasche
     checkCollisonBootle() {
+
         this.level.bootlecollectible.forEach((bootleCol) => {
             if (this.character.getCollisionSide(bootleCol)) {
-                console.log("Kollisiom mit Flasche");
+                bootleCol.bottleCollected();
+                this.bootle.setBootle(1);
+
             };
         });
     }
