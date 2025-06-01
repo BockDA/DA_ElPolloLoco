@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 250;
     y = 180;
-    speed = 10;
+    speed = 15;
     world; // was macht das
     sleep = false;
 
@@ -125,7 +125,7 @@ class Character extends MovableObject {
 
             } else if (this.isHurt()) {
 
-                console.log("Is Hurt Variable")
+                //console.log("Is Hurt Variable")
                 //this.y += 200;
                 this.playAnmimation(this.IMAGES_HURT);
 

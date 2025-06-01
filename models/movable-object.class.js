@@ -44,10 +44,7 @@ class MovableObject extends DrawableObject {
         let path = images[i]
         this.img = this.imageCache[path];
         this.currentImage++;
-        // console.log("Springe-- ", this.y);
-        //if (this.y >= 500) {
-        //  debugger;
-        // }
+
     }
 
 
@@ -83,7 +80,6 @@ class MovableObject extends DrawableObject {
         return (
             (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
     }
-
 
 
 

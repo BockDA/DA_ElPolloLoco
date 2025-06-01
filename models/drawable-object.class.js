@@ -39,12 +39,12 @@ class DrawableObject {
 
     //Rahmen zeichnen
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof CoinsCollectible || this instanceof BootleCollectible) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof CoinsCollectible || this instanceof Bootle) {
+            //     ctx.beginPath();
+            //    ctx.lineWidth = '2';
+            //   ctx.strokeStyle = 'blue';
+            //  ctx.rect(this.x, this.y, this.width, this.height);
+            // ctx.stroke();
 
 
             /*Roter Rahmen*/

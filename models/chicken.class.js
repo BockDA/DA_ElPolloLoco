@@ -61,7 +61,6 @@ class Chicken extends MovableObject {
 
 
     deadCollision() {
-        console.log("Chicken coolisosn Animation aufrufen");
 
         if (this.dead) {
             this.playAnmimation(this.IMAGES_DEAD);

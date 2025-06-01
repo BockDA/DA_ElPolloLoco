@@ -5,8 +5,9 @@ class World {
     enemies = level1.enemies;
     clouds = level1.clouds;
     coinscollectible = level1.coinscollectible;
-    bootlecollectible = level1.bootlecollectible;
+    bootle = level1.bootle;
     backroundObjects = level1.backroundObjects;
+
 
 
     canvas;
@@ -76,7 +77,7 @@ class World {
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getcollisionBottom(enemy)) {
-                console.log("Kollison von Oben");
+                //console.log("Kollison von Oben");
                 enemy.dead = true;
                 enemy.deadCollision();
             }
@@ -91,7 +92,7 @@ class World {
         this.level.coinscollectible.forEach((coins) => {
             if (this.character.getCollisionCoins(coins)) {
                 coins.coinsCollected();
-                console.log("Kollisoon von unten");
+                //console.log("Kollisoon von unten");
             }
         });
     }
@@ -100,13 +101,15 @@ class World {
 
     //Kollision mit Flasche
     checkCollisonBootle() {
-        this.level.bootlecollectible.forEach((bootleCol) => {
-            if (this.character.getCollisionSide(bootleCol)) {
+        this.level.bootle.forEach((bootle) => {
+            if (this.character.getCollisionSide(bootle)) {
                 //this.bootle.bottleCollected();
-
-
+                console.log("Collision mit Flache");
 
             };
+
+
+
         });
     }
 
@@ -136,7 +139,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.coinscollectible);
-        this.addObjectsToMap(this.bootlecollectible);
+        this.addObjectsToMap(this.bootle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
@@ -192,8 +195,8 @@ class World {
 
             if (x < level1.maxBottle) {
                 //console.log("Setze Flasche ", x);
-                let newbottle = new BootleCollectible(this.character.x + 700);
-                this.bootlecollectible.push(newbottle);
+                let newbottle = new Bootle(this.character.x + 700);
+                this.bootle.push(newbottle);
             }
         }, 2000);
     }

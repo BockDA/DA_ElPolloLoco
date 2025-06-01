@@ -12,7 +12,7 @@ function init() {
 
 window.addEventListener('keydown', (event) => {
 
-    console.log("Taste gerückt");
+    // console.log("Taste gerückt");
 
 
     if (event.key == 'ArrowRight') {

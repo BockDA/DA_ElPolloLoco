@@ -1,9 +1,12 @@
-class BootleCollectible extends MovableObject {
+class Bootle extends MovableObject {
 
     height = 100;
     width = 80;
     y = 330;
     x = 300;
+
+
+
 
 
     offset = {
@@ -26,7 +29,7 @@ class BootleCollectible extends MovableObject {
 
 
 
-    bottleCollected() {
+    bottleCollected1() {
         console.log("Verschiebe Flasche ", this.y);
         this.x = 400;
         this.y = 400;

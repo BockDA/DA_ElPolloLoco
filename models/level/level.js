@@ -57,7 +57,8 @@ const level1 = new Level(
 
 
     [
-        new BootleCollectible()
+
+        new Bootle()
 
     ],
 
