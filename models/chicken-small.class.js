@@ -4,6 +4,8 @@ class ChickenSmall extends MovableObject {
     height = 40;
     width = 40;
     dead = false;
+    speed = 1.5;
+    setIntervalId;
 
 
 
@@ -36,7 +38,7 @@ class ChickenSmall extends MovableObject {
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 600 + Math.random() * 800;
-        this.speed = 0.35 + Math.random() * 0.4;
+        this.speed += Math.random() * 0.4;
         this.animate();
     }
 
@@ -44,21 +46,22 @@ class ChickenSmall extends MovableObject {
     animate() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_WALKING_SMALL.length;
-            let path = this.IMAGES_WALKING_SMALL[i]
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            if (!this.dead) {
+                let i = this.currentImage % this.IMAGES_WALKING_SMALL.length;
+                let path = this.IMAGES_WALKING_SMALL[i]
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
         }, 200);
     }
 
 
     moveLeft() {
-        setInterval(() => {
+        this.setIntervalId = setInterval(() => {
             this.x -= this.speed;
             //  if (this.x <= 0) {
             //    this.x = 720;
             // }
-
         }, 1000 / 60);
     }
 
@@ -66,10 +69,12 @@ class ChickenSmall extends MovableObject {
     //wenn getroffen nach unten abtauchen
     deadCollision() {
         this.playAnmimation(this.IMAGES_DEAD);
-        setInterval(() => {
-            this.y += this.speed;
-        }, 100 / 60);
-        //this.dead = true;
+        //setInterval(() => {
+        //  this.y += this.speed;
+        // }, 100 / 60);
+
+        this.dead = true;
+        clearInterval(this.setIntervalId);
     }
 
 }

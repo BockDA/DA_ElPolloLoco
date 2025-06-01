@@ -4,11 +4,11 @@ class World {
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
-    coinscollectible = level1.coinscollectible;
+    coins = level1.coins;
     bootle = level1.bootle;
+    bootleColli = new Bootle();
+
     backroundObjects = level1.backroundObjects;
-
-
 
     canvas;
     ctx;
@@ -16,13 +16,13 @@ class World {
     camera_x = 0;
 
     statusBar = new StatusBar();
-    coinsBar = new Coins();
-    bootleBar = new Boodle();
+    coinsBar = new CoinsBar();
+    bootleBar = new BoodleBar();
 
     throwableObjects = [new ThrowableObject()];
 
-
-
+    bottleScore = 0;
+    coinsScore = 0;
 
 
 
@@ -67,6 +67,7 @@ class World {
                 //console.log(("Kollision rechts"));
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+
             }
 
         });
@@ -89,28 +90,60 @@ class World {
 
     //Collision mit Münze
     checkCollisionCoins() {
-        this.level.coinscollectible.forEach((coins) => {
+        this.level.coins.forEach((coins) => {
             if (this.character.getCollisionCoins(coins)) {
-                coins.coinsCollected();
-                //console.log("Kollisoon von unten");
+                this.coinsCollected(coins);
+                // this.coinsScoreWrite();
+
             }
         });
     }
-
 
 
     //Kollision mit Flasche
     checkCollisonBootle() {
         this.level.bootle.forEach((bootle) => {
             if (this.character.getCollisionSide(bootle)) {
-                //this.bootle.bottleCollected();
-                console.log("Collision mit Flache");
+                this.bottleCollected(bootle);
+                this.bottleScoreWrite(true);
 
             };
 
-
-
         });
+    }
+
+
+    //Flaschen beu Kollisoon verschieben und 
+    bottleCollected(bootle) {
+        bootle.y = 0;
+        bootle.x = 0;
+    }
+
+
+    //Anzahl der Bottle schreiben
+    bottleScoreWrite(value) {
+        if (value) {
+            this.bottleScore++
+        } else {
+            this.bottleScore--
+        }
+        this.bootleBar.setBootle(this.bottleScore);
+    }
+
+
+    coinsCollected(coins) {
+        // console.log("Verschiebe Coins ", this.y);
+        coins.x = 0;
+        coins.y = 0;
+        this.coinsScoreWrite();
+
+    }
+
+
+    //Anzahl der Coins schreiben
+    coinsScoreWrite() {
+        this.coinsScore++;
+        this.coinsBar.setCoins(this.coinsScore);
     }
 
 
@@ -118,10 +151,11 @@ class World {
 
     //werfe Flasche
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.bottleScore > 0) {
             //console.log("Werfe Flasche ", this.keyboard.D);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.bottleScoreWrite(false)
         }
     }
 
@@ -138,8 +172,9 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.coinscollectible);
+        this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.bootle);
+
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
@@ -187,17 +222,17 @@ class World {
 
 
     //Erzeuege neue Flasche 
-    createNewBootle(index) {
-        let x = 0;
-
+    createNewBootle() {
+        let i = 0;
+        let u = 0;
         setInterval(() => {
-            x++
-
-            if (x < level1.maxBottle) {
-                //console.log("Setze Flasche ", x);
-                let newbottle = new Bootle(this.character.x + 700);
+            i++
+            u += 200;
+            if (i < level1.maxBottle) {
+                let newbottle = new Bootle(u + (Math.random() * 250));
                 this.bootle.push(newbottle);
             }
-        }, 2000);
+
+        }, 100);
     }
 }

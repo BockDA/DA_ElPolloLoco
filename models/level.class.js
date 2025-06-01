@@ -2,18 +2,18 @@ class Level {
     enemies;
     clouds;
     backroundObjects;
-    coinscollectible;
+    coins;
     bootle;
 
-    maxBottle = 7;
+    maxBottle = 6;
 
     level_end_x = 2200;
 
-    constructor(enemies, clouds, backroundObjects, coinscollectible, bootle) {
+    constructor(enemies, clouds, backroundObjects, coins, bootle) {
         this.enemies = enemies;
         this.clouds = clouds;
         this.backroundObjects = backroundObjects;
-        this.coinscollectible = coinscollectible;
+        this.coins = coins;
         this.bootle = bootle;
     }
 

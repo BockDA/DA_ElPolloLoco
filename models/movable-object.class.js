@@ -8,7 +8,6 @@ class MovableObject extends DrawableObject {
     collisonRight = false;
 
 
-
     offset = {
         top: 0,
         left: 0,
@@ -62,7 +61,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-
     getCollisionSide(enemy) {
         return (
             this.x + this.width > enemy.x &&
@@ -84,7 +82,10 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionCoins(coins) {
-        return
+        const tolerance = 50;
+        return (
+            this.y <= coins.y + coins.height && this.x + 20 >= coins.x
+        );
     }
 
 
