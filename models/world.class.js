@@ -13,10 +13,15 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+
     statusBar = new StatusBar();
+    coinsBar = new Coins();
+    bootleBar = new Boodle();
+
     throwableObjects = [new ThrowableObject()];
-    coins = new Coins();
-    bootle = new Boodle();
+
+
+
 
 
 
@@ -56,9 +61,6 @@ class World {
 
     //Collision mit Chicken von rechts
     checkCollisionsRight() {
-        //console.log("Aktueller Y ", this.character.y);
-        //console.log("Charater Height ", this.character.height);
-
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
                 //console.log(("Kollision rechts"));
@@ -68,7 +70,6 @@ class World {
 
         });
     }
-
 
 
     //Collision mit Chicken von oben
@@ -84,10 +85,12 @@ class World {
 
 
 
+
     //Collision mit Münze
     checkCollisionCoins() {
         this.level.coinscollectible.forEach((coins) => {
             if (this.character.getCollisionCoins(coins)) {
+                coins.coinsCollected();
                 console.log("Kollisoon von unten");
             }
         });
@@ -97,11 +100,11 @@ class World {
 
     //Kollision mit Flasche
     checkCollisonBootle() {
-
         this.level.bootlecollectible.forEach((bootleCol) => {
             if (this.character.getCollisionSide(bootleCol)) {
-                bootleCol.bottleCollected();
-                this.bootle.setBootle(1);
+                //this.bootle.bottleCollected();
+
+
 
             };
         });
@@ -138,8 +141,8 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
-        this.addToMap(this.coins);
-        this.addToMap(this.bootle);
+        this.addToMap(this.coinsBar);
+        this.addToMap(this.bootleBar);
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -147,6 +150,7 @@ class World {
             this.draw();
         });
     }
+
 
     addObjectsToMap(objekts) {
         objekts.forEach(o => [

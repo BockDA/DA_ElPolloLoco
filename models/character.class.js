@@ -57,7 +57,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-7.png',
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
-        'img/2_character_pepe/1_idle/idle/I-10.png'
+        'img/2_character_pepe/1_idle/idle/I-10.png',
     ]
 
 
@@ -108,9 +108,8 @@ class Character extends MovableObject {
 
 
     animate() {
-
         setInterval(() => {
-            console.log("Startgame ");
+            console.log("Startgame");
 
             if (this.sleep) {
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
@@ -129,7 +128,6 @@ class Character extends MovableObject {
                 console.log("Is Hurt Variable")
                 //this.y += 200;
                 this.playAnmimation(this.IMAGES_HURT);
-
 
 
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -159,13 +157,11 @@ class Character extends MovableObject {
     jump() {
         this.speedY = 30;
         this.playAnmimation(this.IMAGES_JUMPING);
-
     }
 
 
     sleep() {
         this.playAnmimation(this.IMAGES_LONG_IDLE);
-
     }
 
 

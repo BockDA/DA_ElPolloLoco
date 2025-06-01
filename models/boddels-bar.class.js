@@ -28,27 +28,8 @@ class Boodle extends DrawableObject {
 
     setBootle(boodleNumber) {
         this.boodleNumber = boodleNumber;
-        console.log("Bootle Status erweitern ", boodleNumber);
-        let path = this.IMAGES_BOOTLE[this.resolveImageIndex(boodleNumber)];
+        let path = this.IMAGES_BOOTLE[boodleNumber];
         this.img = this.imageCache[path];
-
-    }
-
-
-    resolveImageIndex(percentage) {
-        if (this.percentage == 100) {
-            return 5;
-        } else if (percentage > 80) {
-            return 4;
-        } else if (percentage > 60) {
-            return 3;
-        } else if (percentage > 40) {
-            return 2;
-        } else if (percentage > 20) {
-            return 1;
-        } else if (percentage >= 0) {
-            return 0;
-        }
     }
 
 }

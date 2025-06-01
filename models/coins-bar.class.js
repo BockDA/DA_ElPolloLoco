@@ -22,9 +22,12 @@ class Coins extends DrawableObject {
         this.setCoins(0);
     }
 
+
+
+
     setCoins(coins) {
         this.coins = coins;
-        let path = this.IMAGES_COIN[0];
+        let path = this.IMAGES_COIN[coins];
         this.img = this.imageCache[path];
     }
 

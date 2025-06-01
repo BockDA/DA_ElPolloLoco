@@ -15,7 +15,6 @@ window.addEventListener('keydown', (event) => {
     console.log("Taste gerückt");
 
 
-
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }

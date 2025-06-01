@@ -33,10 +33,16 @@ class CoinsCollectible extends MovableObject {
             }
         }, 1000 / 60);
 
-
-
     }
 
+
+
+    coinsCollected() {
+        console.log("Verschiebe Coins ", this.y);
+        this.x = 400;
+        this.y = 400;
+
+    }
 
 
 

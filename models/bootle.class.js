@@ -26,13 +26,10 @@ class BootleCollectible extends MovableObject {
 
 
 
-
     bottleCollected() {
         console.log("Verschiebe Flasche ", this.y);
-
         this.x = 400;
         this.y = 400;
-
     }
 
 
