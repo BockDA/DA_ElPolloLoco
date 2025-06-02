@@ -26,10 +26,13 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             this.playAnmimation(this.IMAGES_WALKING);
-
         }, 200);
     }
 
+
+    animateAttack() {
+        console.log("Endboss grift an");
+    }
 
 
 

@@ -7,6 +7,7 @@ class World {
     coins = level1.coins;
     bootle = level1.bootle;
     bootleColli = new Bootle();
+    endboss = new Endboss();
 
     backroundObjects = level1.backroundObjects;
 
@@ -50,6 +51,7 @@ class World {
             this.checkCollisionCoins();
             this.checkThrowObjects();
             this.checkCollisonBootle();
+            this.checkCharaterPos();
 
             //sammlen bootle
             //sammeln coins
@@ -111,6 +113,23 @@ class World {
 
         });
     }
+
+
+
+    checkCharaterPos() {
+
+        console.log("Position ", this.character.x);
+
+        if (this.character.x == 2400) {
+
+            this.endboss.animateAttack();
+
+        }
+
+    }
+
+
+
 
 
     //Flaschen beu Kollisoon verschieben und 
@@ -232,4 +251,8 @@ class World {
 
         }, 100);
     }
+
+
+
+
 }
