@@ -62,23 +62,28 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionSide(enemy) {
+        const isBootle = enemy instanceof Bootle;
+        if (!isBootle && enemy.dead) return false;
         return (
             this.x + this.width > enemy.x &&
             this.y + this.height > enemy.y &&
             this.x < enemy.x &&
-            this.y < enemy.y + enemy.height) &&
-            this.y - this.height == -70;
+            this.y < enemy.y + enemy.height &&
+            this.y - this.height == -70
+        )
+
     }
 
 
     getcollisionBottom(enemy) {
+
         const tolerance = 50;
         const minX = this.x - tolerance;
         const maxX = this.x + tolerance;
         return (
             (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
-    }
 
+    }
 
 
     getCollisionCoins(coins) {
@@ -92,7 +97,6 @@ class MovableObject extends DrawableObject {
 
     hit() {
         const now = Date.now();
-
         // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
         if (now - this.lastHit < 1000) {
             return;
@@ -110,7 +114,6 @@ class MovableObject extends DrawableObject {
 
     //Charater ist verletzt
     isHurt() {
-
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 500;
         return timepassed < 1;
@@ -130,7 +133,6 @@ class MovableObject extends DrawableObject {
 
         // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
     }
-
 
     /*
         createBootle() {

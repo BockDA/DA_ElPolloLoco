@@ -7,7 +7,7 @@ class Level {
 
     maxBottle = 6;
 
-    level_end_x = 2200;
+    level_end_x = 2400;
 
     constructor(enemies, clouds, backroundObjects, coins, bootle) {
         this.enemies = enemies;
