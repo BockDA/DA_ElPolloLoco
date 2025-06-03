@@ -1,13 +1,15 @@
 class World {
+
     character = new Character();
     chicken = new Chicken();
+    endboss = new Endboss();
+
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
     coins = level1.coins;
     bootle = level1.bootle;
     bootleColli = new Bootle();
-    endboss = new Endboss();
 
     backroundObjects = level1.backroundObjects;
 
@@ -52,9 +54,6 @@ class World {
             this.checkThrowObjects();
             this.checkCollisonBootle();
             this.checkCharaterPos();
-
-            //sammlen bootle
-            //sammeln coins
         }, 100);
     }
 
@@ -115,19 +114,14 @@ class World {
     }
 
 
-
+    //wenn Charater an bestimmter Position dann losgehen
     checkCharaterPos() {
-
-        console.log("Position ", this.character.x);
-
-        if (this.character.x == 2400) {
-
-            this.endboss.animateAttack();
+        if (this.character.x > 2350 && this.keyboard.RIGHT) {
+            this.endboss.test();
+            this.endboss.star = true;
 
         }
-
     }
-
 
 
 

@@ -8,13 +8,14 @@ class MovableObject extends DrawableObject {
     collisonRight = false;
 
 
+
+
     offset = {
         top: 0,
         left: 0,
         right: 0,
         bottom: 0
     }
-
 
 
 
@@ -26,6 +27,7 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 25);
     }
+
 
 
     isAboveGround() {

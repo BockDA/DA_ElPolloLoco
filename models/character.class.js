@@ -8,7 +8,6 @@ class Character extends MovableObject {
 
 
 
-
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-22.png',
         'img/2_character_pepe/2_walk/W-23.png',
@@ -109,8 +108,6 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log("Startgame");
-
             if (this.sleep) {
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
             } else {

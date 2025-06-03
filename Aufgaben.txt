@@ -1,0 +1,18 @@
+- Start Screen
+- Musik - Sound
+- Coins einsammlen
+- Flaschen sammeln
+- Flachen nur werfen wenn sie vorhanden sind
+- Collisionen
+- Endgegner besiegen
+- Game-Over Screen
+- Fullscreen
+- Erklärung /Welche Tasten
+
+Favicon
+Kollisionen überprüfen
+Speed Charater
+wenn chicken deat keine kollision mehr
+
+
+
