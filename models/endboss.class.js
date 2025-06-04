@@ -4,7 +4,8 @@ class Endboss extends MovableObject {
     height = 400;
     width = 250;
     speed = 0.3;
-    start1 = false;
+    world;
+    start = false;
 
 
 
@@ -35,21 +36,20 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
-
-
     }
+
 
 
 
     animate() {
         setInterval(() => {
-
-            if (!this.start1) {
+            if (this.start) {
                 this.playAnmimation(this.IMAGES_ALERT);
+
             } else {
                 this.playAnmimation(this.IMAGES_WALKING);
+                this.moveLeft();
             }
-
         }, 200);
     }
 
@@ -58,11 +58,10 @@ class Endboss extends MovableObject {
 
     test() {
         console.log("Test");
+        console.log("Start = ", this.start)
+        this.start = true;
 
     }
-
-
-
 
 
 

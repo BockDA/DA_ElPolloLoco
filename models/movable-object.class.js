@@ -30,6 +30,8 @@ class MovableObject extends DrawableObject {
 
 
 
+
+
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true

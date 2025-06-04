@@ -118,7 +118,6 @@ class World {
     checkCharaterPos() {
         if (this.character.x > 2350 && this.keyboard.RIGHT) {
             this.endboss.test();
-            this.endboss.star = true;
 
         }
     }
