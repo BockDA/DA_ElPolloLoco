@@ -8,7 +8,6 @@ const level1 = new Level(
         // new ChickenSmall(),
         // new ChickenSmall(),
 
-        new Endboss(),
 
     ],
 
@@ -58,10 +57,11 @@ const level1 = new Level(
 
 
     [
-
         new Bootle()
-
     ],
 
 
+    [
+        new Endboss(),
+    ],
 );

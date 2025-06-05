@@ -2,15 +2,15 @@ class World {
 
     character = new Character();
     chicken = new Chicken();
-    endboss = new Endboss();
+
 
     level = level1;
+    endboss = level1.endboss[0];
     enemies = level1.enemies;
     clouds = level1.clouds;
     coins = level1.coins;
     bootle = level1.bootle;
     bootleColli = new Bootle();
-
     backroundObjects = level1.backroundObjects;
 
     canvas;
@@ -117,7 +117,7 @@ class World {
     //wenn Charater an bestimmter Position dann losgehen
     checkCharaterPos() {
         if (this.character.x > 2350 && this.keyboard.RIGHT) {
-            this.endboss.test();
+            this.endboss.start = true;
 
         }
     }
@@ -180,6 +180,9 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
+        this.addToMap(this.endboss);
+
+
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.bootle);

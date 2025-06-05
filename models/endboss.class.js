@@ -10,6 +10,7 @@ class Endboss extends MovableObject {
 
 
 
+
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -30,38 +31,36 @@ class Endboss extends MovableObject {
     ];
 
 
-
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
+        this.startAnimat();
         this.animate();
     }
 
 
+    startAnimat() {
+        setInterval(() => {
+            this.playAnmimation(this.IMAGES_ALERT);
+        }, 200);
+
+    }
+
 
 
     animate() {
+        console.log("Jetz gehts los", this.start);
         setInterval(() => {
-            if (this.start) {
-                this.playAnmimation(this.IMAGES_ALERT);
 
-            } else {
-                this.playAnmimation(this.IMAGES_WALKING);
+            if (this.start) {
+                this.playAnmimation(this.IMAGES_WALKING)
                 this.moveLeft();
             }
+
         }, 200);
     }
 
-
-
-
-    test() {
-        console.log("Test");
-        console.log("Start = ", this.start)
-        this.start = true;
-
-    }
 
 
 
