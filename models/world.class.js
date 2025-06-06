@@ -13,6 +13,7 @@ class World {
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
 
+
     canvas;
     ctx;
     keyboard;
@@ -23,6 +24,8 @@ class World {
     bootleBar = new BoodleBar();
 
     throwableObjects = [new ThrowableObject()];
+
+
 
     bottleScore = 0;
     coinsScore = 0;
@@ -125,7 +128,7 @@ class World {
 
 
 
-    //Flaschen beu Kollisoon verschieben und 
+    //Flaschen bei Kollisoon verschieben und
     bottleCollected(bootle) {
         bootle.y = 0;
         bootle.x = 0;
@@ -164,12 +167,29 @@ class World {
     //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
-            //console.log("Werfe Flasche ", this.keyboard.D);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-            this.bottleScoreWrite(false)
+            this.bottleScoreWrite(false);
+            this.checkBootleSurcharge(bottle);
+
         }
     }
+
+
+    checkBootleSurcharge(bottle) {
+        console.log("Position Flache ", bottle.y);
+
+        if (this.bootle.y > 270) {
+            let index = this.throwableObjects.indexOf(bottle);
+
+            this.throwableObjects[index].Bootlearise();
+        }
+
+    }
+
+
+
+
 
 
     draw() {
@@ -233,7 +253,7 @@ class World {
     }
 
 
-    //Erzeuege neue Flasche 
+    //Erzeuege neue Flasche
     createNewBootle() {
         let i = 0;
         let u = 0;
