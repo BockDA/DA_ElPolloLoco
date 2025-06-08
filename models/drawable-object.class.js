@@ -19,7 +19,7 @@ class DrawableObject {
 
 
 
-    //Bild aus Array holöen    
+    //Bild aus Array holöen
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();//Hier wird ein HTML Image Element erstellen
@@ -30,7 +30,7 @@ class DrawableObject {
     }
 
 
-    //Zeichne Bild auf Canvas Fläche 
+    //Zeichne Bild auf Canvas Fläche
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
@@ -39,7 +39,7 @@ class DrawableObject {
 
     //Rahmen zeichnen
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof Coins || this instanceof Bootle) {
+        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof Coins || this instanceof Bootle || this instanceof ThrowableObject) {
             //     ctx.beginPath();
             //    ctx.lineWidth = '2';
             //   ctx.strokeStyle = 'blue';

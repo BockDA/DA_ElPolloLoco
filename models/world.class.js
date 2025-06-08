@@ -22,6 +22,7 @@ class World {
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
     bootleBar = new BoodleBar();
+    endbossBar = new EndbossBar();
 
     throwableObjects = [new ThrowableObject()];
 
@@ -57,6 +58,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollisonBootle();
             this.checkCharaterPos();
+
         }, 100);
     }
 
@@ -121,14 +123,13 @@ class World {
     checkCharaterPos() {
         if (this.character.x > 2350 && this.keyboard.RIGHT) {
             this.endboss.start = true;
-
         }
     }
 
 
 
 
-    //Flaschen bei Kollisoon verschieben und
+    //Flaschen bei Kollisoon mit Endboos verschwinden lassen (wenn er geht)
     bottleCollected(bootle) {
         bootle.y = 0;
         bootle.x = 0;
@@ -170,7 +171,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.bottleScoreWrite(false);
-            this.checkBootleSurcharge(bottle);
+            //this.checkBootleSurcharge(bottle);
 
         }
     }
@@ -178,10 +179,8 @@ class World {
 
     checkBootleSurcharge(bottle) {
         console.log("Position Flache ", bottle.y);
-
         if (this.bootle.y > 270) {
             let index = this.throwableObjects.indexOf(bottle);
-
             this.throwableObjects[index].Bootlearise();
         }
 
@@ -213,6 +212,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bootleBar);
+        this.addToMap(this.endbossBar);
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
 

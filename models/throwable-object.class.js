@@ -33,19 +33,42 @@ class ThrowableObject extends MovableObject {
 
 
     //werfen
+    /*   trow() {
+           this.speedY = 30;
+           this.applyGravity();
+           setInterval(() => {
+               // this.playAnmimation(this.IMAGES_TROW);
+               this.x += 10;
+               console.log(this.x)
+           }, 20);
+       }
+   */
     trow() {
-        this.speedY = 25;
+        this.speedY = 30;
         this.applyGravity();
-        setInterval(() => {
-            this.playAnmimation(this.IMAGES_TROW);
+        // Vorheriges Intervall stoppen, wenn vorhanden
+        if (this.trowIntervalId) {
+            clearInterval(this.trowIntervalId);
+            this.trowIntervalId = null;
+        }
+        // Neues Intervall starten
+        this.trowIntervalId = setInterval(() => {
             this.x += 10;
-
+            console.log("x", this.x);
         }, 20);
+        // Nach 1,5 Sekunden stoppen
+        setTimeout(() => {
+            clearInterval(this.trowIntervalId);
+            this.trowIntervalId = null;
+            console.log("Intervall gestoppt");
+        }, 1500);
     }
 
 
-    aufkommen
+
+    //aufkommen
     Bootlearise() {
+
         setInterval(() => {
             this.playAnmimation(this.IMAGES_ARISE);
         }, 20);
