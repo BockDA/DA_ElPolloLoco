@@ -171,20 +171,12 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.bottleScoreWrite(false);
-            //this.checkBootleSurcharge(bottle);
+
 
         }
     }
 
 
-    checkBootleSurcharge(bottle) {
-        console.log("Position Flache ", bottle.y);
-        if (this.bootle.y > 270) {
-            let index = this.throwableObjects.indexOf(bottle);
-            this.throwableObjects[index].Bootlearise();
-        }
-
-    }
 
 
 

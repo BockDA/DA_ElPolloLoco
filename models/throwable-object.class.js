@@ -54,7 +54,7 @@ class ThrowableObject extends MovableObject {
         // Neues Intervall starten
         this.trowIntervalId = setInterval(() => {
             this.x += 10;
-            console.log("x", this.x);
+
         }, 20);
         // Nach 1,5 Sekunden stoppen
         setTimeout(() => {
