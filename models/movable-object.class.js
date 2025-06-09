@@ -30,11 +30,9 @@ class MovableObject extends DrawableObject {
 
 
 
-
-
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true
+            return this.y < 290//true
         } else {
             return this.y < 180;
         }
@@ -47,7 +45,6 @@ class MovableObject extends DrawableObject {
         let path = images[i]
         this.img = this.imageCache[path];
         this.currentImage++;
-
     }
 
 

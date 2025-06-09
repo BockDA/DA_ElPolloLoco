@@ -26,13 +26,8 @@ class World {
 
     throwableObjects = [new ThrowableObject()];
 
-
-
     bottleScore = 0;
     coinsScore = 0;
-
-
-
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -163,25 +158,14 @@ class World {
     }
 
 
-
-
     //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.bottleScoreWrite(false);
-
-
         }
     }
-
-
-
-
-
-
-
 
     draw() {
 
@@ -256,11 +240,6 @@ class World {
                 let newbottle = new Bootle(u + (Math.random() * 250));
                 this.bootle.push(newbottle);
             }
-
         }, 100);
     }
-
-
-
-
 }

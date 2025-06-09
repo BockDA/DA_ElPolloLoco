@@ -8,6 +8,7 @@ class ThrowableObject extends MovableObject {
     ]
 
 
+    /*
     IMAGES_ARISE = [
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
@@ -16,12 +17,14 @@ class ThrowableObject extends MovableObject {
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png",
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
     ]
-
+*/
 
     constructor(x, y) {
-        super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png')
+        super();
+
+        this.loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_TROW);
-        this.loadImages(this.IMAGES_ARISE);
+        //this.loadImages(this.IMAGES_ARISE);
         this.x = x - 100;
         this.y = y;
         this.height = 100;
@@ -53,15 +56,17 @@ class ThrowableObject extends MovableObject {
         }
         // Neues Intervall starten
         this.trowIntervalId = setInterval(() => {
+            this.playAnmimation(this.IMAGES_TROW)
             this.x += 10;
-
         }, 20);
+
         // Nach 1,5 Sekunden stoppen
         setTimeout(() => {
             clearInterval(this.trowIntervalId);
             this.trowIntervalId = null;
             console.log("Intervall gestoppt");
-        }, 1500);
+        }, 1200);
+        this.x == 0;
     }
 
 
