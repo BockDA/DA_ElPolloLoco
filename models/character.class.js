@@ -131,6 +131,7 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.sleep = false;
                 this.otherDirection = false;
+
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {

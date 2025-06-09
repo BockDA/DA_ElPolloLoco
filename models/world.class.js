@@ -5,11 +5,16 @@ class World {
 
 
     level = level1;
+
     endboss = level1.endboss[0];
     enemies = level1.enemies;
     clouds = level1.clouds;
     coins = level1.coins;
     bootle = level1.bootle;
+    character1 = level1.character;
+
+
+
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
 
@@ -164,6 +169,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.bottleScoreWrite(false);
+
         }
     }
 
