@@ -6,7 +6,7 @@ class Level {
     coins;
     bootle;
     endboss;
-    character;
+
 
 
     maxBottle = 6;
@@ -21,7 +21,7 @@ class Level {
         this.coins = coins;
         this.bootle = bootle;
         this.endboss = endboss;
-        this.character = charater;
+
     }
 
 

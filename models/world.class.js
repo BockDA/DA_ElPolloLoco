@@ -11,7 +11,8 @@ class World {
     clouds = level1.clouds;
     coins = level1.coins;
     bootle = level1.bootle;
-    character1 = level1.character;
+
+
 
 
 
@@ -166,7 +167,7 @@ class World {
     //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.bottleScoreWrite(false);
 

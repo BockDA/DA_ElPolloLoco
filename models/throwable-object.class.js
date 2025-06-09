@@ -23,9 +23,9 @@ class ThrowableObject extends MovableObject {
 
 
 
-    constructor(x, y) {
+    constructor(x, y, richtung) {
         super();
-
+        this.richtung = richtung;
         this.loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_TROW);
         this.loadImages(this.IMAGES_ARISE);
@@ -56,8 +56,7 @@ class ThrowableObject extends MovableObject {
 
     //Richtung püfen
     StartTrow() {
-        console.log("Richtung ");
-
+        console.log("Richtung ", this.richtung);
 
 
 
