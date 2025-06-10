@@ -1,13 +1,11 @@
 class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
-    speedY = 0;
-    acceleration = 2.5;
+    speedY = 0;//0
+    acceleration = 1.5//2.5
     energy = 100;
     lastHit = 0;
     collisonRight = false;
-
-
 
 
     offset = {
@@ -72,18 +70,15 @@ class MovableObject extends DrawableObject {
             this.y < enemy.y + enemy.height &&
             this.y - this.height == -70
         )
-
     }
 
 
     getcollisionBottom(enemy) {
-
         const tolerance = 50;
         const minX = this.x - tolerance;
         const maxX = this.x + tolerance;
         return (
             (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
-
     }
 
 
@@ -93,6 +88,36 @@ class MovableObject extends DrawableObject {
             this.y <= coins.y + coins.height && this.x + 20 >= coins.x
         );
     }
+
+
+    getCollisionBottle(bottleTrow, chicken, endboss) {
+
+        let colliEndboss = this.isColliding(bottleTrow, endboss);
+        let colliEnemies = this.isColliding(bottleTrow, chicken);
+
+
+
+        if (colliEndboss) {
+            console.log("Coli Endboss ");
+        }
+
+        if (colliEnemies) {
+            console.log("coli Chicken");
+        }
+
+
+
+    }
+
+
+    //Hilfstestversion
+    isColliding(obj1, obj2) {
+        return obj1.x + obj1.width > obj2.x &&
+            obj1.x < obj2.x + obj2.width &&
+            obj1.y + obj1.height > obj2.y &&
+            obj1.y < obj2.y + obj2.height;
+    }
+
 
 
 

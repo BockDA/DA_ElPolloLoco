@@ -2,8 +2,10 @@ class Character extends MovableObject {
 
     height = 250;
     y = 180;
+
+
     speed = 15;
-    world; // was macht das
+    //world; // was macht das
     sleep = false;
 
 
@@ -27,7 +29,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
     ]
-
 
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -75,7 +76,6 @@ class Character extends MovableObject {
 
 
 
-
     offset = {
         top: 85,
         left: 20,
@@ -95,8 +95,8 @@ class Character extends MovableObject {
         this.applyGravity();
         this.startAnimation();
         this.animate();
-
     }
+
 
 
     startAnimation() {
@@ -121,7 +121,6 @@ class Character extends MovableObject {
 
 
             } else if (this.isHurt()) {
-
                 //console.log("Is Hurt Variable")
                 //this.y += 200;
                 this.playAnmimation(this.IMAGES_HURT);

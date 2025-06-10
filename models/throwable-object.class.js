@@ -8,7 +8,6 @@ class ThrowableObject extends MovableObject {
     ]
 
 
-
     IMAGES_ARISE = [
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
         "img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
@@ -20,19 +19,24 @@ class ThrowableObject extends MovableObject {
 
     height = 100;
     width = 50;
+    groundlevel = 300;
+    direktion = true;
+    speedY = 20;
 
 
 
-    constructor(x, y, richtung) {
+    constructor(x, y, CharDirection, world) {
         super();
-        this.richtung = richtung;
+        this.CharDirektion = CharDirection;
         this.loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_TROW);
         this.loadImages(this.IMAGES_ARISE);
         this.x = x;
         this.y = y;
+        this.world = world;
 
-        this.groundlevel = 430;
+
+        this.groundlevel = 300;
         this.StartTrow();
         this.trow();
 
@@ -41,68 +45,40 @@ class ThrowableObject extends MovableObject {
 
     //werfen
     trow() {
-        this.speedY = 30;
         this.applyGravity();
-        setInterval(() => {
-            //this.playAnmimation(this.IMAGES_TROW);
-            this.x += 8;
-
+        this.trowIntervalId = setInterval(() => {
+            this.playAnmimation(this.IMAGES_TROW);
+            this.x += this.direktion ? -6 : +6;
+            if (this.y >= this.groundlevel) {
+                this.Bootlearise();
+                clearInterval(this.trowIntervalId);
+            }
         }, 20);
-
-        console.log("Flasche gemschissen");
-
     }
 
 
     //Richtung püfen
     StartTrow() {
-        console.log("Richtung ", this.richtung);
-
-
-
-
+        this.direktion = this.CharDirektion;
+        this.x += this.CharDirektion ? -100 : 0;
 
     }
 
-
-
-
-
-    /*    
-     trow() {
-         this.speedY = 30;
-         this.applyGravity();
-         // Vorheriges Intervall stoppen, wenn vorhanden
-         if (this.trowIntervalId) {
-             clearInterval(this.trowIntervalId);
-             this.trowIntervalId = null;
-         }
-         // Neues Intervall starten
-         this.trowIntervalId = setInterval(() => {
-             this.playAnmimation(this.IMAGES_TROW)
-             this.x += 8;
-     
-         }, 20);
-     
-     
-         // Nach 1,5 Sekunden stoppen
-         setTimeout(() => {
-             clearInterval(this.trowIntervalId);
-             this.trowIntervalId = null;
-             console.log("Intervall gestoppt");
-         }, 1150);
-     
-     
-     }
-     
-    */
 
     //aufkommen
     Bootlearise() {
-        setInterval(() => {
+        this.test = setInterval(() => {
             this.playAnmimation(this.IMAGES_ARISE);
         }, 20);
-    }
+        setTimeout(() => {
+            clearInterval(this.test);
+            this.test = null;
+            this.y = 800;
 
+        }, 100);
+
+    }
 }
+
+
 

@@ -3,7 +3,6 @@ class World {
     character = new Character();
     chicken = new Chicken();
 
-
     level = level1;
 
     endboss = level1.endboss[0];
@@ -13,11 +12,9 @@ class World {
     bootle = level1.bootle;
 
 
-
-
-
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
+
 
 
     canvas;
@@ -46,8 +43,11 @@ class World {
 
     }
 
+
+
     setWorld() {
         this.character.world = this;
+
     }
 
 
@@ -58,6 +58,8 @@ class World {
             this.checkCollisionCoins();
             this.checkThrowObjects();
             this.checkCollisonBootle();
+
+            this.checkCollisonBottleTrow();
             this.checkCharaterPos();
 
         }, 100);
@@ -113,11 +115,20 @@ class World {
             if (this.character.getCollisionSide(bootle)) {
                 this.bottleCollected(bootle);
                 this.bottleScoreWrite(true);
-
             };
-
         });
     }
+
+
+    //Kollison mit geworfener Flasche
+    checkCollisonBottleTrow() {
+        if (this.bottleTrow) {
+            this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.chicken, this.endboss);
+        }
+    }
+
+
+
 
 
     //wenn Charater an bestimmter Position dann losgehen
@@ -167,9 +178,13 @@ class World {
     //werfe Flasche
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
-            this.throwableObjects.push(bottle);
+            this.bottleTrow = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection, this);
+            this.throwableObjects.push(this.bottleTrow);
+
+            console.log("X", this.bottleTrow.x);
+
             this.bottleScoreWrite(false);
+
 
         }
     }
