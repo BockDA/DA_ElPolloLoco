@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;//0
     acceleration = 1.5//2.5
     energy = 100;
+
     lastHit = 0;
     collisonRight = false;
 
@@ -94,19 +95,13 @@ class MovableObject extends DrawableObject {
 
         let colliEndboss = this.isColliding(bottleTrow, endboss);
         let colliEnemies = this.isColliding(bottleTrow, chicken);
-
-
-
         if (colliEndboss) {
             console.log("Coli Endboss ");
-        }
 
+        }
         if (colliEnemies) {
             console.log("coli Chicken");
         }
-
-
-
     }
 
 
@@ -124,7 +119,7 @@ class MovableObject extends DrawableObject {
     hit() {
         const now = Date.now();
         // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
-        if (now - this.lastHit < 1000) {
+        if (now - this.lastHit < 500) {
             return;
         }
         // Nun ausführen und Timestamp updaten
@@ -146,18 +141,19 @@ class MovableObject extends DrawableObject {
     }
 
 
-
     //Charatuer ist tot
     isDead() {
+
+        //thid.dead()
         return this.energy == 0;
+
     }
 
 
 
     dead() {
         console.log("Zeichne Bild");
-
-        // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+        thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
     }
 
     /*

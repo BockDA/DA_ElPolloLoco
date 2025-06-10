@@ -2,12 +2,9 @@ class Character extends MovableObject {
 
     height = 250;
     y = 180;
-
-
     speed = 15;
-    //world; // was macht das
+    world; // was macht das
     sleep = false;
-
 
 
     IMAGES_WALKING = [
@@ -118,6 +115,7 @@ class Character extends MovableObject {
                 console.log("Bin Tod");
                 this.playAnmimation(this.IMAGES_DEAD);
                 this.loadImage(this.IMAGES_IDLE[0]);
+
 
 
             } else if (this.isHurt()) {

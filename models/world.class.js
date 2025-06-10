@@ -11,11 +11,8 @@ class World {
     coins = level1.coins;
     bootle = level1.bootle;
 
-
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
-
-
 
     canvas;
     ctx;
@@ -124,7 +121,12 @@ class World {
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
             this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.chicken, this.endboss);
+            this.endboss.animateAttack();
+
+
         }
+
+
     }
 
 
