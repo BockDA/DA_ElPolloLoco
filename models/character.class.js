@@ -114,8 +114,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 console.log("Bin Tod");
                 this.playAnmimation(this.IMAGES_DEAD);
-                this.loadImage(this.IMAGES_IDLE[0]);
-
+                this.y += 5;
 
 
             } else if (this.isHurt()) {
@@ -145,7 +144,7 @@ class Character extends MovableObject {
 
             this.world.camera_x = -this.x + 100;
 
-        }, 1000 / 25);
+        }, 1000 / 30);
     }
 
 

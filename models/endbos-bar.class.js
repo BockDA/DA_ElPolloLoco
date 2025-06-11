@@ -21,8 +21,7 @@ class EndbossBar extends DrawableObject {
     this.y = 0;
     this.width = 200;
     this.height = 60;
-    this.setEndboosBar(100);
-
+    this.setEndboosBar(5);
 
   }
 

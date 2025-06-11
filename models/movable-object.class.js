@@ -2,9 +2,8 @@ class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;//0
-    acceleration = 1.5//2.5
+    acceleration = 2.5//2.5
     energy = 100;
-
     lastHit = 0;
     collisonRight = false;
 
@@ -18,7 +17,8 @@ class MovableObject extends DrawableObject {
 
 
 
-    applyGravity() {
+    applyGravity(acceleration) {
+        acceleration = acceleration || this.acceleration
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
@@ -39,11 +39,16 @@ class MovableObject extends DrawableObject {
 
 
 
-    playAnmimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i]
-        this.img = this.imageCache[path];
-        this.currentImage++;
+    playAnmimation(images, speed) {
+        speed = speed || 5;
+        if (!this.animationFrameCounter) this.animationFrameCounter = 0;
+        this.animationFrameCounter++;
+        if (this.animationFrameCounter % speed === 0) {
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }
     }
 
 
@@ -92,16 +97,22 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionBottle(bottleTrow, chicken, endboss) {
-
         let colliEndboss = this.isColliding(bottleTrow, endboss);
         let colliEnemies = this.isColliding(bottleTrow, chicken);
+
+
         if (colliEndboss) {
             console.log("Coli Endboss ");
+            return 1
+
 
         }
+
         if (colliEnemies) {
             console.log("coli Chicken");
+            return 2
         }
+
     }
 
 
@@ -119,7 +130,7 @@ class MovableObject extends DrawableObject {
     hit() {
         const now = Date.now();
         // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
-        if (now - this.lastHit < 500) {
+        if (now - this.lastHit < 200) {
             return;
         }
         // Nun ausführen und Timestamp updaten
@@ -127,6 +138,7 @@ class MovableObject extends DrawableObject {
         if (this.energy <= 0) {
             this.energy = 0;
             console.log("Keine Energie mehr übrig!");
+            this.isDead();
         }
         this.lastHit = now;
     }
@@ -143,17 +155,14 @@ class MovableObject extends DrawableObject {
 
     //Charatuer ist tot
     isDead() {
-
-        //thid.dead()
         return this.energy == 0;
-
     }
-
 
 
     dead() {
         console.log("Zeichne Bild");
-        thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+
+        // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
     }
 
     /*

@@ -7,9 +7,6 @@ class Level {
     bootle;
     endboss;
 
-
-
-
     maxBottle = 6;
 
     level_end_x = 2800;//2400;

@@ -6,6 +6,8 @@ class Endboss extends MovableObject {
     speed = 0.06;
     world;
     start = false;
+    test = 100;
+
 
 
 
@@ -72,14 +74,6 @@ class Endboss extends MovableObject {
     }
 
 
-    /*   startAnimat() {
-           setInterval(() => {
-               this.playAnmimation(this.IMAGES_ALERT);
-           }, 200);
-
-       }
-   */
-
     animate() {
         console.log("Jetz gehts los", this.start);
         setInterval(() => {
@@ -87,7 +81,7 @@ class Endboss extends MovableObject {
                 this.playAnmimation(this.IMAGES_ALERT);
             } else {
 
-                this.playAnmimation(this.IMAGES_WALKING)
+                this.playAnmimation(this.IMAGES_WALKING, 1)
                 this.moveLeft();
             }
         }, 200);
@@ -103,12 +97,26 @@ class Endboss extends MovableObject {
 
 
 
-
+    //Endbos greift an
     animateAttack() {
         console.log("Endboss grift an");
         this.playAnmimation(this.IMAGES_ATTACK);
         //setInterval(() => {
         //}, 200);
+    }
+
+
+    //Endbos ist verletzt
+    hurtEndboss() {
+        console.log("Endboss ist verletzt");
+        this.playAnmimation(this.IMAGES_HURT);
+    }
+
+
+    //Endboss ist tot
+    deadEndboss() {
+        console.log("Endboss ist tot");
+        this.playAnmimation(this.IMAGES_DEAD);
     }
 
 

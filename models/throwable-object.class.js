@@ -22,6 +22,7 @@ class ThrowableObject extends MovableObject {
     groundlevel = 300;
     direktion = true;
     speedY = 20;
+    acceleration = 1.5;
 
 
 
@@ -45,9 +46,9 @@ class ThrowableObject extends MovableObject {
 
     //werfen
     trow() {
-        this.applyGravity();
+        this.applyGravity(this.acceleration);
         this.trowIntervalId = setInterval(() => {
-            this.playAnmimation(this.IMAGES_TROW);
+            this.playAnmimation(this.IMAGES_TROW, 10);
             this.x += this.direktion ? -6 : +6;
             if (this.y >= this.groundlevel) {
                 this.Bootlearise();
