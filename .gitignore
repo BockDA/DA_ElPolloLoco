@@ -1,6 +1,6 @@
-vscode
+.vscode
 up.bat
 .gitignore
-img
+/img
 test.html
 
