@@ -69,13 +69,14 @@ class MovableObject extends DrawableObject {
     getCollisionSide(enemy) {
         const isBootle = enemy instanceof Bootle;
         if (!isBootle && enemy.dead) return false;
+
         return (
             this.x + this.width > enemy.x &&
             this.y + this.height > enemy.y &&
             this.x < enemy.x &&
             this.y < enemy.y + enemy.height &&
             this.y - this.height == -70
-        )
+        );
     }
 
 
@@ -99,13 +100,9 @@ class MovableObject extends DrawableObject {
     getCollisionBottle(bottleTrow, chicken, endboss) {
         let colliEndboss = this.isColliding(bottleTrow, endboss);
         let colliEnemies = this.isColliding(bottleTrow, chicken);
-
-
         if (colliEndboss) {
             console.log("Coli Endboss ");
             return 1
-
-
         }
 
         if (colliEnemies) {
@@ -123,6 +120,34 @@ class MovableObject extends DrawableObject {
             obj1.y + obj1.height > obj2.y &&
             obj1.y < obj2.y + obj2.height;
     }
+
+
+    getCollisionEndboss(endboss) {
+        const charRight = this.x + this.width;
+        const charLeft = this.x;
+        const charTop = this.y;
+        const charBottom = this.y + this.height;
+
+        const bossRight = endboss.x + endboss.width;
+        const bossLeft = endboss.x;
+        const bossTop = endboss.y;
+        const bossBottom = endboss.y + endboss.height;
+
+        const horizontalOverlap = charRight > bossLeft && charLeft < bossRight;
+        const verticalOverlap = charBottom > bossTop && charTop < bossBottom;
+
+        if (horizontalOverlap && verticalOverlap) {
+            const charCenter = this.x + this.width / 2;
+            const bossCenter = endboss.x + endboss.width / 2;
+
+            if (charCenter < bossCenter || charCenter > bossCenter) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 
 
@@ -159,19 +184,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    dead() {
-        console.log("Zeichne Bild");
-
-        // thid.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
-    }
-
-    /*
-        createBootle() {
-        console.log("F gedrüxckt");
-        let newbottle = new BootleCollectible(this.character.x + 200);
-        this.bootlecollectible.push(newbottle);
-        }
-    */
 
 
 }

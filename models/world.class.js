@@ -55,6 +55,7 @@ class World {
             this.checkCollisonBootle();
             this.checkCollisonBottleTrow();
             this.checkCharaterPos();
+            this.checkCollisonEndboss();
         }, 100);
     }
 
@@ -124,18 +125,8 @@ class World {
             }
 
             //this.endboss.animateAttack();
-
-
-
         }
     }
-
-
-
-
-
-
-
 
 
 
@@ -145,6 +136,21 @@ class World {
             this.endboss.start = true;
         }
     }
+
+
+    //Wenn Kollision mit Endboxxist Ende
+    checkCollisonEndboss() {
+        if (this.character.getCollisionEndboss(this.endboss)) {
+            console.log("Collison mit Endboss");
+
+            //this.character.playAnmimation(this.character.IMAGES_DEAD);
+            //this.character.y += 5;
+
+            this.endOfGame();
+        }
+
+    }
+
 
 
 
@@ -263,5 +269,19 @@ class World {
                 this.bootle.push(newbottle);
             }
         }, 100);
+    }
+
+
+
+    endOfGame() {
+
+        //this.ctx.clearRect(100, 100, canvas.width, canvas.height);
+        //this.character.loadImage('img/You won, you lost/Game Over.png')
+
+        this.ctx.clearRect(0, 0, 100, 100);
+        this.ctx.fillStyle = "black";
+        this.ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
     }
 }

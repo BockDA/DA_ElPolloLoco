@@ -18,5 +18,4 @@ wenn chicken deat keine kollision mehr
 Aktuelle:  bei Endboss dead Statusleiste
             world.class.js  -> 110/117
 
-
-
+           endofGame in world ->276
