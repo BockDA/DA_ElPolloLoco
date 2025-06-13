@@ -19,7 +19,7 @@ class DrawableObject {
 
 
 
-    //Bild aus Array holöen
+    //Bild aus Array holen
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();//Hier wird ein HTML Image Element erstellen
@@ -34,6 +34,8 @@ class DrawableObject {
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
+
+
 
 
 

@@ -24,10 +24,14 @@ class World {
     bootleBar = new BoodleBar();
     endbossBar = new EndbossBar();
 
+
     throwableObjects = [new ThrowableObject()];
 
     bottleScore = 0;
     coinsScore = 0;
+    gameOn = true;
+
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -37,6 +41,7 @@ class World {
         this.setWorld();
         this.run();
         this.createNewBootle();
+
     }
 
 
@@ -47,17 +52,25 @@ class World {
 
 
     run() {
-        setInterval(() => {
-            this.checkCollisionsRight();
-            this.checkCollisionBottom();
-            this.checkCollisionCoins();
-            this.checkThrowObjects();
-            this.checkCollisonBootle();
-            this.checkCollisonBottleTrow();
-            this.checkCharaterPos();
-            this.checkCollisonEndboss();
-        }, 100);
+        console.log("Zustand ", this.gameOn);
+
+        if (this.gameOn) {
+            this.intervalId = setInterval(() => {
+                this.checkCollisionsRight();
+                this.checkCollisionBottom();
+                this.checkCollisionCoins();
+                this.checkThrowObjects();
+                this.checkCollisonBootle();
+                this.checkCollisonBottleTrow();
+                this.checkCharaterPos();
+                this.checkCollisonEndboss();
+
+            }, 70);
+        }
     }
+
+
+
 
 
     //Collision mit Chicken von rechts
@@ -116,12 +129,11 @@ class World {
                 console.log("Flasche mit Endboos ");
                 this.endboss.hurtEndboss();
                 this.endbossBar.setEndboosBar(3);
+                this.endboss.start = true;
             }
-
 
             if (kolli == 2) {
                 console.log("Flasche mit Chicken");
-
             }
 
             //this.endboss.animateAttack();
@@ -143,13 +155,23 @@ class World {
         if (this.character.getCollisionEndboss(this.endboss)) {
             console.log("Collison mit Endboss");
 
-            //this.character.playAnmimation(this.character.IMAGES_DEAD);
-            //this.character.y += 5;
+            let count = 0;
+            setInterval(() => {
+                if (count <= 10) {
+                    this.character.playAnmimation(this.character.IMAGES_DEAD);
+                    this.character.y += 5;
+                    count++;
+                } else {
 
-            this.endOfGame();
+                    console.log("Spiel Ende");
+                    this.endOfGame();
+                }
+            }, 100);
+
         }
-
     }
+
+
 
 
 
@@ -201,6 +223,7 @@ class World {
     }
 
     draw() {
+        if (!this.gameOn) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backroundObjects);
@@ -220,6 +243,7 @@ class World {
         this.addToMap(this.endbossBar);
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
+
         requestAnimationFrame(() => {
             this.draw();
         });
@@ -274,14 +298,32 @@ class World {
 
 
     endOfGame() {
+        console.log("Spiel ende");
 
-        //this.ctx.clearRect(100, 100, canvas.width, canvas.height);
-        //this.character.loadImage('img/You won, you lost/Game Over.png')
+        this.cleanup();
 
-        this.ctx.clearRect(0, 0, 100, 100);
-        this.ctx.fillStyle = "black";
-        this.ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        const img = new Image();
+        img.src = 'img/You won, you lost/Game Over.png';
+        img.onload = () => {
+            this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+        };
 
     }
+
+
+
+
+    clearAllInterval() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
+
+    cleanup() {
+        this.clearAllInterval();       // stoppe alle Loops
+        this.gameOn = false;           // stoppe requestAnimationFrame
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    }
+
 }

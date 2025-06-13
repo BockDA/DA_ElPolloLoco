@@ -7,6 +7,8 @@ function init() {
     console.log("Starte");
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+
+
 }
 
 

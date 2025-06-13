@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./models/drawable-object.class.js"></script>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/chicken.class.js"></script>
+    <script src="./models/chicken-small.class.js"></script>
+    <script src="./models/coins.class.js"></script>
+    <script src="./models/bootle.class.js"></script>
+    <script src="./models/coins-bar.class.js"></script>
+    <script src="./models/endbos-bar.class.js"></script>
+    <script src="./models/boddels-bar.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/cloud.class.js"></script>
+    <script src="./models/status-bar.class.js "></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="./models/drawable-object.class.js"></script>
-  <script src="./models/movable-object.class.js"></script>
-  <script src="./models/throwable-object.class.js"></script>
-  <script src="./models/character.class.js"></script>
-  <script src="./models/chicken.class.js"></script>
-  <script src="./models/chicken-small.class.js"></script>
-  <script src="./models/coins.class.js"></script>
-  <script src="./models/bootle.class.js"></script>
-  <script src="./models/coins-bar.class.js"></script>
-  <script src="./models/endbos-bar.class.js"></script>
-  <script src="./models/boddels-bar.class.js"></script>
-  <script src="./models/world.class.js"></script>
-  <script src="./models/cloud.class.js"></script>
-  <script src="./models/status-bar.class.js "></script>
+    <script src="./models/backround-objekt.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
+    <script src="./models/level.class.js"></script>
 
-  <script src="./models/backround-objekt.class.js"></script>
-  <script src="./models/keyboard.class.js"></script>
-  <script src="./models/endboss.class.js"></script>
-  <script src="./models/level.class.js"></script>
+    <script src="./models/level/level.js"></script>
 
-  <script src="./models/level/level.js"></script>
+    <script src="./js/game.js"></script>
 
-  <script src="./js/game.js"></script>
+    <title>ELPoloLogo</title>
+  </head>
 
-  <title>ELPoloLogo</title>
-</head>
-
-<body onload="init()">
-  <h1>El Pollo Logo</h1>
-
-  <canvas id="canvas" width="720" height="480"> </canvas>
-</body>
-
+  <body onload="init()">
+    <h1>El Pollo Logo</h1>
+    <div class="gameCanvas">
+      <canvas id="canvas" width="720" height="480"> </canvas>
+      <button class="playButton" onclick="init()">Starte Spiel</button>
+    </div>
+    <div class="navigation">
+      <label>Test1</label>
+      <button>Refresh</button>
+      <button>Mute</button>
+    </div>
+  </body>
 </html>
