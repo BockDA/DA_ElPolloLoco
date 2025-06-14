@@ -320,9 +320,19 @@ class World {
     }
 
     cleanup() {
+
+        console.log("Räume auf");
+
+
+
         this.clearAllInterval();       // stoppe alle Loops
         this.gameOn = false;           // stoppe requestAnimationFrame
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.throwableObjects = [];
+        this.coins = [];
+        this.bootle = [];
+        this.level.enemies = [];
+
 
     }
 

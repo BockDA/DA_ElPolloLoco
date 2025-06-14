@@ -18,19 +18,35 @@ h1 {
 
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 40px;
   margin-top: 30px;
   height: 100px;
   width: 75%;
 }
 
 button {
-  height: 40px;
-  width: 60px;
+  height: 50px;
+  width: 70px;
   border-radius: 16px;
   background-color: #ff7423;
   color: white;
   cursor: pointer;
+}
+
+label {
+  height: 40px;
+  width: 70px;
+  border-radius: 16px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #ff7423;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .playButton {

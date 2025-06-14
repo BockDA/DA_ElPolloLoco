@@ -5,11 +5,34 @@ let keyboard = new Keyboard();
 
 function init() {
     console.log("Starte");
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+
+    startGame();
 
 
 }
+
+
+function startGame() {
+    if (this.world) {
+        this.world.cleanup();
+        this.world = null;
+    }
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const level1 = new Level(); // neu initialisieren
+    //const character = new Character();
+
+    this.world = new World(canvas, keyboard);
+    this.world.draw();
+
+    //document.getElementById('restartBtn').style.display = 'none';
+}
+
+
+
 
 
 window.addEventListener('keydown', (event) => {
