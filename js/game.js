@@ -5,6 +5,12 @@ let keyboard = new Keyboard();
 
 function init() {
     console.log("Starte");
+    if (this.world) {
+        console.log("World vorhanden");
+        this.world.cleanup();
+        this.world = null;
+
+    }
 
     startGame();
 
@@ -13,22 +19,12 @@ function init() {
 
 
 function startGame() {
-    if (this.world) {
-        this.world.cleanup();
-        this.world = null;
-    }
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const level1 = new Level(); // neu initialisieren
-    //const character = new Character();
-
     this.world = new World(canvas, keyboard);
     this.world.draw();
-
-    //document.getElementById('restartBtn').style.display = 'none';
 }
 
 

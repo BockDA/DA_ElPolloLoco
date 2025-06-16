@@ -1,10 +1,9 @@
 class World {
 
     character = new Character();
-    chicken = new Chicken();
+    //chicken = new Chicken();
 
     level = level1;
-
     endboss = level1.endboss[0];
     enemies = level1.enemies;
     clouds = level1.clouds;
@@ -32,18 +31,16 @@ class World {
     gameOn = true;
 
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+
         this.draw();
         this.setWorld();
         this.run();
         this.createNewBootle();
-
     }
-
 
 
     setWorld() {
@@ -64,12 +61,9 @@ class World {
                 this.checkCollisonBottleTrow();
                 this.checkCharaterPos();
                 this.checkCollisonEndboss();
-
             }, 70);
         }
     }
-
-
 
 
 
@@ -223,7 +217,10 @@ class World {
     }
 
     draw() {
+        console.log("GameStatus ", this.gameOn);
+
         if (!this.gameOn) return;
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backroundObjects);
@@ -232,6 +229,7 @@ class World {
         this.addToMap(this.character);
         this.addToMap(this.endboss);
         this.addObjectsToMap(this.level.clouds);
+
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.bootle);
         this.addObjectsToMap(this.level.enemies);
@@ -241,9 +239,9 @@ class World {
         this.addToMap(this.coinsBar);
         this.addToMap(this.bootleBar);
         this.addToMap(this.endbossBar);
+
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
-
         requestAnimationFrame(() => {
             this.draw();
         });
@@ -298,11 +296,10 @@ class World {
 
 
     endOfGame() {
+
         console.log("Spiel ende");
-
+        this.gameOn = false;
         this.cleanup();
-
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         const img = new Image();
         img.src = 'img/You won, you lost/Game Over.png';
@@ -310,30 +307,27 @@ class World {
             this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
         };
 
+        this.arraysClear();
     }
 
+
+    cleanup() {
+        console.log("Räume auf");
+        this.clearAllInterval();
+
+    }
 
 
 
     clearAllInterval() {
-        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+        for (let i = 1; i < 99999; i++) window.clearInterval(i);
     }
 
-    cleanup() {
-
-        console.log("Räume auf");
 
 
-
-        this.clearAllInterval();       // stoppe alle Loops
-        this.gameOn = false;           // stoppe requestAnimationFrame
-
-        this.throwableObjects = [];
-        this.coins = [];
-        this.bootle = [];
+    arraysClear() {
         this.level.enemies = [];
 
 
     }
-
 }
