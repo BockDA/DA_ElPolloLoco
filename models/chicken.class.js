@@ -40,6 +40,8 @@ class Chicken extends MovableObject {
 
 
     animate() {
+        console.log("Starte Chicken");
+
         this.moveLeft();
         setInterval(() => {
             if (!this.dead) {

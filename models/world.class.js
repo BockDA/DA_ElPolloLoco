@@ -1,7 +1,8 @@
 class World {
 
+
     character = new Character();
-    //chicken = new Chicken();
+    chicken = new Chicken();      //wegen Flaschen schmeissen
 
     level = level1;
     endboss = level1.endboss[0];
@@ -32,6 +33,7 @@ class World {
 
 
     constructor(canvas, keyboard) {
+
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -49,20 +51,21 @@ class World {
 
 
     run() {
-        console.log("Zustand ", this.gameOn);
+        console.log("Zustand run ", this.gameOn);
 
-        if (this.gameOn) {
-            this.intervalId = setInterval(() => {
-                this.checkCollisionsRight();
-                this.checkCollisionBottom();
-                this.checkCollisionCoins();
-                this.checkThrowObjects();
-                this.checkCollisonBootle();
-                this.checkCollisonBottleTrow();
-                this.checkCharaterPos();
-                this.checkCollisonEndboss();
-            }, 70);
-        }
+        if (!this.gameOn) return;
+
+        this.intervalId = setInterval(() => {
+            this.checkCollisionsRight();
+            this.checkCollisionBottom();
+            this.checkCollisionCoins();
+            this.checkThrowObjects();
+            this.checkCollisonBootle();
+            this.checkCollisonBottleTrow();
+            this.checkCharaterPos();
+            this.checkCollisonEndboss();
+        }, 70);
+
     }
 
 
@@ -306,6 +309,7 @@ class World {
         img.onload = () => {
             this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
         };
+        document.getElementById('refreshtBtn').style.display = 'flex';
 
         this.arraysClear();
     }
@@ -314,6 +318,7 @@ class World {
     cleanup() {
         console.log("Räume auf");
         this.clearAllInterval();
+
 
     }
 
@@ -325,9 +330,25 @@ class World {
 
 
 
-    arraysClear() {
-        this.level.enemies = [];
 
+
+
+
+    arraysClear() {
+
+
+        this.character = null;
+        this.level = null;
+        this.level1 = null;
+
+        //Chicken.chickens = [];
+
+
+        this.statusBar = null;
+        this.coinStatusBar = null;
+        this.salsaStatusBar = null;
+        this.endbossStatusBar = null;
+        this.throwableObjects = [];
 
     }
 }

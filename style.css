@@ -59,3 +59,15 @@ label {
   padding: 10px 20px;
   font-size: 18px;
 }
+
+.refreshtBtn {
+  display: none;
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 18px;
+}

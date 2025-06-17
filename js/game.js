@@ -1,32 +1,41 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let ctx;
+let startImage = new Image();
+startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
 
 
 function init() {
     console.log("Starte");
+    canvas = document.getElementById('canvas');
+    document.getElementById('refreshtBtn').style.display = 'none';
+    document.getElementById('startBtn').style.display = 'flex';
+    ctx = canvas.getContext('2d');
+
     if (this.world) {
         console.log("World vorhanden");
-        this.world.cleanup();
+        //this.world.cleanup();
         this.world = null;
-
     }
 
-    startGame();
-
+    drawStartPicture();
 
 }
 
 
 function startGame() {
 
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById('startBtn').style.display = 'none';
     this.world = new World(canvas, keyboard);
     this.world.draw();
 }
 
+
+function drawStartPicture() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
+}
 
 
 
@@ -90,4 +99,3 @@ window.addEventListener('keyup', (event) => {
 
 
 });
-
