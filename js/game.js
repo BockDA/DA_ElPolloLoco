@@ -17,7 +17,7 @@ function init() {
         console.log("World vorhanden");
         this.world.cleanup();
         console.log("World löschen");
-        //this.world = null;
+        this.world = null;
     }
 
     drawStartPicture();
@@ -25,10 +25,9 @@ function init() {
 
 
 function startGame() {
-
     document.getElementById('startBtn').style.display = 'none';
     this.world = new World(canvas, keyboard);
-    this.world.draw();
+    //this.world.draw();
 }
 
 

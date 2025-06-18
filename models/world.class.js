@@ -1,6 +1,4 @@
 class World {
-
-
     character = new Character();
     level = level1;
     endboss = level1.endboss[0];
@@ -15,26 +13,20 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
     bootleBar = new BoodleBar();
     endbossBar = new EndbossBar();
-
-
     throwableObjects = [new ThrowableObject()];
-
     bottleScore = 0;
     coinsScore = 0;
     gameOn = true;
 
 
     constructor(canvas, keyboard) {
-
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-
         this.draw();
         this.setWorld();
         this.run();
@@ -305,7 +297,7 @@ class World {
 
 
     clearAllInterval() {
-        for (let i = 1; i < 99999; i++) window.clearInterval(i);
+        for (let i = 0; i < 99999; i++) window.clearInterval(i);
     }
 
 
@@ -318,5 +310,6 @@ class World {
         this.coins = [];
         this.bootle = [];
         this.backroundObjects = [];
+
     }
 }
