@@ -7,6 +7,7 @@ startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
 
 
 function init() {
+    initLevel();
     console.log("Starte");
     canvas = document.getElementById('canvas');
     document.getElementById('refreshtBtn').style.display = 'none';
@@ -26,8 +27,9 @@ function init() {
 
 function startGame() {
     document.getElementById('startBtn').style.display = 'none';
+    initLevel();
     this.world = new World(canvas, keyboard);
-    //this.world.draw();
+
 }
 
 

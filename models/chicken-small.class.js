@@ -7,9 +7,6 @@ class ChickenSmall extends MovableObject {
     speed = 1.5;
     setIntervalId;
 
-
-
-
     IMAGES_WALKING_SMALL = [
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -59,9 +56,6 @@ class ChickenSmall extends MovableObject {
     moveLeft() {
         this.setIntervalId = setInterval(() => {
             this.x -= this.speed;
-            //  if (this.x <= 0) {
-            //    this.x = 720;
-            // }
         }, 1000 / 60);
     }
 
@@ -69,10 +63,6 @@ class ChickenSmall extends MovableObject {
     //wenn getroffen nach unten abtauchen
     deadCollision() {
         this.playAnmimation(this.IMAGES_DEAD);
-        //setInterval(() => {
-        //  this.y += this.speed;
-        // }, 100 / 60);
-
         this.dead = true;
         clearInterval(this.setIntervalId);
     }

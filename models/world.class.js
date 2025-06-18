@@ -1,4 +1,5 @@
 class World {
+
     character = new Character();
     level = level1;
     endboss = level1.endboss[0];
@@ -20,6 +21,8 @@ class World {
     throwableObjects = [new ThrowableObject()];
     bottleScore = 0;
     coinsScore = 0;
+    endboosScore = 6;
+
     gameOn = true;
 
 
@@ -31,6 +34,7 @@ class World {
         this.setWorld();
         this.run();
         this.createNewBootle();
+
     }
 
 
@@ -104,21 +108,31 @@ class World {
     //Kollison mit geworfener Flasche
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
-            let kolli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
+            let colli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
 
-            if (kolli == 1) {
+            if (colli == 1) {
                 this.endboss.hurtEndboss();
-                this.endbossBar.setEndboosBar(3);
+                //this.endbossBar.setEndboosBar(3);
+                this.endbossScoreWrite();
                 this.endboss.start = true;
             }
 
-            if (kolli == 2) {
+            if (colli == 2) {
                 console.log("Flasche mit Chicken");
             }
 
             //this.endboss.animateAttack();
         }
     }
+
+    //Leben des Enbossverringern bei treffer
+    endbossScoreWrite(value) {
+        this.endboosScore++
+        console.log("Endboss Scone ", this.endboosScore);
+        this.endbossBar.setEndboosBar(this.endboosScore);
+    }
+
+
 
 
 
@@ -198,6 +212,7 @@ class World {
     }
 
     draw() {
+
         if (!this.gameOn) return;
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -208,7 +223,6 @@ class World {
         this.addToMap(this.character);
         this.addToMap(this.endboss);
         this.addObjectsToMap(this.level.clouds);
-
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.bootle);
         this.addObjectsToMap(this.level.enemies);
@@ -293,7 +307,6 @@ class World {
         this.clearAllInterval();
         this.arraysClear();
     }
-
 
 
     clearAllInterval() {

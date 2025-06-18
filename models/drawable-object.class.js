@@ -9,12 +9,10 @@ class DrawableObject {
     currentImage = 0;
 
 
-
     //Bider in ein Object laden
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
-
     }
 
 
@@ -34,9 +32,6 @@ class DrawableObject {
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
-
-
-
 
 
     //Rahmen zeichnen

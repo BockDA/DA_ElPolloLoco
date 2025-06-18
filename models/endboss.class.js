@@ -9,8 +9,6 @@ class Endboss extends MovableObject {
     test = 100;
 
 
-
-
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',

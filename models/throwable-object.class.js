@@ -75,11 +75,7 @@ class ThrowableObject extends MovableObject {
             clearInterval(this.test);
             this.test = null;
             this.y = 800;
-
         }, 100);
 
     }
 }
-
-
-

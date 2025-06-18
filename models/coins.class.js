@@ -6,7 +6,6 @@ class Coins extends MovableObject {
 
     ]
 
-
     offset = {
         top: 50,
         left: 30,
@@ -15,7 +14,6 @@ class Coins extends MovableObject {
     }
 
     speed = 0.02;
-
 
     constructor() {
         super().loadImage('img/8_coin/coin_1.png');
@@ -27,7 +25,7 @@ class Coins extends MovableObject {
 
 
 
-    //coins Animieren 
+    //coins Animieren
     animateCoins() {
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_COINS.length;
@@ -38,6 +36,3 @@ class Coins extends MovableObject {
     }
 
 }
-
-
-

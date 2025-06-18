@@ -26,8 +26,6 @@ class Chicken extends MovableObject {
     }
 
 
-
-
     constructor(world) {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.world = world;
@@ -53,6 +51,8 @@ class Chicken extends MovableObject {
     }
 
     moveLeft() {
+        console.log("ckicken laufe nach links");
+
         this.intervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
@@ -62,16 +62,9 @@ class Chicken extends MovableObject {
     deadCollision() {
         if (this.dead) {
             this.playAnmimation(this.IMAGES_DEAD);
-
-            //etInterval(() => {
-            //  this.y += this.speed;
-
-            //  }, 100 / 60);
         }
         this.dead = true;
         clearInterval(this.intervalId);
     }
-
-
 
 }

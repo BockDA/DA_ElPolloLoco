@@ -9,7 +9,6 @@ class BoodleBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png'
     ]
 
-
     percentage = 0;
 
     constructor() {
@@ -20,8 +19,6 @@ class BoodleBar extends DrawableObject {
         this.width = 200;
         this.height = 60;
         this.setBootle(0);
-
-
     }
 
 
@@ -30,7 +27,6 @@ class BoodleBar extends DrawableObject {
         this.percentage = percentage;
         let path = this.IMAGES_BOOTLE[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
-        //this.loadImage(path);
     }
 
 
@@ -48,9 +44,6 @@ class BoodleBar extends DrawableObject {
         } else if (percentage == 0) {
             return 0;
         }
-
     }
 
 }
-
-
