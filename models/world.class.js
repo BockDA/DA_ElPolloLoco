@@ -2,15 +2,12 @@ class World {
 
 
     character = new Character();
-    chicken = new Chicken();      //wegen Flaschen schmeissen
-
     level = level1;
     endboss = level1.endboss[0];
     enemies = level1.enemies;
     clouds = level1.clouds;
     coins = level1.coins;
     bootle = level1.bootle;
-
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
 
@@ -51,10 +48,7 @@ class World {
 
 
     run() {
-        console.log("Zustand run ", this.gameOn);
-
         if (!this.gameOn) return;
-
         this.intervalId = setInterval(() => {
             this.checkCollisionsRight();
             this.checkCollisionBottom();
@@ -74,7 +68,6 @@ class World {
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
-                //console.log(("Kollision rechts"));
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -86,7 +79,6 @@ class World {
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getcollisionBottom(enemy)) {
-                //console.log("Kollison von Oben");
                 enemy.dead = true;
                 enemy.deadCollision();
             }
@@ -120,10 +112,9 @@ class World {
     //Kollison mit geworfener Flasche
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
-            let kolli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.chicken, this.endboss);
+            let kolli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
 
             if (kolli == 1) {
-                console.log("Flasche mit Endboos ");
                 this.endboss.hurtEndboss();
                 this.endbossBar.setEndboosBar(3);
                 this.endboss.start = true;
@@ -150,8 +141,6 @@ class World {
     //Wenn Kollision mit Endboxxist Ende
     checkCollisonEndboss() {
         if (this.character.getCollisionEndboss(this.endboss)) {
-            console.log("Collison mit Endboss");
-
             let count = 0;
             setInterval(() => {
                 if (count <= 10) {
@@ -159,8 +148,6 @@ class World {
                     this.character.y += 5;
                     count++;
                 } else {
-
-                    console.log("Spiel Ende");
                     this.endOfGame();
                 }
             }, 100);
@@ -193,7 +180,6 @@ class World {
 
 
     coinsCollected(coins) {
-        // console.log("Verschiebe Coins ", this.y);
         coins.x = 0;
         coins.y = 0;
         this.coinsScoreWrite();
@@ -220,8 +206,6 @@ class World {
     }
 
     draw() {
-        console.log("GameStatus ", this.gameOn);
-
         if (!this.gameOn) return;
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -299,7 +283,6 @@ class World {
 
 
     endOfGame() {
-
         console.log("Spiel ende");
         this.gameOn = false;
         this.cleanup();
@@ -311,15 +294,12 @@ class World {
         };
         document.getElementById('refreshtBtn').style.display = 'flex';
 
-        this.arraysClear();
     }
 
 
     cleanup() {
-        console.log("Räume auf");
         this.clearAllInterval();
-
-
+        this.arraysClear();
     }
 
 
@@ -329,26 +309,14 @@ class World {
     }
 
 
-
-
-
-
-
     arraysClear() {
-
-
-        this.character = null;
-        this.level = null;
-        this.level1 = null;
-
-        //Chicken.chickens = [];
-
-
-        this.statusBar = null;
-        this.coinStatusBar = null;
-        this.salsaStatusBar = null;
-        this.endbossStatusBar = null;
-        this.throwableObjects = [];
-
+        this.character = [];
+        this.level = [];
+        this.endboss = [];
+        this.enemies = [];
+        this.clouds = [];
+        this.coins = [];
+        this.bootle = [];
+        this.backroundObjects = [];
     }
 }

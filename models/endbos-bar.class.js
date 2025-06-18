@@ -27,7 +27,6 @@ class EndbossBar extends DrawableObject {
 
 
   setEndboosBar(percentage) {
-    //console.log("Schreibe Punkte");
     this.percentage = percentage;
     let path = this.IMAGES_ENDBOSSBAR[this.resolveImageIndex(percentage)];
     this.img = this.imageCache[path];

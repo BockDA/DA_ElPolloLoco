@@ -97,9 +97,9 @@ class MovableObject extends DrawableObject {
     }
 
 
-    getCollisionBottle(bottleTrow, chicken, endboss) {
+    getCollisionBottle(bottleTrow, enemies, endboss) {
         let colliEndboss = this.isColliding(bottleTrow, endboss);
-        let colliEnemies = this.isColliding(bottleTrow, chicken);
+        let colliEnemies = this.isColliding(bottleTrow, enemies);
         if (colliEndboss) {
             console.log("Coli Endboss ");
             return 1

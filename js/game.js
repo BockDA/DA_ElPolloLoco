@@ -13,14 +13,14 @@ function init() {
     document.getElementById('startBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
 
-    if (this.world) {
+    if (this.world instanceof World) {
         console.log("World vorhanden");
-        //this.world.cleanup();
-        this.world = null;
+        this.world.cleanup();
+        console.log("World löschen");
+        //this.world = null;
     }
 
     drawStartPicture();
-
 }
 
 
@@ -41,10 +41,6 @@ function drawStartPicture() {
 
 
 window.addEventListener('keydown', (event) => {
-
-    // console.log("Taste gerückt");
-
-
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }

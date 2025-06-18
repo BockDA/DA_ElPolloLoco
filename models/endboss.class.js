@@ -74,7 +74,6 @@ class Endboss extends MovableObject {
 
 
     animate() {
-        console.log("Jetz gehts los", this.start);
         setInterval(() => {
             if (!this.start) {
                 this.playAnmimation(this.IMAGES_ALERT);
