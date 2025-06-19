@@ -6,7 +6,6 @@ class Endboss extends MovableObject {
     speed = 0.06;
     world;
     start = false;
-    test = 100;
 
 
     IMAGES_ALERT = [
@@ -53,6 +52,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G24.png',
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
+
     ]
 
 
@@ -86,7 +86,7 @@ class Endboss extends MovableObject {
 
 
     moveLeft() {
-        this.intervalId = setInterval(() => {
+        this.intervallLeft = this.intervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
@@ -97,8 +97,7 @@ class Endboss extends MovableObject {
     animateAttack() {
         console.log("Endboss grift an");
         this.playAnmimation(this.IMAGES_ATTACK);
-        //setInterval(() => {
-        //}, 200);
+
     }
 
 
@@ -106,13 +105,19 @@ class Endboss extends MovableObject {
     hurtEndboss() {
         console.log("Endboss ist verletzt");
         this.playAnmimation(this.IMAGES_HURT);
+        console.log("verletzt");
     }
 
 
     //Endboss ist tot
     deadEndboss() {
         console.log("Endboss ist tot");
-        this.playAnmimation(this.IMAGES_DEAD);
+        setInterval(() => {
+            this.playAnmimation(this.IMAGES_DEAD);
+            this.y = +10
+        }, 1000 / 60);
+
+
     }
 
 

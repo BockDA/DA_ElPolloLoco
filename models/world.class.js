@@ -21,9 +21,10 @@ class World {
     throwableObjects = [new ThrowableObject()];
     bottleScore = 0;
     coinsScore = 0;
-    endboosScore = 6;
-
+    endboosScore = 5;
     gameOn = true;
+
+
 
 
     constructor(canvas, keyboard) {
@@ -108,29 +109,49 @@ class World {
     //Kollison mit geworfener Flasche
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
+
+            console.log("Position Boole geschmis ", this.throwableObjects[0].y);
+
             let colli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
-
             if (colli == 1) {
+                //bottleCollected();
                 this.endboss.hurtEndboss();
-                //this.endbossBar.setEndboosBar(3);
-                this.endbossScoreWrite();
                 this.endboss.start = true;
+                this.bottleTrow = false;
+                this.endbossScoreWrite();
             }
-
             if (colli == 2) {
                 console.log("Flasche mit Chicken");
             }
-
-            //this.endboss.animateAttack();
         }
+
+        if (this.endboosScore == 2) {
+
+
+            console.log("Position Bootlöe ", this.throwableObjects[0].y);
+
+
+            // if (this.bottleTrow.y < 200) {
+            this.bottleTrow = false
+            this.clearAllInterval();
+            this.endboss.deadEndboss();
+            // }
+
+
+
+        }
+
+
     }
 
     //Leben des Enbossverringern bei treffer
-    endbossScoreWrite(value) {
-        this.endboosScore++
+    endbossScoreWrite() {
+        this.endboosScore--
         console.log("Endboss Scone ", this.endboosScore);
         this.endbossBar.setEndboosBar(this.endboosScore);
     }
+
+
 
 
 

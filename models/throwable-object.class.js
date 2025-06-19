@@ -23,6 +23,7 @@ class ThrowableObject extends MovableObject {
     direktion = true;
     speedY = 20;
     acceleration = 1.5;
+    test = 100;
 
 
 
