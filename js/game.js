@@ -4,6 +4,9 @@ let keyboard = new Keyboard();
 let ctx;
 let startImage = new Image();
 startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
+let song = new Audio('./audio/startmusic.mp3')
+let music = false;
+let mute = true;
 
 
 function init() {
@@ -13,6 +16,9 @@ function init() {
     document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
+
+
+
 
     if (this.world instanceof World) {
         console.log("World vorhanden");
@@ -29,6 +35,7 @@ function startGame() {
     document.getElementById('startBtn').style.display = 'none';
     initLevel();
     this.world = new World(canvas, keyboard);
+    playMusik();
 
 }
 
@@ -36,6 +43,41 @@ function startGame() {
 function drawStartPicture() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
+}
+
+
+
+function muteMusik() {
+    console.log("Play Musik");
+    if (mute) {
+        document.getElementById('musicPlay').src = './img/icons/volume-off.png';
+        mute = false;
+        music = true;
+
+
+    } else {
+        mute = true;
+        music = false
+        document.getElementById('musicPlay').src = './img/icons/volume-on.png';
+        playMusik();
+    }
+}
+
+
+function playMusik() {
+
+    if (music) {
+        console.log("Musik Status1", music);
+        song.play();
+        //song.loop();
+
+    } else {
+        console.log("Musik Staus", music);
+
+        song.pause();
+
+    }
+
 }
 
 
