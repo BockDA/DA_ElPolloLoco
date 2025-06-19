@@ -332,6 +332,7 @@ class World {
 
     clearAllInterval() {
         for (let i = 0; i < 99999; i++) window.clearInterval(i);
+        song.pause();
     }
 
 
@@ -344,6 +345,5 @@ class World {
         this.coins = [];
         this.bootle = [];
         this.backroundObjects = [];
-
     }
 }

@@ -5,6 +5,10 @@ class Character extends MovableObject {
     speed = 15;
     world; // was macht das
     sleep = false;
+    soundSleep = new Audio('./audio/snoring.mp3')
+    soundWalking = new Audio('./audio/walking.mp3')
+    charSound = new Sound();
+
 
 
     IMAGES_WALKING = [
@@ -108,8 +112,11 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.sleep) {
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
+                this.sound(true);
+
             } else {
                 this.playAnmimation(this.IMAGES_IDLE);
+                this.sound(false);
             }
 
             if (this.isDead()) {
@@ -128,6 +135,8 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.sleep = false;
                 this.otherDirection = false;
+
+
 
             }
 
@@ -159,6 +168,20 @@ class Character extends MovableObject {
         this.playAnmimation(this.IMAGES_LONG_IDLE);
     }
 
+
+    sound(flag, pfad) {
+        if (!mute && flag) {
+            this.soundSleep.volume = 0.5;
+            this.soundSleep.play();
+        } else {
+            this.soundSleep.pause();
+        }
+    }
+
+
+    soundTest() {
+        this.charSound.soundPlay(1, 2, 3, true);
+    }
 
 
 }

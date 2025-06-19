@@ -18,8 +18,6 @@ function init() {
     ctx = canvas.getContext('2d');
 
 
-
-
     if (this.world instanceof World) {
         console.log("World vorhanden");
         this.world.cleanup();
@@ -48,36 +46,33 @@ function drawStartPicture() {
 
 
 function muteMusik() {
-    console.log("Play Musik");
-    if (mute) {
+    console.log("Musik mute");
+    if (!mute) {
         document.getElementById('musicPlay').src = './img/icons/volume-off.png';
-        mute = false;
-        music = true;
-
+        mute = true;
 
     } else {
-        mute = true;
-        music = false
+        mute = false;
         document.getElementById('musicPlay').src = './img/icons/volume-on.png';
-        playMusik();
     }
 }
 
 
 function playMusik() {
+    setInterval(() => {
 
-    if (music) {
-        console.log("Musik Status1", music);
-        song.play();
-        //song.loop();
+        if (!mute) {
+            console.log("Musik Status", music);
+            song.play();
+            song.volume = 0.1;
+            //song.loop();
 
-    } else {
-        console.log("Musik Staus", music);
+        } else {
+            console.log("Musik Staus", music);
+            song.pause();
+        }
 
-        song.pause();
-
-    }
-
+    }, 100);
 }
 
 
