@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
     start = false;
 
 
+
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -57,9 +58,6 @@ class Endboss extends MovableObject {
 
 
 
-
-
-
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_ALERT);
@@ -68,21 +66,23 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
+
     }
 
 
     animate() {
         setInterval(() => {
-            if (!this.start) {
-                this.playAnmimation(this.IMAGES_ALERT);
-            } else {
+            console.log("Durclauf");
 
+            if (!this.start) {
+                this.playAnmimation(this.IMAGES_ALERT, 1);
+            } else {
                 this.playAnmimation(this.IMAGES_WALKING, 1)
                 this.moveLeft();
             }
+
         }, 200);
     }
-
 
 
     moveLeft() {
@@ -96,28 +96,33 @@ class Endboss extends MovableObject {
     //Endbos greift an
     animateAttack() {
         console.log("Endboss grift an");
-        this.playAnmimation(this.IMAGES_ATTACK);
+        const intervalId = setInterval(() => {
+            this.playAnmimation(this.IMAGES_ATTACK);
+        }, 100);
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 2000);
 
     }
 
 
-    //Endbos ist verletzt
     hurtEndboss() {
-        console.log("Endboss ist verletzt");
-        this.playAnmimation(this.IMAGES_HURT);
-        console.log("verletzt");
+        const intervalId = setInterval(() => {
+            this.playAnmimation(this.IMAGES_HURT);
+        }, 100);
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 2000);
     }
+
 
 
     //Endboss ist tot
     deadEndboss() {
-        console.log("Endboss ist tot");
         setInterval(() => {
             this.playAnmimation(this.IMAGES_DEAD);
-            this.y = +10
-        }, 1000 / 60);
-
-
+            this.y += 2;
+        }, 100 / 10);
     }
 
 

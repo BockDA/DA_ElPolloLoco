@@ -27,6 +27,7 @@ class World {
 
 
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -109,40 +110,20 @@ class World {
     //Kollison mit geworfener Flasche
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
-
-            console.log("Position Boole geschmis ", this.throwableObjects[0].y);
-
             let colli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
             if (colli == 1) {
-                //bottleCollected();
-                this.endboss.hurtEndboss();
                 this.endboss.start = true;
+                this.endboss.hurtEndboss();
                 this.bottleTrow = false;
                 this.endbossScoreWrite();
             }
             if (colli == 2) {
                 console.log("Flasche mit Chicken");
             }
+            if (this.endboosScore == 2) this.endBossNoLive();
         }
-
-        if (this.endboosScore == 2) {
-
-
-            console.log("Position Bootlöe ", this.throwableObjects[0].y);
-
-
-            // if (this.bottleTrow.y < 200) {
-            this.bottleTrow = false
-            this.clearAllInterval();
-            this.endboss.deadEndboss();
-            // }
-
-
-
-        }
-
-
     }
+
 
     //Leben des Enbossverringern bei treffer
     endbossScoreWrite() {
@@ -153,13 +134,24 @@ class World {
 
 
 
+    //wenn kein leben mehr vorhanden gewonnen
+    endBossNoLive() {
+        this.bottleTrow = false
+        this.endboss.start = false;
+        this.clearAllInterval();
+        this.endboss.deadEndboss();
+        setTimeout(() => {
+            this.gameWon();
+        }, 2000);
 
+    }
 
 
 
     //wenn Charater an bestimmter Position dann losgehen
     checkCharaterPos() {
-        if (this.character.x > 2350 && this.keyboard.RIGHT) {
+        if (this.character.x > 2250 && this.keyboard.RIGHT) {
+            this.endboss.animateAttack();
             this.endboss.start = true;
         }
     }
@@ -178,13 +170,8 @@ class World {
                     this.endOfGame();
                 }
             }, 100);
-
         }
     }
-
-
-
-
 
 
 
@@ -313,16 +300,29 @@ class World {
         console.log("Spiel ende");
         this.gameOn = false;
         this.cleanup();
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        const img = new Image();
-        img.src = 'img/You won, you lost/Game Over.png';
-        img.onload = () => {
-            this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        };
+        this.endPictureWrite('img/You won, you lost/Game Over.png')
         document.getElementById('refreshtBtn').style.display = 'flex';
 
     }
 
+
+    gameWon() {
+        console.log("Spiel gewonnwn ");
+        this.gameOn = false;
+        this.cleanup();
+        this.endPictureWrite('img/You won, you lost/You Win A.png');
+        document.getElementById('refreshtBtn').style.display = 'flex';
+    }
+
+
+    endPictureWrite(picture) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        const img = new Image();
+        img.src = picture;
+        img.onload = () => {
+            this.ctx.drawImage(img, 20, 20, this.canvas.width - 2 * 20, this.canvas.height - 2 * 20);
+        };
+    }
 
     cleanup() {
         this.clearAllInterval();
