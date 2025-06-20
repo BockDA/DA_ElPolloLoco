@@ -6,8 +6,8 @@ class Character extends MovableObject {
     world; // was macht das
     sleep = false;
     soundSleep = new Audio('./audio/snoring.mp3')
-    soundWalking = new Audio('./audio/walking.mp3')
-
+    soundWalking = '/audio/walking.mp3';
+    charSound = new Sound();
 
 
 
@@ -97,6 +97,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.startAnimation();
         this.animate();
+        this.charSound.soundPlay('./audio/walking.mp3');
     }
 
 
@@ -110,6 +111,10 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+
+
+
+
             if (this.sleep) {
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
                 this.sound(true);
@@ -135,6 +140,9 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.sleep = false;
                 this.otherDirection = false;
+
+
+
 
 
 

@@ -62,13 +62,12 @@ function playMusik() {
     setInterval(() => {
 
         if (!mute) {
-            console.log("Musik Status", music);
             song.play();
             song.volume = 0.1;
             //song.loop();
 
         } else {
-            console.log("Musik Staus", music);
+
             song.pause();
         }
 

@@ -10,6 +10,8 @@ class World {
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
 
+
+
     canvas;
     ctx;
     keyboard;

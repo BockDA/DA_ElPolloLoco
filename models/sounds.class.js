@@ -1,13 +1,21 @@
 class Sound extends MovableObject {
 
-  src;
-  volume;
-  loop;
+
+  songPlay = new Audio()
 
 
 
 
-  soundPlay(src, volume, loop) {
+
+
+  soundPlay(src) {
+
+    console.log("Walkin Song ");
+
+
+    this.songPlay.src = src;
+    this.songPlay.volume = 1;
+
 
 
 
