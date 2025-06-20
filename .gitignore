@@ -1,7 +1,5 @@
 .vscode
 up.bat
 .gitignore
-/audio
 /img
 test.html
-
