@@ -1,4 +1,4 @@
-class Sound {
+class Sound extends MovableObject {
 
   src;
   volume;

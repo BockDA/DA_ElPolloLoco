@@ -7,7 +7,7 @@ class Character extends MovableObject {
     sleep = false;
     soundSleep = new Audio('./audio/snoring.mp3')
     soundWalking = new Audio('./audio/walking.mp3')
-    charSound = new Sound();
+
 
 
 
