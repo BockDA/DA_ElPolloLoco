@@ -69,30 +69,47 @@ class MovableObject extends DrawableObject {
     getCollisionSide(enemy) {
         const isBootle = enemy instanceof Bootle;
         if (!isBootle && enemy.dead) return false;
+
         return (
             this.x + this.width > enemy.x &&
+            this.x < enemy.x + enemy.width &&
             this.y + this.height > enemy.y &&
-            this.x < enemy.x &&
-            this.y < enemy.y + enemy.height &&
-            this.y - this.height == -70
+            this.y < enemy.y + enemy.height
         );
     }
 
 
+
     getcollisionBottom(enemy) {
-        const tolerance = 50;
+        const tolerance = 30;
         const minX = this.x - tolerance;
         const maxX = this.x + tolerance;
         return (
             (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
+
+
+
     }
 
 
-    getCollisionCoins(coins) {
-        const tolerance = 20;
+    getCollisionCoins(mo) {
+        const buffer = 5;
+        const a_left = this.x + this.offset.left - buffer;
+        const a_right = this.x + this.width - this.offset.right + buffer;
+        const a_top = this.y + this.offset.top - buffer;
+        const a_bottom = this.y + this.height - this.offset.bottom + buffer;
+        const b_left = mo.x + mo.offset.left - buffer;
+        const b_right = mo.x + mo.width - mo.offset.right + buffer;
+        const b_top = mo.y + mo.offset.top - buffer;
+        const b_bottom = mo.y + mo.height - mo.offset.bottom + buffer;
         return (
-            this.y <= coins.y + coins.height && this.x + 20 >= coins.x
+            a_right > b_left &&
+            a_bottom > b_top &&
+            a_left < b_right &&
+            a_top < b_bottom
         );
+
+
     }
 
 
@@ -104,12 +121,10 @@ class MovableObject extends DrawableObject {
 
             return 1
         }
-
         if (colliEnemies) {
             console.log("coli Chicken");
             return 2
         }
-
     }
 
 
