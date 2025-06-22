@@ -29,6 +29,7 @@ class ThrowableObject extends MovableObject {
 
 
 
+
     constructor(x, y, CharDirection, world) {
         super();
         this.sound = new Sound();
@@ -39,13 +40,11 @@ class ThrowableObject extends MovableObject {
         this.x = x;
         this.y = y;
         this.world = world;
-
-
         this.groundlevel = 300;
         this.StartTrow();
         this.trow();
-
     }
+
 
 
     //werfen
@@ -54,12 +53,18 @@ class ThrowableObject extends MovableObject {
         this.trowIntervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_TROW, 10);
             this.x += this.direktion ? -6 : +6;
+            if (this.y < this.groundlevel) {
+                this.sound.soundPlay(this.soundBottleTrow, 1, true)
+            };
+
             if (this.y >= this.groundlevel) {
+                this.sound.stopSound(this.soundBottleTrow);
                 this.Bootlearise();
                 clearInterval(this.trowIntervalId);
-                this.sound.stopSound(this.soundBottleTrow);
             }
+
         }, 20);
+
 
     }
 
@@ -83,6 +88,7 @@ class ThrowableObject extends MovableObject {
             this.y = 800;
         }, 100);
         this.sound.soundPlay(this.soundArise, 1, false);
+
 
     }
 }

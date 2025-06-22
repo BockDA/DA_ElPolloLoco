@@ -114,11 +114,11 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             if (this.sleep) {
-                console.log("Sleep Varuable ", this.sleep);
+
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
                 this.sound.soundPlay(this.soundSleep, 0.5, false);
             } else {
-                console.log("Sleep Varuable ", this.sleep);
+
                 this.playAnmimation(this.IMAGES_IDLE);
                 this.sound.stopSound(this.soundSleep);
             }

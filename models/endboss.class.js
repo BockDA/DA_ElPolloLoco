@@ -73,8 +73,6 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log("Durclauf");
-
             if (!this.start) {
                 this.playAnmimation(this.IMAGES_ALERT, 1);
             } else {
@@ -96,7 +94,7 @@ class Endboss extends MovableObject {
 
     //Endbos greift an
     animateAttack() {
-        console.log("Endboss grift an");
+
         const intervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_ATTACK);
         }, 100);

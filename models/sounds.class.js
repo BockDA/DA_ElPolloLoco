@@ -1,28 +1,10 @@
 class Sound {
   constructor() {
-
     this.activeSounds = {}; // Map: src → Audio-Objekt
   }
 
-  /* Alte Version
-  soundPlay(src, volume = 1, loop) {
-    if (!mute) {
-      if (this.activeSounds[src]) {
-        return;
-      }
-      const sound = new Audio(src);
-      sound.volume = volume;
-      sound.loop = false;
-      this.activeSounds[src] = sound;
-      sound.play()
-      sound.onended = () => {
-        delete this.activeSounds[src];
-      };
-    }
-  }
-*/
 
-  soundPlay(src, volume = 1, loop = false) {
+  soundPlay(src, volume, loop = false) {
     if (!mute) {
       // Wenn Sound schon läuft, nicht erneut starten
       if (this.activeSounds[src]) return;

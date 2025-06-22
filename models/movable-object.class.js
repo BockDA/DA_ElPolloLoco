@@ -69,7 +69,6 @@ class MovableObject extends DrawableObject {
     getCollisionSide(enemy) {
         const isBootle = enemy instanceof Bootle;
         if (!isBootle && enemy.dead) return false;
-
         return (
             this.x + this.width > enemy.x &&
             this.y + this.height > enemy.y &&
@@ -90,7 +89,7 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionCoins(coins) {
-        const tolerance = 50;
+        const tolerance = 20;
         return (
             this.y <= coins.y + coins.height && this.x + 20 >= coins.x
         );
@@ -102,6 +101,7 @@ class MovableObject extends DrawableObject {
         let colliEnemies = this.isColliding(bottleTrow, enemies);
         if (colliEndboss) {
             console.log("Coli Endboss ");
+
             return 1
         }
 

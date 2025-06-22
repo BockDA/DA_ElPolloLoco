@@ -40,6 +40,7 @@ class World {
         this.setWorld();
         this.run();
         this.createNewBootle();
+
     }
 
 
@@ -91,9 +92,10 @@ class World {
     checkCollisionCoins() {
         this.level.coins.forEach((coins) => {
             if (this.character.getCollisionCoins(coins)) {
-                this.coinsCollected(coins);
-                // this.coinsScoreWrite();
+                console.log("Münzencollison");
 
+                this.coinsCollected(coins);
+                this.coinsScoreWrite();
             }
         });
     }
@@ -119,9 +121,11 @@ class World {
                 this.endboss.hurtEndboss();
                 this.bottleTrow = false;
                 this.endbossScoreWrite();
+
+
             }
             if (colli == 2) {
-                console.log("Flasche mit Chicken");
+
             }
             if (this.endboosScore == 2) this.endBossNoLive();
         }
@@ -160,7 +164,7 @@ class World {
     }
 
 
-    //Wenn Kollision mit Endboxxist Ende
+    //Wenn Kollision mit Endboss ist Ende
     checkCollisonEndboss() {
         if (this.character.getCollisionEndboss(this.endboss)) {
             let count = 0;
@@ -181,7 +185,6 @@ class World {
     //Flaschen bei Kollisoon mit Endboos verschwinden lassen (wenn er geht)
     bottleCollected(bootle) {
         this.sound.soundPlay(this.soundBottleCollect, 1, false);
-
         bootle.y = 0;
         bootle.x = 0;
     }
@@ -198,20 +201,22 @@ class World {
     }
 
 
-    coinsCollected(coins) {
-        coins.x = 0;
-        coins.y = 0;
-        this.coinsScoreWrite();
-
-    }
-
-
     //Anzahl der Coins schreiben
     coinsScoreWrite() {
         this.coinsScore++;
+        console.log("Cpins Pinkte ", this.coinsScore);
         this.coinsBar.setCoins(this.coinsScore);
     }
 
+
+
+
+
+
+    coinsCollected(coins) {
+        coins.x = 0;
+        coins.y = 0;
+    }
 
 
 
@@ -300,9 +305,8 @@ class World {
     }
 
 
-
     endOfGame() {
-        console.log("Spiel ende");
+
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/Game Over.png')
@@ -312,7 +316,6 @@ class World {
 
 
     gameWon() {
-        console.log("Spiel gewonnwn ");
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/You Win A.png');
@@ -332,7 +335,6 @@ class World {
     cleanup() {
         this.clearAllInterval();
         this.arraysClear();
-        this.sound.stopAllSounds();
     }
 
 

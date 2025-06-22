@@ -38,7 +38,7 @@ class Chicken extends MovableObject {
 
 
     animate() {
-        console.log("Starte Chicken (dead)", this.dead);
+
         this.moveLeft();
         setInterval(() => {
             if (!this.dead) {
@@ -51,7 +51,7 @@ class Chicken extends MovableObject {
     }
 
     moveLeft() {
-        console.log("ckicken laufe nach links");
+
 
         this.intervalId = setInterval(() => {
             this.x -= this.speed;

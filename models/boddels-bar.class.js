@@ -23,7 +23,6 @@ class BoodleBar extends DrawableObject {
 
 
     setBootle(percentage) {
-        //console.log("Schreibe Punkte");
         this.percentage = percentage;
         let path = this.IMAGES_BOOTLE[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
