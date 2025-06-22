@@ -25,6 +25,7 @@ class World {
     coinsScore = 0;
     endboosScore = 5;
     gameOn = true;
+    soundBottleCollect = '/audio/bottlecollect.mp3';
 
 
 
@@ -34,11 +35,11 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.sound = new Sound();
         this.draw();
         this.setWorld();
         this.run();
         this.createNewBootle();
-
     }
 
 
@@ -179,6 +180,8 @@ class World {
 
     //Flaschen bei Kollisoon mit Endboos verschwinden lassen (wenn er geht)
     bottleCollected(bootle) {
+        this.sound.soundPlay(this.soundBottleCollect, 1, false);
+
         bootle.y = 0;
         bootle.x = 0;
     }
@@ -329,6 +332,7 @@ class World {
     cleanup() {
         this.clearAllInterval();
         this.arraysClear();
+        this.sound.stopAllSounds();
     }
 
 

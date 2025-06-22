@@ -24,11 +24,14 @@ class ThrowableObject extends MovableObject {
     speedY = 20;
     acceleration = 1.5;
     test = 100;
+    soundArise = '/audio/bottlearise.mp3';
+    soundBottleTrow = '/audio/bottlethrow.mp3';
 
 
 
     constructor(x, y, CharDirection, world) {
         super();
+        this.sound = new Sound();
         this.CharDirektion = CharDirection;
         this.loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_TROW);
@@ -54,8 +57,10 @@ class ThrowableObject extends MovableObject {
             if (this.y >= this.groundlevel) {
                 this.Bootlearise();
                 clearInterval(this.trowIntervalId);
+                this.sound.stopSound(this.soundBottleTrow);
             }
         }, 20);
+
     }
 
 
@@ -77,6 +82,7 @@ class ThrowableObject extends MovableObject {
             this.test = null;
             this.y = 800;
         }, 100);
+        this.sound.soundPlay(this.soundArise, 1, false);
 
     }
 }

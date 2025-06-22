@@ -63,7 +63,7 @@ function playMusik() {
 
         if (!mute) {
             song.play();
-            song.volume = 0.1;
+            song.volume = 0.05;
             //song.loop();
 
         } else {
