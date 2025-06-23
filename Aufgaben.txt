@@ -18,3 +18,5 @@ wenn chicken deat keine kollision mehr
 Aktuelle:  bei Endboss dead Statusleiste
             world.class.js  -> 110/117
  enbosss Statusleiste   world.class.js  -> 106
+
+small chicken sound dead einfügen
