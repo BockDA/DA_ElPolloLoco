@@ -40,6 +40,7 @@ class MovableObject extends DrawableObject {
 
 
     playAnmimation(images, speed) {
+        if (this.dead) console.log("Dead Ani ", images);
         speed = speed || 5;
         if (!this.animationFrameCounter) this.animationFrameCounter = 0;
         this.animationFrameCounter++;
@@ -81,15 +82,29 @@ class MovableObject extends DrawableObject {
 
 
     getcollisionBottom(enemy) {
-        const tolerance = 30;
+        /*const tolerance = 30;
         const minX = this.x - tolerance;
         const maxX = this.x + tolerance;
         return (
-            (enemy.x >= minX && enemy.x <= maxX) && this.y < 30);
+            (enemy.x >= minX && enemy.x <= maxX) && this.y < 40);
+            */
 
 
+        const characterBottom = this.y + this.height;
+        const enemyTop = enemy.y;
 
+        const verticalOverlap =
+            characterBottom >= enemyTop &&
+            characterBottom <= enemyTop + 40; // bis zu 15px tief im Gegner erlaubt
+
+        const horizontalOverlap =
+            this.x + this.width > enemy.x - 10 &&    // 20px Spielraum links
+            this.x < enemy.x + enemy.width + 10;     // 20px Spielraum rechts
+
+        return verticalOverlap && horizontalOverlap;
     }
+
+
 
 
     getCollisionCoins(mo) {
@@ -118,7 +133,6 @@ class MovableObject extends DrawableObject {
         let colliEnemies = this.isColliding(bottleTrow, enemies);
         if (colliEndboss) {
             console.log("Coli Endboss ");
-
             return 1
         }
         if (colliEnemies) {
@@ -126,7 +140,6 @@ class MovableObject extends DrawableObject {
             return 2
         }
     }
-
 
     //Hilfstestversion
     isColliding(obj1, obj2) {

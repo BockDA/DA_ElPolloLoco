@@ -70,6 +70,7 @@ class World {
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
+                console.log("Kollison  ");
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -81,9 +82,9 @@ class World {
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getcollisionBottom(enemy)) {
+                console.log("Kollison von oben ");
                 enemy.dead = true;
                 enemy.deadCollision();
-                console.log("Kollison von iben ");
 
             }
         });
@@ -207,10 +208,6 @@ class World {
         console.log("Cpins Pinkte ", this.coinsScore);
         this.coinsBar.setCoins(this.coinsScore);
     }
-
-
-
-
 
 
     coinsCollected(coins) {

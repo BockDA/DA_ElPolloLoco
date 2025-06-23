@@ -6,13 +6,14 @@ class ChickenSmall extends MovableObject {
     dead = false;
     speed = 1.5;
     setIntervalId;
+    soundWalking = '/audio/smallchicken.mp3';
+
+
 
     IMAGES_WALKING_SMALL = [
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png'
-
-
     ];
 
 
@@ -32,29 +33,39 @@ class ChickenSmall extends MovableObject {
 
     constructor() {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+        this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 600 + Math.random() * 800;
         this.speed += Math.random() * 0.4;
         this.animate();
+        this.soundChick();
     }
 
 
     animate() {
         this.moveLeft();
         setInterval(() => {
-            if (!this.dead) {
-                let i = this.currentImage % this.IMAGES_WALKING_SMALL.length;
-                let path = this.IMAGES_WALKING_SMALL[i]
-                this.img = this.imageCache[path];
-                this.currentImage++;
-            }
-        }, 200);
+            if (this.dead) return;
+            this.playAnmimation(this.IMAGES_WALKING_SMALL, 2);
+
+        }, 100);
+
+
+
+    }
+
+    //Cickensmall gagager
+    soundChick() {
+        setInterval(() => {
+            this.sound.soundPlay(this.soundWalking, 0.5, false);
+        }, 6000)
     }
 
 
+
     moveLeft() {
-        this.setIntervalId = setInterval(() => {
+        this.IntervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
@@ -62,9 +73,11 @@ class ChickenSmall extends MovableObject {
 
     //wenn getroffen nach unten abtauchen
     deadCollision() {
+        clearInterval(this.IntervalId);
         this.playAnmimation(this.IMAGES_DEAD);
-        this.dead = true;
-        clearInterval(this.setIntervalId);
     }
+
+
+
 
 }
