@@ -86,9 +86,10 @@ class Character extends MovableObject {
     }
 
 
-    constructor(keyboard) {
+    constructor(keyboard, world) {
         super().loadImage("img/2_character_pepe/2_walk/W-21.png");
         this.keyboard = keyboard;
+        this.world = world;
         this.sound = new Sound();
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
@@ -127,7 +128,9 @@ class Character extends MovableObject {
                 console.log("Bin Tod");
                 this.playAnmimation(this.IMAGES_DEAD);
                 this.y += 5;
-
+                setTimeout(() => {
+                    this.world.endOfGame();
+                }, 3000);
 
             } else if (this.isHurt()) {
                 //console.log("Is Hurt Variable")

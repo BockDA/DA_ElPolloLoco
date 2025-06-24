@@ -1,6 +1,6 @@
 class World {
 
-    character = new Character();
+    character = new Character(world);
     level = level1;
     endboss = level1.endboss[0];
     enemies = level1.enemies;
@@ -26,8 +26,9 @@ class World {
     endboosScore = 5;
     gameOn = true;
     soundBottleCollect = '/audio/bottlecollect.mp3';
-
-
+    soundEndOffGame = '/audio/game_over.mp3';
+    soundWinGame = '/audio/gamewin.mp3'
+    soundCoinsCollect = '/audio/coinCollect.mp3';
 
 
 
@@ -97,8 +98,11 @@ class World {
             if (this.character.getCollisionCoins(coins)) {
                 this.coinsCollected(coins);
                 this.coinsScoreWrite();
+                this.sound.soundPlay(this.soundCoinsCollect, 1, false);
+
             }
         });
+
     }
 
 
@@ -300,7 +304,7 @@ class World {
 
 
     endOfGame() {
-
+        this.sound.soundPlay(this.soundEndOffGame, 1, false);
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/Game Over.png')
@@ -310,6 +314,7 @@ class World {
 
 
     gameWon() {
+        this.sound.soundPlay(this.soundWinGame, 1, false);
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/You Win A.png');

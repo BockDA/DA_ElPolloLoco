@@ -10,13 +10,13 @@ let mute = true;
 
 
 function init() {
+
     initLevel();
-    console.log("Starte");
+
     canvas = document.getElementById('canvas');
     document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
-
 
     if (this.world instanceof World) {
         console.log("World vorhanden");
@@ -24,12 +24,12 @@ function init() {
         console.log("World löschen");
         this.world = null;
     }
-
     drawStartPicture();
 }
 
 
 function startGame() {
+
     document.getElementById('startBtn').style.display = 'none';
     initLevel();
     this.world = new World(canvas, keyboard);
@@ -75,7 +75,14 @@ function playMusik() {
 }
 
 
+function refreshGame() {
+    this.gameOn = false;
+    this.world.cleanup();
+    init();
 
+
+
+}
 
 window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowRight') {

@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
     speed = 0.06;
     world;
     start = false;
+    soundEndbossHurt = '/audio/endboss_hurt.mp3'
 
 
 
@@ -61,6 +62,7 @@ class Endboss extends MovableObject {
 
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
+        this.sound = new Sound();
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
@@ -94,7 +96,6 @@ class Endboss extends MovableObject {
 
     //Endbos greift an
     animateAttack() {
-
         const intervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_ATTACK);
         }, 100);
@@ -115,13 +116,13 @@ class Endboss extends MovableObject {
     }
 
 
-
     //Endboss ist tot
     deadEndboss() {
         setInterval(() => {
             this.playAnmimation(this.IMAGES_DEAD);
             this.y += 2;
         }, 100 / 10);
+        this.sound.soundPlay(this.soundEndbossHurt, 1, false);
     }
 
 

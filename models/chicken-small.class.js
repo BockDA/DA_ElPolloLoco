@@ -6,7 +6,7 @@ class ChickenSmall extends MovableObject {
     dead = false;
     speed = 1.5;
     setIntervalId;
-    soundWalking = '/audio/smallchicken.mp3';
+    soundDead = '/audio/smallchicken.mp3';
 
 
 
@@ -39,7 +39,7 @@ class ChickenSmall extends MovableObject {
         this.x = 600 + Math.random() * 800;
         this.speed += Math.random() * 0.4;
         this.animate();
-        this.soundChick();
+
     }
 
 
@@ -49,20 +49,9 @@ class ChickenSmall extends MovableObject {
             if (this.dead) return;
             this.playAnmimation(this.IMAGES_WALKING_SMALL, 2);
 
-        }, 100);
-
-
+        }, 50);
 
     }
-
-    //Cickensmall gagager
-    soundChick() {
-        setInterval(() => {
-            this.sound.soundPlay(this.soundWalking, 0.5, false);
-        }, 6000)
-    }
-
-
 
     moveLeft() {
         this.IntervalId = setInterval(() => {
@@ -75,9 +64,7 @@ class ChickenSmall extends MovableObject {
     deadCollision() {
         clearInterval(this.IntervalId);
         this.playAnmimation(this.IMAGES_DEAD);
+        this.sound.soundPlay(this.soundDead, 1, false);
     }
-
-
-
 
 }

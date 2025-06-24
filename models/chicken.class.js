@@ -6,6 +6,7 @@ class Chicken extends MovableObject {
     dead = false;
     speed = 1;
     intervalId;
+    soundDead = '/audio/chicken.mp3';
 
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -29,6 +30,7 @@ class Chicken extends MovableObject {
     constructor(world) {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.world = world;
+        this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 600 + Math.random() * 800;
@@ -46,7 +48,7 @@ class Chicken extends MovableObject {
             //let path = this.IMAGES_WALKING[i]
             //this.img = this.imageCache[path];
             //this.currentImage++;
-        }, 100);
+        }, 50);
     }
 
     moveLeft() {
@@ -60,10 +62,7 @@ class Chicken extends MovableObject {
     deadCollision() {
         clearInterval(this.intervalId);
         this.playAnmimation(this.IMAGES_DEAD);
-
+        this.sound.soundPlay(this.soundDead, 1, false);
     }
-
-
-
 
 }

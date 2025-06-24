@@ -54,18 +54,14 @@ class ThrowableObject extends MovableObject {
             this.playAnmimation(this.IMAGES_TROW, 10);
             this.x += this.direktion ? -6 : +6;
             if (this.y < this.groundlevel) {
-                this.sound.soundPlay(this.soundBottleTrow, 1, true)
+                this.sound.soundPlay(this.soundBottleTrow, 1, false)
             };
-
             if (this.y >= this.groundlevel) {
                 this.sound.stopSound(this.soundBottleTrow);
                 this.Bootlearise();
                 clearInterval(this.trowIntervalId);
             }
-
         }, 20);
-
-
     }
 
 

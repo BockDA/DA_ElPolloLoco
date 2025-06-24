@@ -33,26 +33,29 @@
 
 <body onload="init()">
   <h1>El Pollo Logo</h1>
+
   <div class="gameCanvas">
     <canvas id="canvas" width="720" height="480"> </canvas>
     <button id="startBtn" class="playButton" onclick="startGame()">Play Game</button>
-    <button id="refreshtBtn" class="refreshtBtn" onclick="init()">Restart Game</button>
+    <button id="refreshtBtn" class="refreshtBtn" onclick="init()">New Game</button>
   </div>
   <div class="navigation">
     <label>
-      <img src="./img/navigation/arrow_back.svg" />
-      left
+      <img id="refreshGame" src="./img/icons/arrow_back.svg" width="30">
     </label>
-    <label>Test2</label>
-    <button>Refresh</button>
-    <button onclick="muteMusik()">
-      <img id="musicPlay" src="./img/icons/volume-off.png" width="32">
-
+    <label>J
+    </label>
+    <button onclick="refreshGame()">
+      <img src="./img/icons/renew.svg" width="30">
     </button>
-    <label>Test3</label>
+    <button onclick="muteMusik()">
+      <img id="musicPlay" src="./img/icons/volume-off.png" width="30">
+    </button>
+    <label>D
+      <img class="trowBottle" src="./img/6_salsa_bottle/salsa_bottle.png" width="50">
+    </label>
     <label>
-      right
-      <img src="./img/navigation/arrow_forward.svg" />
+      <img src="./img/icons/arrow_forward.svg" width="30">
     </label>
   </div>
 </body>

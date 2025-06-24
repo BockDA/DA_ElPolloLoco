@@ -82,14 +82,6 @@ class MovableObject extends DrawableObject {
 
 
     getcollisionBottom(enemy) {
-        /*const tolerance = 30;
-        const minX = this.x - tolerance;
-        const maxX = this.x + tolerance;
-        return (
-            (enemy.x >= minX && enemy.x <= maxX) && this.y < 40);
-            */
-
-
         const characterBottom = this.y + this.height;
         const enemyTop = enemy.y;
 
@@ -100,11 +92,8 @@ class MovableObject extends DrawableObject {
         const horizontalOverlap =
             this.x + this.width > enemy.x - 10 &&    // 20px Spielraum links
             this.x < enemy.x + enemy.width + 10;     // 20px Spielraum rechts
-
         return verticalOverlap && horizontalOverlap;
     }
-
-
 
 
     getCollisionCoins(mo) {
@@ -172,7 +161,6 @@ class MovableObject extends DrawableObject {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -183,7 +171,7 @@ class MovableObject extends DrawableObject {
     hit() {
         const now = Date.now();
         // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
-        if (now - this.lastHit < 200) {
+        if (now - this.lastHit < 100) {
             return;
         }
         // Nun ausführen und Timestamp updaten
@@ -210,8 +198,5 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
-
-
-
 
 }
