@@ -77,7 +77,6 @@ class Character extends MovableObject {
     ]
 
 
-
     offset = {
         top: 85,
         left: 20,
@@ -100,9 +99,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.startAnimation();
         this.animate();
-
     }
-
 
 
 
@@ -115,17 +112,14 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             if (this.sleep) {
-
                 this.playAnmimation(this.IMAGES_LONG_IDLE);
                 this.sound.soundPlay(this.soundSleep, 0.5, false);
             } else {
-
                 this.playAnmimation(this.IMAGES_IDLE);
                 this.sound.stopSound(this.soundSleep);
             }
 
             if (this.isDead()) {
-                console.log("Bin Tod");
                 this.playAnmimation(this.IMAGES_DEAD);
                 this.y += 5;
                 setTimeout(() => {
@@ -133,20 +127,17 @@ class Character extends MovableObject {
                 }, 3000);
 
             } else if (this.isHurt()) {
-                //console.log("Is Hurt Variable")
-                //this.y += 200;
                 this.playAnmimation(this.IMAGES_HURT);
                 this.sound.soundPlay(this.soundHurt, 1, false);
 
 
-
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                console.log("Gehe nach rechts");
+
                 this.moveRight();
                 this.sleep = false;
                 this.otherDirection = false;
                 this.sound.soundPlay(this.soundWalking, 1, false);
-
-
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
@@ -154,18 +145,15 @@ class Character extends MovableObject {
                 this.sleep = false;
                 this.otherDirection = true;
                 this.sound.soundPlay(this.soundWalking, 1, false);
-
             }
 
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.sleep = false;
                 this.jump();
                 this.sound.soundPlay(this.soundJump, 1, false);
             }
-
             this.world.camera_x = -this.x + 100;
-
-        }, 1000 / 30);
+        }, 1000 / 25);
     }
 
 

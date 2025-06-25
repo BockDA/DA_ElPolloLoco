@@ -46,7 +46,7 @@ function drawStartPicture() {
 
 
 function muteMusik() {
-    console.log("Musik mute");
+
     if (!mute) {
         document.getElementById('musicPlay').src = './img/icons/volume-off.png';
         mute = true;
@@ -85,6 +85,7 @@ function refreshGame() {
 }
 
 window.addEventListener('keydown', (event) => {
+
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }
@@ -97,7 +98,7 @@ window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowDown') {
         keyboard.DOWN = true;
     }
-    if (event.key == 'Space') {
+    if (event.key == ' ') {
         keyboard.SPACE = true;
     }
 
@@ -126,7 +127,7 @@ window.addEventListener('keyup', (event) => {
     if (event.key == 'ArrowDown') {
         keyboard.DOWN = false;
     }
-    if (event.key == 'Space') {
+    if (event.key == ' ') {
         keyboard.SPACE = false;
     }
     if (event.key == 'd') {

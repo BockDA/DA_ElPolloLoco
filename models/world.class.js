@@ -155,7 +155,6 @@ class World {
         setTimeout(() => {
             this.gameWon();
         }, 2000);
-
     }
 
 

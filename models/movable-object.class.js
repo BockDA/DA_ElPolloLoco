@@ -16,7 +16,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-
     applyGravity(acceleration) {
         acceleration = acceleration || this.acceleration
         setInterval(() => {
@@ -31,7 +30,7 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return this.y < 290//true
+            return this.y < 290
         } else {
             return this.y < 180;
         }
@@ -40,7 +39,7 @@ class MovableObject extends DrawableObject {
 
 
     playAnmimation(images, speed) {
-        if (this.dead) console.log("Dead Ani ", images);
+        //if (!this.dead)
         speed = speed || 5;
         if (!this.animationFrameCounter) this.animationFrameCounter = 0;
         this.animationFrameCounter++;
@@ -49,16 +48,15 @@ class MovableObject extends DrawableObject {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
+            //}
         }
     }
 
-
-
     moveRight() {
+        console.log("--rechts-- ");
+
         this.x += this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
-
-
     }
 
     moveLeft() {
@@ -84,14 +82,12 @@ class MovableObject extends DrawableObject {
     getcollisionBottom(enemy) {
         const characterBottom = this.y + this.height;
         const enemyTop = enemy.y;
-
         const verticalOverlap =
             characterBottom >= enemyTop &&
             characterBottom <= enemyTop + 40; // bis zu 15px tief im Gegner erlaubt
-
         const horizontalOverlap =
-            this.x + this.width > enemy.x - 10 &&    // 20px Spielraum links
-            this.x < enemy.x + enemy.width + 10;     // 20px Spielraum rechts
+            this.x + this.width > enemy.x - 10 &&    // 10px Spielraum links
+            this.x < enemy.x + enemy.width + 10;     // 10px Spielraum rechts
         return verticalOverlap && horizontalOverlap;
     }
 

@@ -4,7 +4,7 @@ body {
   align-items: center;
   background-image: url(./img/5_background/desert.png);
   background-position: center;
-  font-family: "Spicy Rice", Arial, Helvetica, sans-serif;
+  font-family: "Chicle", Arial, Helvetica, sans-serif;
 }
 
 canvas {
@@ -14,7 +14,21 @@ canvas {
 }
 
 h1 {
-  margin-top: 100px;
+  font-size: 72px;
+}
+
+h2 {
+  font-family: "Chicle";
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-weight: 100;
+  color: black;
+}
+
+h3 {
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: 100;
 }
 
 .navigation {
@@ -27,23 +41,26 @@ h1 {
 }
 
 button {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   border-radius: 100%;
   background-color: #ff7423;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
   color: white;
   cursor: pointer;
 }
 
 label {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   border-radius: 100%;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
+  border-color: black;
   background-color: #ff7423;
   color: black;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,5 +106,22 @@ label {
 }
 
 .refreshtBtn:hover {
+  background-color: #bc4400;
+}
+
+.jump {
+  display: flex;
+}
+
+.throw {
+  display: flex;
+  margin-right: 15px;
+}
+
+.gameRefresh:hover {
+  background-color: #bc4400;
+}
+
+.muteMusik:hover {
   background-color: #bc4400;
 }
