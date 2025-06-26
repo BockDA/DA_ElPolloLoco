@@ -76,8 +76,12 @@ function playMusik() {
 
 function refreshGame() {
     //this.world.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.world.gameOn = false;
-    this.world.cleanup();
+
+    if (this.world) {
+        this.world.gameOn = false;
+        this.world.cleanup();
+    }
+
     init();
 
 }
