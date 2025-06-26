@@ -351,5 +351,6 @@ class World {
         this.coins = [];
         this.bootle = [];
         this.backroundObjects = [];
+        this.newbottle = [];
     }
 }

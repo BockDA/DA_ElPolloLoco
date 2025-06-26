@@ -1,9 +1,8 @@
 class Character extends MovableObject {
-
     height = 250;
     y = 180;
     speed = 15;
-    world; // was macht das
+    world;
     sleep = false;
     soundSleep = '/audio/snoring.mp3';
     soundWalking = '/audio/walkingChar.mp3';
@@ -132,8 +131,6 @@ class Character extends MovableObject {
 
 
             } else if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                console.log("Gehe nach rechts");
-
                 this.moveRight();
                 this.sleep = false;
                 this.otherDirection = false;

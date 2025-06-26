@@ -6,22 +6,22 @@ let startImage = new Image();
 startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
 let song = new Audio('./audio/startmusic.mp3')
 let music = false;
-let mute = true;
+let mute = "on";
+
+
 
 
 function init() {
-
+    mute = localStorage.getItem('mute');
+    muteIconWrite(mute);
     initLevel();
-
     canvas = document.getElementById('canvas');
     document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
 
     if (this.world instanceof World) {
-        console.log("World vorhanden");
         this.world.cleanup();
-        console.log("World löschen");
         this.world = null;
     }
     drawStartPicture();
@@ -29,12 +29,10 @@ function init() {
 
 
 function startGame() {
-
     document.getElementById('startBtn').style.display = 'none';
     initLevel();
     this.world = new World(canvas, keyboard);
     playMusik();
-
 }
 
 
@@ -46,41 +44,41 @@ function drawStartPicture() {
 
 
 function muteMusik() {
+    mute = (mute === "on") ? "off" : "on";
+    localStorage.setItem('mute', mute);
+    muteIconWrite(mute);
+    document.activeElement.blur();
 
-    if (!mute) {
+}
+
+
+function muteIconWrite(mute) {
+    if (mute == "off") {
         document.getElementById('musicPlay').src = './img/icons/volume-off.png';
-        mute = true;
-
     } else {
-        mute = false;
         document.getElementById('musicPlay').src = './img/icons/volume-on.png';
     }
 }
 
 
+
 function playMusik() {
     setInterval(() => {
-
-        if (!mute) {
+        if (mute == "on") {
             song.play();
             song.volume = 0.05;
-            //song.loop();
-
         } else {
-
             song.pause();
         }
-
     }, 100);
 }
 
 
 function refreshGame() {
-    this.gameOn = false;
+    //this.world.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.world.gameOn = false;
     this.world.cleanup();
     init();
-
-
 
 }
 

@@ -5,7 +5,7 @@ class Sound {
 
 
   soundPlay(src, volume, loop = false) {
-    if (!mute) {
+    if (mute == "on") {
       // Wenn Sound schon läuft, nicht erneut starten
       if (this.activeSounds[src]) return;
 
