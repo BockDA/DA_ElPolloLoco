@@ -30,15 +30,19 @@
     <title>ELPoloLogo</title>
   </head>
 
-  <body onload="init()">
-    <h1>El Pollo Logo</h1>
+  <body onload="checkMobil(); init()">
+    <div class="headline">
+      <h1>El Pollo Logo</h1>
+    </div>
 
     <div class="gameCanvas">
       <canvas id="canvas" tabindex="0" width="720" height="480"> </canvas>
+    </div>
+
+    <div id="gameSteering" class="gameSteering">
       <button id="startBtn" class="playButton" onclick="startGame()">
         <h2>Play Game</h2>
       </button>
-
       <button id="refreshtBtn" class="refreshtBtn" onclick="init()">
         <h2>New Game</h2>
       </button>
@@ -78,6 +82,10 @@
       <label>
         <img src="./img/icons/arrow_forward.svg" width="30" />
       </label>
+    </div>
+
+    <div id="rotateDisplay" class="rotateDisplay">
+      <p>Please rotate Display</p>
     </div>
   </body>
 </html>

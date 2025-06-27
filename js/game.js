@@ -10,6 +10,19 @@ let mute = "on";
 
 
 
+function checkMobil() {
+    let mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (mobil) {
+        console.log("Mobilgerät");
+
+    } else {
+        console.log("Desktop");
+    }
+
+
+
+}
+
 
 function init() {
     mute = localStorage.getItem('mute');
