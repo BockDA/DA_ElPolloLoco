@@ -15,13 +15,25 @@ function checkMobil() {
     if (mobil) {
         console.log("Mobilgerät");
 
+        document.body.classList.add('mobilVersion');
+
+
+
     } else {
         console.log("Desktop");
+        document.body.classList.remove('mobilVersion');
     }
-
-
-
 }
+
+
+
+
+window.addEventListener('resize', (event) => {
+    checkMobil();
+});
+
+
+
 
 
 function init() {

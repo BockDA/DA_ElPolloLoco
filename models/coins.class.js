@@ -23,7 +23,6 @@ class Coins extends MovableObject {
     }
 
 
-
     //coins Animieren
     animateCoins() {
         setInterval(() => {

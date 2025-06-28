@@ -99,7 +99,6 @@ class World {
                 this.coinsCollected(coins);
                 this.coinsScoreWrite();
                 this.sound.soundPlay(this.soundCoinsCollect, 1, false);
-
             }
         });
 
