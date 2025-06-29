@@ -9,24 +9,21 @@ let music = false;
 let mute = "on";
 
 
-
 function checkMobil() {
-    let mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const querformat = window.innerWidth > window.innerHeight;
     if (mobil) {
-        console.log("Mobilgerät");
         document.body.classList.add('mobilVersion');
-
-
-
-
-
+        if (querformat) {
+            document.getElementById("rotateDisplay").classList.remove("rotateDisplay");
+        } else {
+            document.getElementById("rotateDisplay").classList.add("rotateDisplay");
+        }
     } else {
-        console.log("Desktop");
         document.body.classList.remove('mobilVersion');
+        document.getElementById("rotateDisplay").classList.remove("rotateDisplay");
     }
 }
-
-
 
 
 window.addEventListener('resize', (event) => {
@@ -34,10 +31,8 @@ window.addEventListener('resize', (event) => {
 });
 
 
-
-
-
 function init() {
+    checkMobil();
     mute = localStorage.getItem('mute');
     muteIconWrite(mute);
     initLevel();
@@ -45,7 +40,6 @@ function init() {
     document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
-
     if (this.world instanceof World) {
         this.world.cleanup();
         this.world = null;
@@ -68,13 +62,11 @@ function drawStartPicture() {
 }
 
 
-
 function muteMusik() {
     mute = (mute === "on") ? "off" : "on";
     localStorage.setItem('mute', mute);
     muteIconWrite(mute);
     document.activeElement.blur();
-
 }
 
 
@@ -85,7 +77,6 @@ function muteIconWrite(mute) {
         document.getElementById('musicPlay').src = './img/icons/volume-on.png';
     }
 }
-
 
 
 function playMusik() {
@@ -101,19 +92,15 @@ function playMusik() {
 
 
 function refreshGame() {
-    //this.world.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     if (this.world) {
         this.world.gameOn = false;
         this.world.cleanup();
     }
-
     init();
-
 }
 
-window.addEventListener('keydown', (event) => {
 
+window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }
@@ -128,8 +115,6 @@ window.addEventListener('keydown', (event) => {
     if (event.key == 'd') {
         keyboard.D = true;
     }
-
-
 });
 
 
@@ -150,14 +135,11 @@ window.addEventListener('keyup', (event) => {
 );
 
 
-
-// Beim Berühren merken, welches Element berührt wurde
 window.addEventListener('touchstart', (event) => {
     const touch = event.touches[0];
     const element = document.elementFromPoint(touch.clientX, touch.clientY);
     touchElement = element?.closest('[id]');
     if (!touchElement) return;
-
     switch (touchElement.id) {
         case 'touchRight': keyboard.RIGHT = true; break;
         case 'touchLeft': keyboard.LEFT = true; break;
@@ -167,19 +149,14 @@ window.addEventListener('touchstart', (event) => {
 });
 
 
-
-// Beim Loslassen Zugriff auf das gemerkte Element
 window.addEventListener('touchend', () => {
     if (!touchElement) return;
-
     switch (touchElement.id) {
         case 'touchRight': keyboard.RIGHT = false; break;
         case 'touchLeft': keyboard.LEFT = false; break;
         case 'touchJump': keyboard.SPACE = false; break;
         case 'touchThrow': keyboard.D = false; break;
     }
-
-    touchElement = null;
 });
 
 

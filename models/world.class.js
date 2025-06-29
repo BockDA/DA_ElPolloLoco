@@ -71,7 +71,6 @@ class World {
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
-                console.log("Kollison  ");
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -83,7 +82,7 @@ class World {
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getcollisionBottom(enemy)) {
-                console.log("Kollison von oben ");
+
                 enemy.dead = true;
                 enemy.deadCollision();
 
@@ -128,10 +127,11 @@ class World {
 
 
             }
-            if (colli == 2) {
 
+            if (colli == 2) {
             }
-            if (this.endboosScore == 2) this.endBossNoLive();
+
+            if (this.endboosScore == 0) this.endBossNoLive();
         }
     }
 
@@ -139,7 +139,6 @@ class World {
     //Leben des Enbossverringern bei treffer
     endbossScoreWrite() {
         this.endboosScore--
-        console.log("Endboss Scone ", this.endboosScore);
         this.endbossBar.setEndboosBar(this.endboosScore);
     }
 
@@ -188,8 +187,7 @@ class World {
     //Flaschen bei Kollisoon mit Endboos verschwinden lassen (wenn er geht)
     bottleCollected(bootle) {
         this.sound.soundPlay(this.soundBottleCollect, 1, false);
-        bootle.y = 0;
-        bootle.x = 0;
+        bootle.y = 800;
     }
 
 
@@ -207,14 +205,12 @@ class World {
     //Anzahl der Coins schreiben
     coinsScoreWrite() {
         this.coinsScore++;
-        console.log("Cpins Pinkte ", this.coinsScore);
         this.coinsBar.setCoins(this.coinsScore);
     }
 
 
     coinsCollected(coins) {
-        coins.x = 0;
-        coins.y = 0;
+        coins.y = 800;
     }
 
 

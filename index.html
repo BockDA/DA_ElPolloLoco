@@ -2,13 +2,14 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="/fonts/fonts.css" />
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/throwable-object.class.js"></script>
@@ -23,6 +24,7 @@
     <script src="./models/boddels-bar.class.js"></script>
     <script src="./models/world.class.js"></script>
     <script src="./models/cloud.class.js"></script>
+
     <script src="./models/status-bar.class.js"></script>
     <script src="./models/backround-objekt.class.js"></script>
     <script src="./models/keyboard.class.js"></script>
@@ -30,11 +32,10 @@
     <script src="./models/level.class.js"></script>
     <script src="./models/level/level.js"></script>
     <script src="./js/game.js"></script>
-
     <title>ELPoloLogo</title>
   </head>
 
-  <body onload="checkMobil(); init()">
+  <body onload="init()">
     <div class="headline">
       <h1>El Pollo Logo</h1>
     </div>
@@ -95,7 +96,8 @@
     </div>
 
     <div id="rotateDisplay" class="rotateDisplay">
-      <p>Please rotate Display</p>
+      <p>Turn your Display to play</p>
+      <img src="./img/icons/rotateDisplay.svg" />
     </div>
   </body>
 </html>

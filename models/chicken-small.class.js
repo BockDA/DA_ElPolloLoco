@@ -22,21 +22,12 @@ class ChickenSmall extends MovableObject {
     ]
 
 
-    offset = {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-    }
-
-
-
     constructor() {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 600 + Math.random() * 800;
+        this.x = 600 + Math.random() * 1200;
         this.speed += Math.random() * 0.4;
         this.animate();
 
@@ -66,5 +57,4 @@ class ChickenSmall extends MovableObject {
         this.playAnmimation(this.IMAGES_DEAD);
         this.sound.soundPlay(this.soundDead, 1, false);
     }
-
 }

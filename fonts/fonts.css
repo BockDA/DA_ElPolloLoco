@@ -1,5 +1,5 @@
 /* chicle-regular - latin */
 @font-face {
   font-family: "Chicle";
-  src: url("/fonts/chicle-v26-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("chicle-v26-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

@@ -7,7 +7,7 @@ class Endboss extends MovableObject {
     world;
     start = false;
     soundEndbossHurt = '/audio/endboss_hurt.mp3'
-
+    soundEndboosAttack = '/audio/boss_alarm.mp3'
 
 
 
@@ -100,8 +100,11 @@ class Endboss extends MovableObject {
             this.playAnmimation(this.IMAGES_ATTACK);
         }, 100);
         setTimeout(() => {
+
             clearInterval(intervalId);
         }, 2000);
+
+
 
     }
 
@@ -111,6 +114,7 @@ class Endboss extends MovableObject {
             this.playAnmimation(this.IMAGES_HURT);
         }, 100);
         setTimeout(() => {
+            this.sound.soundPlay(this.soundEndboosAttack, 1, false);
             clearInterval(intervalId);
         }, 2000);
     }

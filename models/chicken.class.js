@@ -19,24 +19,19 @@ class Chicken extends MovableObject {
     ];
 
 
-    offset = {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-    }
-
-
     constructor(world) {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.world = world;
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 600 + Math.random() * 800;
+        const delay = 500 + Math.random() * 0.4;
+        this.x = 600 + Math.random() * 1000;
         this.speed += Math.random() * 0.4;
         this.animate();
     }
+
+
 
 
     animate() {

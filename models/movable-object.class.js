@@ -53,8 +53,6 @@ class MovableObject extends DrawableObject {
     }
 
     moveRight() {
-        console.log("--rechts-- ");
-
         this.x += this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
     }
@@ -117,11 +115,9 @@ class MovableObject extends DrawableObject {
         let colliEndboss = this.isColliding(bottleTrow, endboss);
         let colliEnemies = this.isColliding(bottleTrow, enemies);
         if (colliEndboss) {
-            console.log("Coli Endboss ");
             return 1
         }
         if (colliEnemies) {
-            console.log("coli Chicken");
             return 2
         }
     }
@@ -174,7 +170,6 @@ class MovableObject extends DrawableObject {
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
-            console.log("Keine Energie mehr übrig!");
             this.isDead();
         }
         this.lastHit = now;
