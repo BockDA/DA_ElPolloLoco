@@ -2,7 +2,11 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/fonts/fonts.css" />
     <script src="./models/drawable-object.class.js"></script>
@@ -43,45 +47,51 @@
       <button id="startBtn" class="playButton" onclick="startGame()">
         <h2>Play Game</h2>
       </button>
+
       <button id="refreshtBtn" class="refreshtBtn" onclick="init()">
         <h2>New Game</h2>
       </button>
     </div>
 
     <div class="navigation">
-      <label>
-        <img src="./img/icons/arrow_back.svg" width="30" />
-      </label>
+      <div class="navi_left">
+        <label>
+          <img id="touchLeft" src="./img/icons/arrow_back.svg" width="30" />
+        </label>
 
-      <label>
-        <div class="jump">
-          <img src="./img/icons/space.svg" width="30" />
-          <h3>Jump</h3>
-        </div>
-      </label>
+        <label id="touchJump">
+          <div class="jump">
+            <img src="./img/icons/space.svg" width="30" />
+            <h3>Jump</h3>
+          </div>
+        </label>
 
-      <button class="gameRefresh" onclick="refreshGame()">
-        <img src="./img/icons/renew.svg" width="30" />
-      </button>
+        <button class="gameRefresh" onclick="refreshGame()">
+          <img src="./img/icons/renew.svg" width="30" />
+        </button>
+      </div>
 
-      <button class="muteMusik" onclick="muteMusik()">
-        <img id="musicPlay" src="./img/icons/volume-off.png" width="30" />
-      </button>
+      <div class="navi_right">
+        <button class="muteMusik" onclick="muteMusik()">
+          <img id="musicPlay" src="./img/icons/volume-off.png" width="30" />
+        </button>
 
-      <label>
-        <div class="throw">
-          <img
-            class="trowBottle"
-            src="./img/6_salsa_bottle/salsa_bottle.png"
-            width="50"
-          />
-          <h3>D</h3>
-        </div>
-      </label>
+        <label>
+          <div class="throw">
+            <img
+              id="touchThrow"
+              class="trowBottle"
+              src="./img/6_salsa_bottle/salsa_bottle.png"
+              width="50"
+            />
+            <h3>D</h3>
+          </div>
+        </label>
 
-      <label>
-        <img src="./img/icons/arrow_forward.svg" width="30" />
-      </label>
+        <label>
+          <img id="touchRight" src="./img/icons/arrow_forward.svg" width="30" />
+        </label>
+      </div>
     </div>
 
     <div id="rotateDisplay" class="rotateDisplay">
