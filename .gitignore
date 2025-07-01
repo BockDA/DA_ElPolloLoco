@@ -2,4 +2,5 @@
  up.bat
 .gitignore
 test.html
-
+/img
+/audio
