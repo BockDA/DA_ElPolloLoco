@@ -1,6 +1,5 @@
 .vscode
-up.bat
+ up.bat
 .gitignore
 test.html
-/img
-/audio
+

@@ -12,16 +12,17 @@ let mute = "on";
 function checkMobil() {
     const mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const querformat = window.innerWidth > window.innerHeight;
+
     if (mobil) {
         document.body.classList.add('mobilVersion');
         if (querformat) {
-            document.getElementById("rotateDisplay").classList.remove("rotateDisplay");
+            document.getElementById("rotateDisplay").style.display = "none";
         } else {
-            document.getElementById("rotateDisplay").classList.add("rotateDisplay");
+            document.getElementById("rotateDisplay").style.display = "flex";
         }
     } else {
         document.body.classList.remove('mobilVersion');
-        document.getElementById("rotateDisplay").classList.remove("rotateDisplay");
+        document.getElementById("rotateDisplay").style.display = "none";
     }
 }
 
@@ -32,6 +33,7 @@ window.addEventListener('resize', (event) => {
 
 
 function init() {
+    document.getElementById("rotateDisplay").style.display = "none";
     checkMobil();
     mute = localStorage.getItem('mute');
     muteIconWrite(mute);

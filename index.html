@@ -35,7 +35,7 @@
     <title>ELPoloLogo</title>
   </head>
 
-  <body onload="init()">
+  <body onload="init()" oncontextmenu="return false;">
     <div class="headline">
       <h1>El Pollo Logo</h1>
     </div>
@@ -57,24 +57,46 @@
     <div class="navigation">
       <div class="navi_left">
         <label>
-          <img id="touchLeft" src="./img/icons/arrow_back.svg" width="30" />
+          <img
+            id="touchLeft"
+            src="./img/icons/arrow_back.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
         </label>
 
         <label id="touchJump">
           <div class="jump">
-            <img src="./img/icons/space.svg" width="30" />
+            <img
+              src="./img/icons/space.svg"
+              width="30"
+              oncontextmenu="return false;"
+              draggable="false"
+            />
             <h3>Jump</h3>
           </div>
         </label>
 
         <button class="gameRefresh" onclick="refreshGame()">
-          <img src="./img/icons/renew.svg" width="30" />
+          <img
+            src="./img/icons/renew.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
         </button>
       </div>
 
       <div class="navi_right">
         <button class="muteMusik" onclick="muteMusik()">
-          <img id="musicPlay" src="./img/icons/volume-off.png" width="30" />
+          <img
+            id="musicPlay"
+            src="./img/icons/volume-off.png"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
         </button>
 
         <label>
@@ -84,20 +106,32 @@
               class="trowBottle"
               src="./img/6_salsa_bottle/salsa_bottle.png"
               width="50"
+              oncontextmenu="return false;"
+              draggable="false"
             />
             <h3>D</h3>
           </div>
         </label>
 
         <label>
-          <img id="touchRight" src="./img/icons/arrow_forward.svg" width="30" />
+          <img
+            id="touchRight"
+            src="./img/icons/arrow_forward.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
         </label>
       </div>
     </div>
 
     <div id="rotateDisplay" class="rotateDisplay">
       <p>Turn your Display to play</p>
-      <img src="./img/icons/rotateDisplay.svg" />
+      <img
+        src="./img/icons/rotateDisplay.svg"
+        oncontextmenu="return false;"
+        draggable="false"
+      />
     </div>
   </body>
 </html>
