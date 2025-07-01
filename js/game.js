@@ -13,6 +13,7 @@ function checkMobil() {
     const mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const querformat = window.innerWidth > window.innerHeight;
 
+
     if (mobil) {
         document.body.classList.add('mobilVersion');
         if (querformat) {
@@ -33,7 +34,6 @@ window.addEventListener('resize', (event) => {
 
 
 function init() {
-    document.getElementById("rotateDisplay").style.display = "none";
     checkMobil();
     mute = localStorage.getItem('mute');
     muteIconWrite(mute);
@@ -41,6 +41,7 @@ function init() {
     canvas = document.getElementById('canvas');
     document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
+    document.getElementById('impressumBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
     if (this.world instanceof World) {
         this.world.cleanup();
@@ -52,6 +53,7 @@ function init() {
 
 function startGame() {
     document.getElementById('startBtn').style.display = 'none';
+    document.getElementById('impressumBtn').style.display = 'none';
     initLevel();
     this.world = new World(canvas, keyboard);
     playMusik();
@@ -160,5 +162,3 @@ window.addEventListener('touchend', () => {
         case 'touchThrow': keyboard.D = false; break;
     }
 });
-
-

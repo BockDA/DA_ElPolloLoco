@@ -91,70 +91,46 @@ class MovableObject extends DrawableObject {
 
 
     getCollisionCoins(mo) {
-        const buffer = 5;
-        const a_left = this.x + this.offset.left - buffer;
-        const a_right = this.x + this.width - this.offset.right + buffer;
-        const a_top = this.y + this.offset.top - buffer;
-        const a_bottom = this.y + this.height - this.offset.bottom + buffer;
-        const b_left = mo.x + mo.offset.left - buffer;
-        const b_right = mo.x + mo.width - mo.offset.right + buffer;
-        const b_top = mo.y + mo.offset.top - buffer;
-        const b_bottom = mo.y + mo.height - mo.offset.bottom + buffer;
-        return (
-            a_right > b_left &&
-            a_bottom > b_top &&
-            a_left < b_right &&
-            a_top < b_bottom
-        );
-
-
+        const b = 5, box = o => ({
+            l: o.x + o.offset.left - b,
+            r: o.x + o.width - o.offset.right + b,
+            t: o.y + o.offset.top - b,
+            b: o.y + o.height - o.offset.bottom + b
+        });
+        const a = box(this), m = box(mo);
+        return a.r > m.l && a.l < m.r && a.b > m.t && a.t < m.b;
     }
+
+
 
 
     getCollisionBottle(bottleTrow, enemies, endboss) {
-        let colliEndboss = this.isColliding(bottleTrow, endboss);
-        let colliEnemies = this.isColliding(bottleTrow, enemies);
-        if (colliEndboss) {
-            return 1
-        }
-        if (colliEnemies) {
-            return 2
-        }
+        if (this.isColliding(bottleTrow, endboss)) return 1;
+        if (this.isColliding(bottleTrow, enemies)) return 2;
     }
 
-    //Hilfstestversion
-    isColliding(obj1, obj2) {
-        return obj1.x + obj1.width > obj2.x &&
-            obj1.x < obj2.x + obj2.width &&
-            obj1.y + obj1.height > obj2.y &&
-            obj1.y < obj2.y + obj2.height;
+
+    isColliding(a, b) {
+        return a.x + a.width > b.x &&
+            a.x < b.x + b.width &&
+            a.y + a.height > b.y &&
+            a.y < b.y + b.height;
     }
 
 
     getCollisionEndboss(endboss) {
-        const charRight = this.x + this.width;
-        const charLeft = this.x;
-        const charTop = this.y;
-        const charBottom = this.y + this.height;
-
-        const bossRight = endboss.x + endboss.width;
-        const bossLeft = endboss.x;
-        const bossTop = endboss.y;
-        const bossBottom = endboss.y + endboss.height;
-
-        const horizontalOverlap = charRight > bossLeft && charLeft < bossRight;
-        const verticalOverlap = charBottom > bossTop && charTop < bossBottom;
-
-        if (horizontalOverlap && verticalOverlap) {
-            const charCenter = this.x + this.width / 2;
-            const bossCenter = endboss.x + endboss.width / 2;
-
-            if (charCenter < bossCenter || charCenter > bossCenter) {
-                return true;
-            }
+        const cx = this.x, cy = this.y, cw = this.width, ch = this.height;
+        const ex = endboss.x, ey = endboss.y, ew = endboss.width, eh = endboss.height;
+        const h = cx + cw > ex && cx < ex + ew;
+        const v = cy + ch > ey && cy < ey + eh;
+        if (h && v) {
+            const cMid = cx + cw / 2;
+            const eMid = ex + ew / 2;
+            return cMid !== eMid;
         }
         return false;
     }
+
 
 
 
