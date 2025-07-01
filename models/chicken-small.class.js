@@ -33,25 +33,29 @@ class ChickenSmall extends MovableObject {
 
     }
 
-
+    /**
+     *start the animation and let the small chicken run to the left
+     */
     animate() {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
             this.playAnmimation(this.IMAGES_WALKING_SMALL, 2);
-
         }, 50);
-
     }
 
+    /**
+     *move smallchicken to the left
+     */
     moveLeft() {
         this.IntervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
 
-
-    //wenn getroffen nach unten abtauchen
+    /**
+     *dive down at collision
+     */
     deadCollision() {
         clearInterval(this.IntervalId);
         this.playAnmimation(this.IMAGES_DEAD);

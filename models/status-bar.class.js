@@ -23,15 +23,21 @@ class StatusBar extends DrawableObject {
 
     }
 
-
-
+    /**
+     *game data for the status bar status charater
+     * @param {string} percentage -percentage 0-100
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
     }
 
-
+    /**
+     *from evaluation of the percentage of what is passed by the game
+     * @param {string} percentage
+     * @returns - depending on what percentage e.g. 20 is then picture 1
+     */
     resolveImageIndex(percentage) {
         if (this.percentage == 100) {
             return 5;
@@ -47,5 +53,4 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-
 }

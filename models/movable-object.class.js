@@ -15,7 +15,10 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
-
+    /**
+     *simulate gravity
+     * @param {*} acceleration
+     */
     applyGravity(acceleration) {
         acceleration = acceleration || this.acceleration
         setInterval(() => {
@@ -26,8 +29,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
-
-
+    /**
+     *check when the character is down
+     * @returns
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return this.y < 290
@@ -37,9 +42,12 @@ class MovableObject extends DrawableObject {
     }
 
 
-
+    /**
+     * Plays the animation based on the provided array of images.
+     * @param {*} images -Array of image paths for the animation
+     * @param {*} speed
+     */
     playAnmimation(images, speed) {
-        //if (!this.dead)
         speed = speed || 5;
         if (!this.animationFrameCounter) this.animationFrameCounter = 0;
         this.animationFrameCounter++;
@@ -48,25 +56,34 @@ class MovableObject extends DrawableObject {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-            //}
         }
     }
 
+    /**
+     *Moves the object to the right by its speed.
+     */
     moveRight() {
         this.x += this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
     }
 
+    /**
+     *Moves the object to the left by its speed.
+     */
     moveLeft() {
         this.x -= this.speed;
         this.playAnmimation(this.IMAGES_WALKING);
     }
 
 
+    /**
+     *collision from side with an enemy
+     * @param {*} enemy -chicken, small chicken
+     * @returns
+     */
     getCollisionSide(enemy) {
         const isBootle = enemy instanceof Bootle;
         if (!isBootle && enemy.dead) return false;
-
         return (
             this.x + this.width > enemy.x &&
             this.x < enemy.x + enemy.width &&
@@ -76,7 +93,7 @@ class MovableObject extends DrawableObject {
     }
 
 
-
+    /**collision with an enemy from above */
     getcollisionBottom(enemy) {
         const characterBottom = this.y + this.height;
         const enemyTop = enemy.y;
@@ -89,7 +106,11 @@ class MovableObject extends DrawableObject {
         return verticalOverlap && horizontalOverlap;
     }
 
-
+    /**
+     *collision with coins
+     * @param {*} mo
+     * @returns
+     */
     getCollisionCoins(mo) {
         const b = 5, box = o => ({
             l: o.x + o.offset.left - b,
@@ -101,15 +122,21 @@ class MovableObject extends DrawableObject {
         return a.r > m.l && a.l < m.r && a.b > m.t && a.t < m.b;
     }
 
-
-
-
+    /**
+     *
+     * @param {collision with coins} bottleTrow
+     * @param {string} enemies
+     * @param {string} endboss
+     * @returns
+     */
     getCollisionBottle(bottleTrow, enemies, endboss) {
         if (this.isColliding(bottleTrow, endboss)) return 1;
         if (this.isColliding(bottleTrow, enemies)) return 2;
     }
 
-
+    /**
+     * auxiliary function for collision with bottle
+     */
     isColliding(a, b) {
         return a.x + a.width > b.x &&
             a.x < b.x + b.width &&
@@ -118,6 +145,11 @@ class MovableObject extends DrawableObject {
     }
 
 
+    /**
+     *collision with final boss
+     * @param {string} endboss
+     * @returns
+     */
     getCollisionEndboss(endboss) {
         const cx = this.x, cy = this.y, cw = this.width, ch = this.height;
         const ex = endboss.x, ey = endboss.y, ew = endboss.width, eh = endboss.height;
@@ -132,17 +164,14 @@ class MovableObject extends DrawableObject {
     }
 
 
-
-
-
-
+    /**
+     *When boss collides with enemy, play injured animation
+     */
     hit() {
         const now = Date.now();
-        // Wenn letzter Hit vorhanden und noch nicht 2 Sekunden vergangen sind → Sperre
         if (now - this.lastHit < 100) {
             return;
         }
-        // Nun ausführen und Timestamp updaten
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
@@ -151,17 +180,20 @@ class MovableObject extends DrawableObject {
         this.lastHit = now;
     }
 
-
-
-    //Charater ist verletzt
+    /**
+     *If the final boss gets stuck, pause for 0.5 seconds
+     * @returns
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 500;
         return timepassed < 1;
     }
 
-
-    //Charatuer ist tot
+    /**
+     *if character is dead then energy to zero
+     * @returns
+     */
     isDead() {
         return this.energy == 0;
     }

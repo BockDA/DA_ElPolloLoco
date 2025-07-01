@@ -31,9 +31,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
-
-
-
+    /**
+     *start the animation and let the chicken run to the left
+     */
     animate() {
         this.moveLeft();
         setInterval(() => {
@@ -46,6 +46,9 @@ class Chicken extends MovableObject {
         }, 50);
     }
 
+    /**
+     *move smallchicken to the left
+     */
     moveLeft() {
         this.intervalId = setInterval(() => {
             this.x -= this.speed;
@@ -53,7 +56,9 @@ class Chicken extends MovableObject {
 
     }
 
-
+    /**
+     *dive down at collision
+     */
     deadCollision() {
         clearInterval(this.intervalId);
         this.playAnmimation(this.IMAGES_DEAD);

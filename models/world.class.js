@@ -44,12 +44,17 @@ class World {
 
     }
 
-
+    /**
+     *start world
+     */
     setWorld() {
         this.character.world = this;
     }
 
-
+    /**
+     *start various functions that run in the interval, e.g. check collisions
+     * @returns
+     */
     run() {
         if (!this.gameOn) return;
         this.intervalId = setInterval(() => {
@@ -65,9 +70,9 @@ class World {
 
     }
 
-
-
-    //Collision mit Chicken von rechts
+    /**
+     *collision with chicken right check in interval of run
+     */
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getCollisionSide(enemy)) {  //ist true oder false
@@ -77,21 +82,21 @@ class World {
         });
     }
 
-
-    //Collision mit Chicken von oben
+    /**
+     *collision with chicken check from above in the interval of run
+     */
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.getcollisionBottom(enemy)) {
-
                 enemy.dead = true;
                 enemy.deadCollision();
-
             }
         });
     }
 
-
-    //Collision mit Münze
+    /**
+     *collision with coin check in interval of run
+     */
     checkCollisionCoins() {
         this.level.coins.forEach((coins) => {
             if (this.character.getCollisionCoins(coins)) {
@@ -100,11 +105,12 @@ class World {
                 this.sound.soundPlay(this.soundCoinsCollect, 1, false);
             }
         });
-
     }
 
 
-    //Kollision mit Flasche
+    /**
+     *collision with bottle check in interval of run
+     */
     checkCollisonBootle() {
         this.level.bootle.forEach((bootle) => {
             if (this.character.getCollisionSide(bootle)) {
@@ -114,8 +120,9 @@ class World {
         });
     }
 
-
-    //Kollison mit geworfener Flasche
+    /**
+     *Check collision with thrown bottle in interval of run
+     */
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
             let colli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
@@ -124,27 +131,24 @@ class World {
                 this.endboss.hurtEndboss();
                 this.bottleTrow = false;
                 this.endbossScoreWrite();
-
-
             }
-
             if (colli == 2) {
             }
-
             if (this.endboosScore == 0) this.endBossNoLive();
         }
     }
 
-
-    //Leben des Enbossverringern bei treffer
+    /**
+     *Reduce the Enboss's life when hit with a bottle
+     */
     endbossScoreWrite() {
         this.endboosScore--
         this.endbossBar.setEndboosBar(this.endboosScore);
     }
 
-
-
-    //wenn kein leben mehr vorhanden gewonnen
+    /**
+     *if no life left from final boss game won
+     */
     endBossNoLive() {
         this.bottleTrow = false
         this.endboss.start = false;
@@ -155,9 +159,9 @@ class World {
         }, 2000);
     }
 
-
-
-    //wenn Charater an bestimmter Position dann losgehen
+    /**
+     *if character is at a certain position then he should go
+     */
     checkCharaterPos() {
         if (this.character.x > 2250 && this.keyboard.RIGHT) {
             this.endboss.animateAttack();
@@ -165,8 +169,9 @@ class World {
         }
     }
 
-
-    //Wenn Kollision mit Endboss ist Ende
+    /**
+     * If collision with final boss is game lost
+     */
     checkCollisonEndboss() {
         if (this.character.getCollisionEndboss(this.endboss)) {
             let count = 0;
@@ -182,16 +187,19 @@ class World {
         }
     }
 
-
-
-    //Flaschen bei Kollisoon mit Endboos verschwinden lassen (wenn er geht)
+    /**
+     *Make bottles disappear when colliding with the final boss (when he leaves)
+     * @param {string} bootle
+     */
     bottleCollected(bootle) {
         this.sound.soundPlay(this.soundBottleCollect, 1, false);
         bootle.y = 800;
     }
 
-
-    //Anzahl der Bottle schreiben
+    /**
+     *write the number of bottles collected
+     * @param {string} value
+     */
     bottleScoreWrite(value) {
         if (value) {
             this.bottleScore++
@@ -201,21 +209,25 @@ class World {
         this.bootleBar.setBootle(this.bottleScore);
     }
 
-
-    //Anzahl der Coins schreiben
+    /**
+     *write the number of coins collected
+     */
     coinsScoreWrite() {
         this.coinsScore++;
         this.coinsBar.setCoins(this.coinsScore);
     }
 
-
+    /**
+     *when coins are collected they disappear
+     * @param {string} coins
+     */
     coinsCollected(coins) {
         coins.y = 800;
     }
 
-
-
-    //werfe Flasche
+    /**
+     *throw bottle
+     */
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
             this.bottleTrow = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection, this);
@@ -224,6 +236,10 @@ class World {
         }
     }
 
+    /**
+     *draw the object in the game
+     * @returns
+     */
     draw() {
         if (!this.gameOn) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

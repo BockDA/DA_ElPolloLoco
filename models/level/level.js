@@ -1,4 +1,8 @@
 let level1;
+
+/**
+ *provide elements for level 1
+ */
 function initLevel() {
     level1 = new Level(
         [
@@ -13,7 +17,6 @@ function initLevel() {
             new ChickenSmall(),
             new ChickenSmall(),
             new ChickenSmall(),
-
         ],
 
 

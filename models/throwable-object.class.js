@@ -28,8 +28,6 @@ class ThrowableObject extends MovableObject {
     soundBottleTrow = '/audio/bottlethrow.mp3';
 
 
-
-
     constructor(x, y, CharDirection, world) {
         super();
         this.sound = new Sound();
@@ -45,9 +43,9 @@ class ThrowableObject extends MovableObject {
         this.trow();
     }
 
-
-
-    //werfen
+    /**
+     *throw bottle
+     */
     trow() {
         this.applyGravity(this.acceleration);
         this.trowIntervalId = setInterval(() => {
@@ -64,16 +62,18 @@ class ThrowableObject extends MovableObject {
         }, 20);
     }
 
-
-    //Richtung püfen
+    /**
+     *Check the direction in which the bottle is thrown
+     */
     StartTrow() {
         this.direktion = this.CharDirektion;
         this.x += this.CharDirektion ? -100 : 0;
 
     }
 
-
-    //aufkommen
+    /**
+     * start animation when bottle falls to the floor
+     */
     Bootlearise() {
         this.test = setInterval(() => {
             this.playAnmimation(this.IMAGES_ARISE);
@@ -84,7 +84,5 @@ class ThrowableObject extends MovableObject {
             this.y = 800;
         }, 100);
         this.sound.soundPlay(this.soundArise, 1, false);
-
-
     }
 }

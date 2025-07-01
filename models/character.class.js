@@ -100,14 +100,18 @@ class Character extends MovableObject {
         this.animate();
     }
 
-
-
+    /**
+     *animation for sleep check everything 5 sec
+     */
     startAnimation() {
         setInterval(() => {
             this.sleep = true
         }, 5000);
     }
 
+    /**
+     *the animation of the character
+     */
     animate() {
         setInterval(() => {
             if (this.sleep) {
@@ -153,12 +157,17 @@ class Character extends MovableObject {
         }, 1000 / 25);
     }
 
-
+    /**
+     *calls the jump animation
+     */
     jump() {
         this.speedY = 30;
         this.playAnmimation(this.IMAGES_JUMPING);
     }
 
+    /**
+     *calls the sleep animation
+     */
     sleep() {
         this.playAnmimation(this.IMAGES_LONG_IDLE);
     }

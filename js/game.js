@@ -8,12 +8,12 @@ let song = new Audio('./audio/startmusic.mp3')
 let music = false;
 let mute = "on";
 
-
+/**
+ *function to check if a mobile device is being used
+ */
 function checkMobil() {
     const mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const querformat = window.innerWidth > window.innerHeight;
-
-
     if (mobil) {
         document.body.classList.add('mobilVersion');
         if (querformat) {
@@ -27,12 +27,16 @@ function checkMobil() {
     }
 }
 
-
+/**
+ *checks whether the screen is mobile or desktop and starts the function for evaluation
+ */
 window.addEventListener('resize', (event) => {
     checkMobil();
 });
 
-
+/**
+ *start function that is called in the index.html
+ */
 function init() {
     checkMobil();
     mute = localStorage.getItem('mute');
@@ -50,7 +54,9 @@ function init() {
     drawStartPicture();
 }
 
-
+/**
+ *starts the game
+ */
 function startGame() {
     document.getElementById('startBtn').style.display = 'none';
     document.getElementById('impressumBtn').style.display = 'none';
@@ -59,13 +65,17 @@ function startGame() {
     playMusik();
 }
 
-
+/**
+ *draw the start screen in canvas
+ */
 function drawStartPicture() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
 }
 
-
+/**
+ *checks if the mute button has been pressed and writes the value to localstorage, and removes the focus from the mute button
+ */
 function muteMusik() {
     mute = (mute === "on") ? "off" : "on";
     localStorage.setItem('mute', mute);
@@ -73,7 +83,10 @@ function muteMusik() {
     document.activeElement.blur();
 }
 
-
+/**
+ *changes the mute icon depending on the state
+ * @param {string} mute -either on or off
+ */
 function muteIconWrite(mute) {
     if (mute == "off") {
         document.getElementById('musicPlay').src = './img/icons/volume-off.png';
@@ -82,7 +95,9 @@ function muteIconWrite(mute) {
     }
 }
 
-
+/**
+ *plays the music when mute is on
+ */
 function playMusik() {
     setInterval(() => {
         if (mute == "on") {
@@ -94,7 +109,9 @@ function playMusik() {
     }, 100);
 }
 
-
+/**
+ *restarts the game
+ */
 function refreshGame() {
     if (this.world) {
         this.world.gameOn = false;
@@ -103,7 +120,9 @@ function refreshGame() {
     init();
 }
 
-
+/**
+ *checking keyboard input
+ */
 window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
@@ -111,17 +130,17 @@ window.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowLeft') {
         keyboard.LEFT = true;
     }
-
     if (event.key == ' ') {
         keyboard.SPACE = true;
     }
-
     if (event.key == 'd') {
         keyboard.D = true;
     }
 });
 
-
+/**
+ *checking keyboard input
+ */
 window.addEventListener('keyup', (event) => {
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = false;
@@ -135,10 +154,11 @@ window.addEventListener('keyup', (event) => {
     if (event.key == 'd') {
         keyboard.D = false;
     }
-}
-);
+});
 
-
+/**
+ *Check inputs on touch
+ */
 window.addEventListener('touchstart', (event) => {
     const touch = event.touches[0];
     const element = document.elementFromPoint(touch.clientX, touch.clientY);
@@ -152,7 +172,9 @@ window.addEventListener('touchstart', (event) => {
     }
 });
 
-
+/**
+ *Check inputs on touch
+ */
 window.addEventListener('touchend', () => {
     if (!touchElement) return;
     switch (touchElement.id) {

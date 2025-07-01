@@ -10,6 +10,9 @@ class Cloud extends MovableObject {
         this.animate();
     }
 
+    /**
+     *draws the clouds and lets them wander
+     */
     animate() {
         setInterval(() => {
             this.x -= 0.15;

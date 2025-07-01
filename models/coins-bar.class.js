@@ -9,7 +9,6 @@ class CoinsBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
     ]
 
-
     percentage = 0;
 
     constructor() {
@@ -22,15 +21,21 @@ class CoinsBar extends DrawableObject {
         this.setCoins(0);
     }
 
-
+    /**
+     *game data for the status bar coins
+     * @param {*} percentage -percentage 0-100
+     */
     setCoins(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_COIN[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
     }
 
-
-
+    /**
+     *from evaluation of the percentage of what is passed by the game
+     * @param {string} percentage
+     * @returns - depending on what percentage e.g. 20 is then picture 1
+     */
     resolveImageIndex(percentage) {
         if (this.percentage >= 5) {
             return 5;
@@ -45,7 +50,5 @@ class CoinsBar extends DrawableObject {
         } else if (percentage == 0) {
             return 0;
         }
-
     }
-
 }

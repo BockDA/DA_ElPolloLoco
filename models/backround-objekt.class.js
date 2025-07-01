@@ -1,3 +1,6 @@
+/**
+ *The background images are placed here
+ */
 class BackgroundObjekt extends MovableObject {
     width = 720;
     height = 480;

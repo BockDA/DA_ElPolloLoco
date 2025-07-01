@@ -4,39 +4,39 @@ class Sound {
   }
 
 
+  /**
+   *play sound system
+   * @param {string} src - sound file (path)
+   * @param {string} volume - volume set between 0 and 1
+   * @param {string} loop -should play sound in a continuous loop
+   * @returns
+   */
   soundPlay(src, volume, loop = false) {
     if (mute == "on") {
-      // Wenn Sound schon läuft, nicht erneut starten
       if (this.activeSounds[src]) return;
-
       const sound = new Audio(src);
       sound.volume = volume;
-      sound.loop = false; // wir loopen selbst
-
+      sound.loop = false;
       this.activeSounds[src] = sound;
-
       sound.play().catch(e => {
-        console.warn("Fehler beim Abspielen:", e);
         delete this.activeSounds[src];
       });
-
       sound.onended = () => {
         if (loop && this.activeSounds[src]) {
-          // Neu abspielen (manueller Loop)
           sound.currentTime = 0;
           sound.play().catch(e => {
-            console.warn("Fehler beim Loopen:", e);
           });
         } else {
-          // Kein Loop oder gestoppt
           delete this.activeSounds[src];
         }
       };
     }
   }
 
-
-
+  /**
+   *stop sound
+   * @param {string} src - path of the sound to be stopped
+   */
   stopSound(src) {
     const sound = this.activeSounds[src];
     if (sound) {
@@ -46,8 +46,9 @@ class Sound {
     }
   }
 
-
-
+  /**
+   *stop all sound
+   */
   stopAllSounds() {
     for (const src in this.activeSounds) {
       const sound = this.activeSounds[src];
@@ -57,8 +58,5 @@ class Sound {
         delete this.activeSounds[src];
       }
     }
-
   }
-
-
 }

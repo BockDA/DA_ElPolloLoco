@@ -24,13 +24,21 @@ class EndbossBar extends DrawableObject {
   }
 
 
+  /**
+     *game data for the status bar endboss
+     * @param {*} percentage -percentage 0-100
+     */
   setEndboosBar(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_ENDBOSSBAR[this.resolveImageIndex(percentage)];
     this.img = this.imageCache[path];
   }
 
-
+  /**
+     *from evaluation of the percentage of what is passed by the game
+     * @param {string} percentage
+     * @returns - depending on what percentage e.g. 20 is then picture 1
+     */
   resolveImageIndex(percentage) {
     if (this.percentage >= 5) {
       return 5;
@@ -45,7 +53,5 @@ class EndbossBar extends DrawableObject {
     } else if (percentage == 0) {
       return 0;
     }
-
   }
-
 }

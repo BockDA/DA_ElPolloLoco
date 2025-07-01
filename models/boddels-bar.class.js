@@ -1,3 +1,4 @@
+
 class BoodleBar extends DrawableObject {
 
     IMAGES_BOOTLE = [
@@ -21,14 +22,21 @@ class BoodleBar extends DrawableObject {
         this.setBootle(0);
     }
 
-
+    /**
+     *game data for the status bar bootle
+     * @param {string} percentage -percentage 0-100
+     */
     setBootle(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_BOOTLE[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
     }
 
-
+    /**
+     *from evaluation of the percentage of what is passed by the game
+     * @param {string} percentage
+     * @returns - depending on what percentage e.g. 20 is then picture 1
+     */
     resolveImageIndex(percentage) {
         if (this.percentage >= 5) {
             return 5;
@@ -44,5 +52,4 @@ class BoodleBar extends DrawableObject {
             return 0;
         }
     }
-
 }

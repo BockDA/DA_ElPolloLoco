@@ -1,5 +1,4 @@
 class Bootle extends MovableObject {
-
     height = 100;
     width = 80;
     y = 330;
@@ -20,7 +19,6 @@ class Bootle extends MovableObject {
     ]
 
 
-
     constructor(x) {
         super().loadImage('img/6_salsa_bottle/2_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES_BOTTLE);
@@ -28,7 +26,9 @@ class Bootle extends MovableObject {
         this.animateBootle();
     }
 
-    //Flaschen schwenken
+    /**
+     *let bottles swirl
+     */
     animateBootle() {
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_BOTTLE.length;
@@ -37,5 +37,4 @@ class Bootle extends MovableObject {
             this.currentImage++;
         }, 500);
     }
-
 };

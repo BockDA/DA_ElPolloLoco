@@ -10,7 +10,6 @@ class Endboss extends MovableObject {
     soundEndboosAttack = '/audio/boss_alarm.mp3'
 
 
-
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -29,6 +28,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
+
 
     IMAGES_ATTACK = [
         'img/4_enemie_boss_chicken/3_attack/G13.png',
@@ -59,7 +59,6 @@ class Endboss extends MovableObject {
     ]
 
 
-
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.sound = new Sound();
@@ -69,10 +68,11 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
-
     }
 
-
+    /**
+     *final boss animation
+     */
     animate() {
         setInterval(() => {
             if (!this.start) {
@@ -81,34 +81,33 @@ class Endboss extends MovableObject {
                 this.playAnmimation(this.IMAGES_WALKING, 1)
                 this.moveLeft();
             }
-
         }, 200);
     }
 
-
+    /**
+     *walk to the left
+     */
     moveLeft() {
         this.intervallLeft = this.intervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
 
-
-
-    //Endbos greift an
+    /**
+     *walk to the left
+     */
     animateAttack() {
         const intervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_ATTACK);
         }, 100);
         setTimeout(() => {
-
             clearInterval(intervalId);
         }, 2000);
-
-
-
     }
 
-
+    /**
+     *Final boss is injured
+     */
     hurtEndboss() {
         const intervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_HURT);
@@ -120,7 +119,9 @@ class Endboss extends MovableObject {
     }
 
 
-    //Endboss ist tot
+    /**
+     *Final boss is dead
+     */
     deadEndboss() {
         setInterval(() => {
             this.playAnmimation(this.IMAGES_DEAD);
@@ -128,11 +129,4 @@ class Endboss extends MovableObject {
         }, 100 / 10);
         this.sound.soundPlay(this.soundEndbossHurt, 1, false);
     }
-
-
-
-
-
-
-
 }
