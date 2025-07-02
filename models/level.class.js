@@ -5,7 +5,7 @@ class Level {
     coins;
     bootle;
     endboss;
-    maxBottle = 6;
+    maxBottle = 7;
     level_end_x = 2800;
 
     constructor(enemies, clouds, backroundObjects, coins, bootle, endboss) {

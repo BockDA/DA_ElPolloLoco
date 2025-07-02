@@ -10,8 +10,6 @@ class World {
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
 
-
-
     canvas;
     ctx;
     keyboard;
@@ -266,14 +264,20 @@ class World {
         });
     }
 
-
+    /**
+     * add objects to the map
+     * @param {string} objekts 
+     */
     addObjectsToMap(objekts) {
         objekts.forEach(o => [
             this.addToMap(o)
         ]);
     }
 
-
+    /**
+     * add object
+     * @param {string} mo - Objekt z.b. chicken,smallchicken 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -285,6 +289,10 @@ class World {
         }
     }
 
+    /**
+     * rotate object when changing direction
+     * @param {string} mo -  Objekt z.b. chicken,smallchicken 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -292,13 +300,20 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
+    /**
+     * rotate object back
+     * @param {string} mo - Objekt z.b. chicken,smallchicken 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
 
-    //Erzeuege neue Flasche
+    /**
+     *create new bottle
+     */
     createNewBootle() {
         let i = 0;
         let u = 0;
@@ -312,17 +327,20 @@ class World {
         }, 100);
     }
 
-
+    /**
+     * game end
+     */
     endOfGame() {
         this.sound.soundPlay(this.soundEndOffGame, 1, false);
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/Game Over.png')
         document.getElementById('refreshtBtn').style.display = 'flex';
-
     }
 
-
+    /**
+     * game was won by character
+     */
     gameWon() {
         this.sound.soundPlay(this.soundWinGame, 1, false);
         this.gameOn = false;
@@ -331,7 +349,10 @@ class World {
         document.getElementById('refreshtBtn').style.display = 'flex';
     }
 
-
+    /**
+     * final image character either won or lost
+     * @param {string} picture - picture which was handed over, won or lost
+     */
     endPictureWrite(picture) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         const img = new Image();
@@ -341,18 +362,25 @@ class World {
         };
     }
 
+    /**
+     * call stop all intervals and call delete array
+     */
     cleanup() {
         this.clearAllInterval();
         this.arraysClear();
     }
 
-
+    /**
+     * all intervals that have been started are run through in a loop
+     */
     clearAllInterval() {
         for (let i = 0; i < 99999; i++) window.clearInterval(i);
         song.pause();
     }
 
-
+    /**
+     * empty the required array
+     */
     arraysClear() {
         this.character = [];
         this.level = [];

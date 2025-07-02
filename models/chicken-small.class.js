@@ -27,7 +27,7 @@ class ChickenSmall extends MovableObject {
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 600 + Math.random() * 1200;
+        this.x = 1000 + Math.random() * 1400;
         this.speed += Math.random() * 0.4;
         this.animate();
 

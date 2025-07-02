@@ -25,8 +25,7 @@ class Chicken extends MovableObject {
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        const delay = 500 + Math.random() * 0.4;
-        this.x = 600 + Math.random() * 1000;
+        this.x = 1100 + Math.random() * 1400;
         this.speed += Math.random() * 0.4;
         this.animate();
     }
