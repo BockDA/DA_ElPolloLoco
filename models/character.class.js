@@ -4,12 +4,10 @@ class Character extends MovableObject {
     speed = 15;
     world;
     sleep = false;
-    soundSleep = '/audio/snoring.mp3';
-    soundWalking = '/audio/walkingChar.mp3';
-    soundJump = '/audio/jump.mp3';
-    soundHurt = '/audio/hurt.mp3';
-
-
+    soundSleep = 'audio/snoring.mp3';
+    soundWalking = 'audio/walkingChar.mp3';
+    soundJump = 'audio/jump.mp3';
+    soundHurt = 'audio/hurt.mp3';
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-22.png',

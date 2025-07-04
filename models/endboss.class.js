@@ -6,8 +6,8 @@ class Endboss extends MovableObject {
     speed = 0.06;
     world;
     start = false;
-    soundEndbossHurt = '/audio/endboss_hurt.mp3'
-    soundEndboosAttack = '/audio/boss_alarm.mp3'
+    soundEndbossHurt = 'audio/endboss_hurt.mp3'
+    soundEndboosAttack = 'audio/boss_alarm.mp3'
 
 
     IMAGES_ALERT = [

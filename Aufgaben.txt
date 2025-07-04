@@ -20,3 +20,8 @@ Aktuelle:  bei Endboss dead Statusleiste
  enbosss Statusleiste   world.class.js  -> 106
 
 small chicken sound dead einfügen
+
+
+
+
+ftp://f016d049@christian-bock.developerakademie.net/Projekte/ELPolloLogo/audio/snoring.mp3

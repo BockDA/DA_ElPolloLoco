@@ -6,7 +6,7 @@ class ChickenSmall extends MovableObject {
     dead = false;
     speed = 1.5;
     setIntervalId;
-    soundDead = '/audio/smallchicken.mp3';
+    soundDead = 'audio/smallchicken.mp3';
 
 
 

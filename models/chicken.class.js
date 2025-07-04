@@ -6,7 +6,7 @@ class Chicken extends MovableObject {
     dead = false;
     speed = 1;
     intervalId;
-    soundDead = '/audio/chicken.mp3';
+    soundDead = 'audio/chicken.mp3';
 
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',

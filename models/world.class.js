@@ -1,5 +1,4 @@
 class World {
-
     character = new Character(world);
     level = level1;
     endboss = level1.endboss[0];
@@ -23,10 +22,10 @@ class World {
     coinsScore = 0;
     endboosScore = 5;
     gameOn = true;
-    soundBottleCollect = '/audio/bottlecollect.mp3';
-    soundEndOffGame = '/audio/game_over.mp3';
-    soundWinGame = '/audio/gamewin.mp3'
-    soundCoinsCollect = '/audio/coinCollect.mp3';
+    soundBottleCollect = 'audio/bottlecollect.mp3';
+    soundEndOffGame = 'audio/game_over.mp3';
+    soundWinGame = 'audio/gamewin.mp3'
+    soundCoinsCollect = 'audio/coinCollect.mp3';
 
 
 
