@@ -11,7 +11,9 @@ let mute = "on";
 /**
  *function to check if a mobile device is being used
  */
-function checkMobil() {
+
+
+function checkMobil1() {
     const mobil = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const querformat = window.innerWidth > window.innerHeight;
     if (mobil) {
@@ -27,10 +29,43 @@ function checkMobil() {
     }
 }
 
+
+function checkMobil() {
+    const ua = navigator.userAgent || "";
+
+    const isTouch = navigator.maxTouchPoints > 1 || 'ontouchstart' in window;
+    const querformat = window.innerWidth > window.innerHeight;
+
+    const isMobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+    const isSmallScreen = window.innerWidth <= 1024 && window.innerHeight <= 1365;
+
+    const isMobileOrTablet = (isMobileUA || (isTouch && isSmallScreen));
+
+    if (isMobileOrTablet) {
+        document.body.classList.add('mobilVersion');
+
+        if (querformat) {
+            document.getElementById("rotateDisplay").style.display = "none";
+        } else {
+            document.getElementById("rotateDisplay").style.display = "flex";
+        }
+
+    } else {
+        document.body.classList.remove('mobilVersion');
+        document.getElementById("rotateDisplay").style.display = "none";
+    }
+}
+
+
+
+
+
+
 /**
  *checks whether the screen is mobile or desktop and starts the function for evaluation
  */
-window.addEventListener('resize', (event) => {
+window.addEventListener('resize', () => {
+    console.log("check Mobil aufrufen");
     checkMobil();
 });
 

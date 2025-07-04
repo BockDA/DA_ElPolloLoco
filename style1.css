@@ -91,10 +91,6 @@ label {
   padding-right: 3px;
 }
 
-.gameBtn {
-  background-color: rgb(133, 133, 43);
-}
-
 .playButton {
   display: none;
   position: absolute;
@@ -160,7 +156,6 @@ label {
   display: none;
   flex-direction: column;
   font-size: 40px;
-  display: flex;
   position: fixed;
   left: 0;
   width: 100%;
