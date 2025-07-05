@@ -1,0 +1,95 @@
+@media only screen and (max-width: 760px) {
+  canvas {
+    width: 100%;
+  }
+
+  button {
+    height: 60px;
+    width: 60px;
+  }
+
+  label {
+    height: 60px;
+    width: 60px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+}
+
+
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
+}
+
+.mobilVersion {
+  body {
+    display: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+
+  canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+
+  .navigation {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .navi_left {
+    flex-direction: column;
+    margin-top: 110px;
+    margin-left: 5px;
+  }
+
+  .navi_right {
+    flex-direction: column-reverse;
+    margin-top: 110px;
+    margin-right: 5px;
+  }
+
+  button {
+    height: 50px;
+    width: 50px;
+  }
+
+  .playButton {
+    width: 100px;
+    height: 50px;
+  }
+
+  label {
+    height: 40px;
+    width: 40px;
+    background-color: #ff7423;
+
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .gameSteering {
+    position: absolute;
+    top: 40px;
+  }
+}

@@ -2,32 +2,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-image: url(./img/5_background/desert.png);
   background-position: center;
   font-family: "Chicle", Arial, Helvetica, sans-serif;
   margin: 0;
 }
 
-.headline {
-  position: fixed;
-  top: 0px;
-  margin: 0;
-  padding: 0;
-}
 
 canvas {
-  margin-top: 135px;
-  margin-bottom: 40px;
+  display: block;
   border: none;
   outline: none;
   background-color: transparent;
   border-radius: 16px;
-  display: block;
   z-index: 0;
-}
-
-h1 {
-  font-size: 72px;
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
 h2 {
@@ -221,92 +212,6 @@ label {
 }
 
 
-/*-----Mobilphone -------*/
-@media only screen and (max-width: 720px) {
-  canvas {
-    width: 100%;
-  }
-
-  button {
-    height: 60px;
-    width: 60px;
-  }
-
-  label {
-    height: 60px;
-    width: 60px;
-  }
-
-  h3 {
-    font-size: 16px;
-  }
-}
-
-/*-----Mobilphone -------*/
-@media only screen and (max-height: 480px) {
-  canvas {
-    height: 100vh;
-  }
-}
-
-/*---------------Mobile Version ----------------*/
-
-@media (max-width: 450px) {}
-
-.mobilVersion {
-  body {
-    display: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    /* verhindert Scrollbalken */
-    height: 100%;
-    width: 100%;
-  }
-
-  canvas {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .headline {
-    display: none;
-  }
-
-  .navigation {
-    position: absolute;
-    width: 100%;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-
-  .navi_left {
-    flex-direction: column;
-    margin-top: 110px;
-    margin-left: 5px;
-  }
-
-  .navi_right {
-    flex-direction: column-reverse;
-    margin-top: 110px;
-    margin-right: 5px;
-  }
-
-  button {}
-
-  .gameSteering {
-    position: absolute;
-    top: 40px;
-  }
-}
-
 /*Impressum */
 
 .div-impressum_position {
@@ -321,4 +226,9 @@ label {
   border-radius: 12px;
   text-align: center;
   font-size: 16px;
+}
+
+
+.touch_Version {
+  background-color: #ff7423;
 }
