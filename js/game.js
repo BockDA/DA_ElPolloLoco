@@ -8,53 +8,54 @@ let song = new Audio('./audio/startmusic.mp3')
 let music = false;
 let mute = "on";
 
+
 /**
- *function to check if a mobile device is being used
+ *function to check if a Resize device is being used
  */
-
-
-function checkMobil() {
-    const touch = hasTouch = navigator.maxTouchPoints > 1;
-    const mobil = /Mobi|Android|iPhone|iPad|iPod|Tablet|PlayBook|Silk|Kindle|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+function checkResize() {
     const querformat = window.innerWidth > window.innerHeight;
-    if (mobil) {
-        console.log("Mobile Version");
-        document.body.classList.add('mobilVersion');
-        if (querformat) {
-            document.getElementById("rotateDisplay").style.display = "none";
-        } else {
-            document.getElementById("rotateDisplay").style.display = "flex";
-        }
-
-    } else {
-        console.log("Desktop  Version");
-        document.body.classList.remove('mobilVersion');
+    if (querformat) {
         document.getElementById("rotateDisplay").style.display = "none";
-    }
-
-    if (touch) {
-        console.log("Label rot");
-
-        document.querySelectorAll("label").forEach(label => {
-            label.classList.add("touch_Version");
-        });
+    } else {
+        document.getElementById("rotateDisplay").style.display = "flex";
     }
 }
 
+
+/**
+ *function to check if a mobile device is being used
+ */
+function checkMobil() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const isMobileSize = width <= 1024 || height <= 480;
+    if (isMobileSize) {
+        document.body.classList.add("mobilVersion");
+    } else {
+        document.body.classList.remove("mobilVersion");
+    }
+}
 
 
 /**
  *checks whether the screen is mobile or desktop and starts the function for evaluation
  */
-window.addEventListener('resize', () => {
+window.addEventListener('load', () => {
+    checkResize();
     checkMobil();
 });
+
+window.addEventListener('resize', () => {
+    checkResize();
+    checkMobil();
+});
+
 
 /**
  *start function that is called in the index.html
  */
 function init() {
-    checkMobil();
+    //checkMobil();
     mute = localStorage.getItem('mute');
     muteIconWrite(mute);
     initLevel();
@@ -140,6 +141,7 @@ function refreshGame() {
  *checking keyboard input
  */
 window.addEventListener('keydown', (event) => {
+
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }

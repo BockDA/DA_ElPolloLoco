@@ -26,6 +26,9 @@ class ThrowableObject extends MovableObject {
     test = 100;
     soundArise = '/audio/bottlearise.mp3';
     soundBottleTrow = '/audio/bottlethrow.mp3';
+    level = level1;
+    endboss = level1.endboss[0];
+
 
 
     constructor(x, y, CharDirection, world) {
@@ -62,19 +65,24 @@ class ThrowableObject extends MovableObject {
         }, 20);
     }
 
+
     /**
      *Check the direction in which the bottle is thrown
      */
     StartTrow() {
         this.direktion = this.CharDirektion;
         this.x += this.CharDirektion ? -100 : 0;
-
     }
 
     /**
      * start animation when bottle falls to the floor
      */
-    Bootlearise() {
+
+    Bootlearise(option) {
+        if (option) {
+            this.BootleCollisonEndboss()
+            return;
+        }
         this.test = setInterval(() => {
             this.playAnmimation(this.IMAGES_ARISE);
         }, 20);
@@ -85,4 +93,5 @@ class ThrowableObject extends MovableObject {
         }, 100);
         this.sound.soundPlay(this.soundArise, 1, false);
     }
+
 }

@@ -59,6 +59,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
+
+
+
+
     /**
      *Moves the object to the right by its speed.
      */
@@ -85,7 +90,7 @@ class MovableObject extends DrawableObject {
         const isBootle = enemy instanceof Bootle;
         if (!isBootle && enemy.dead) return false;
         return (
-            this.x + this.width > enemy.x &&
+            this.x + this.width > enemy.x + this.offset.left &&
             this.x < enemy.x + enemy.width &&
             this.y + this.height > enemy.y &&
             this.y < enemy.y + enemy.height
@@ -99,10 +104,10 @@ class MovableObject extends DrawableObject {
         const enemyTop = enemy.y;
         const verticalOverlap =
             characterBottom >= enemyTop &&
-            characterBottom <= enemyTop + 40; // bis zu 15px tief im Gegner erlaubt
+            characterBottom <= enemyTop + 60;
         const horizontalOverlap =
-            this.x + this.width > enemy.x - 10 &&    // 10px Spielraum links
-            this.x < enemy.x + enemy.width + 10;     // 10px Spielraum rechts
+            this.x + this.width > enemy.x + 20 &&    // 10px Spielraum links
+            this.x < enemy.x + enemy.width + 20;     // 10px Spielraum rechts
         return verticalOverlap && horizontalOverlap;
     }
 
@@ -112,14 +117,17 @@ class MovableObject extends DrawableObject {
      * @returns
      */
     getCollisionCoins(mo) {
-        const b = 5, box = o => ({
-            l: o.x + o.offset.left - b,
-            r: o.x + o.width - o.offset.right + b,
-            t: o.y + o.offset.top - b,
-            b: o.y + o.height - o.offset.bottom + b
-        });
-        const a = box(this), m = box(mo);
-        return a.r > m.l && a.l < m.r && a.b > m.t && a.t < m.b;
+        const thisLeft = this.x + this.offset.left + 10;
+        const thisRight = this.x + this.width - this.offset.right;
+        const thisTop = this.y + this.offset.top;
+        const thisBottom = this.y + this.height - this.offset.bottom;
+        const moLeft = mo.x + mo.offset.left + 10;
+        const moRight = mo.x + mo.width - mo.offset.right;
+        const moTop = mo.y + mo.offset.top;
+        const moBottom = mo.y + mo.height - mo.offset.bottom;
+        const horizontalOverlap = thisRight > moLeft && thisLeft < moRight;
+        const verticalOverlap = thisBottom > moTop && thisTop < moBottom;
+        return horizontalOverlap && verticalOverlap;
     }
 
     /**
@@ -186,7 +194,7 @@ class MovableObject extends DrawableObject {
      */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 500;
+        timepassed = timepassed / 50;
         return timepassed < 1;
     }
 

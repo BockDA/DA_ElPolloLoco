@@ -8,7 +8,6 @@ class World {
     bootle = level1.bootle;
     bootleColli = new Bootle();
     backroundObjects = level1.backroundObjects;
-
     canvas;
     ctx;
     keyboard;
@@ -63,7 +62,7 @@ class World {
             this.checkCollisonBottleTrow();
             this.checkCharaterPos();
             this.checkCollisonEndboss();
-        }, 70);
+        }, 60);
 
     }
 
@@ -128,8 +127,6 @@ class World {
                 this.endboss.hurtEndboss();
                 this.bottleTrow = false;
                 this.endbossScoreWrite();
-            }
-            if (colli == 2) {
             }
             if (this.endboosScore == 0) this.endBossNoLive();
         }
@@ -230,6 +227,7 @@ class World {
             this.bottleTrow = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection, this);
             this.throwableObjects.push(this.bottleTrow);
             this.bottleScoreWrite(false);
+            this.keyboard.D = false;
         }
     }
 
@@ -265,7 +263,7 @@ class World {
 
     /**
      * add objects to the map
-     * @param {string} objekts 
+     * @param {string} objekts
      */
     addObjectsToMap(objekts) {
         objekts.forEach(o => [
@@ -275,7 +273,7 @@ class World {
 
     /**
      * add object
-     * @param {string} mo - Objekt z.b. chicken,smallchicken 
+     * @param {string} mo - Objekt z.b. chicken,smallchicken
      */
     addToMap(mo) {
         if (mo.otherDirection) {
@@ -290,7 +288,7 @@ class World {
 
     /**
      * rotate object when changing direction
-     * @param {string} mo -  Objekt z.b. chicken,smallchicken 
+     * @param {string} mo -  Objekt z.b. chicken,smallchicken
      */
     flipImage(mo) {
         this.ctx.save();
@@ -302,7 +300,7 @@ class World {
 
     /**
      * rotate object back
-     * @param {string} mo - Objekt z.b. chicken,smallchicken 
+     * @param {string} mo - Objekt z.b. chicken,smallchicken
      */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
@@ -334,7 +332,7 @@ class World {
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/Game Over.png')
-        document.getElementById('refreshtBtn').style.display = 'flex';
+        document.getElementById('startBtn').style.display = 'flex';
     }
 
     /**
@@ -345,7 +343,7 @@ class World {
         this.gameOn = false;
         this.cleanup();
         this.endPictureWrite('img/You won, you lost/You Win A.png');
-        document.getElementById('refreshtBtn').style.display = 'flex';
+        document.getElementById('startBtn').style.display = 'flex';
     }
 
     /**

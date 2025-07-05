@@ -38,10 +38,6 @@ class Chicken extends MovableObject {
         setInterval(() => {
             if (this.dead) return;
             this.playAnmimation(this.IMAGES_WALKING);
-            // let i = this.currentImage % this.IMAGES_WALKING.length;
-            //let path = this.IMAGES_WALKING[i]
-            //this.img = this.imageCache[path];
-            //this.currentImage++;
         }, 50);
     }
 
@@ -52,16 +48,48 @@ class Chicken extends MovableObject {
         this.intervalId = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
-
     }
 
     /**
      *dive down at collision
      */
+    /*deadCollision() {
+        console.log("Huhn tot");
+        this.playAnmimation(this.IMAGES_DEAD, 0);
+        this.sound.soundPlay(this.soundDead, 1, false);
+        setTimeout(() => {
+            clearInterval(this.intervalId);
+        }, 100);
+    }
+*/
+
     deadCollision() {
-        clearInterval(this.intervalId);
-        this.playAnmimation(this.IMAGES_DEAD);
+        console.log("Huhn tot");
+
+        const images = this.IMAGES_DEAD;
+        let frame = 0;
+        const speed = 150; // ms pro Frame
+        const totalFrames = images.length;
+
+        // Animation manuell Schritt für Schritt durchlaufen
+        const animationInterval = setInterval(() => {
+            if (frame < totalFrames) {
+                const path = images[frame];
+                this.img = this.imageCache[path];
+                frame++;
+            } else {
+                clearInterval(animationInterval); // Animation vorbei
+                clearInterval(this.intervalId);   // z. B. GameLoop stoppen
+                console.log("Todesanimation beendet");
+            }
+        }, speed);
+
+        // Sound abspielen
         this.sound.soundPlay(this.soundDead, 1, false);
     }
+
+
+
+
 
 }
