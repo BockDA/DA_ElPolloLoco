@@ -90,7 +90,7 @@ button {
   cursor: pointer;
 }
 
-.playButton:hover {
+.startBtn:hover {
   background-color: #bc4400;
 }
 
@@ -176,7 +176,7 @@ button {
   }
 }
 
-.impressum:hover {
+.impressumBtn:hover {
   background-color: #bc4400;
   cursor: pointer;
 }
