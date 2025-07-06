@@ -4,11 +4,14 @@ body {
   align-items: center;
   justify-content: center;
   background-image: url(./img/5_background/desert.png);
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   font-family: "Chicle", Arial, Helvetica, sans-serif;
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
 }
-
 
 canvas {
   display: block;
@@ -16,9 +19,7 @@ canvas {
   outline: none;
   background-color: transparent;
   border-radius: 16px;
-  z-index: 0;
-  margin-top: 10px;
-  margin-bottom: 25px;
+  margin: 0;
 }
 
 h2 {
@@ -30,15 +31,17 @@ h2 {
 }
 
 h3 {
+  font-family: "Chicle";
   font-size: 16px;
   letter-spacing: 3px;
   font-weight: 100;
+  color: #000;
 }
 
 .navigation {
   display: flex;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: 20px;
 }
 
 .navi_left {
@@ -52,47 +55,31 @@ h3 {
 }
 
 button {
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
   border-radius: 100%;
   background-color: #ff7423;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   color: white;
-  cursor: pointer;
 }
 
-label {
-  height: 90px;
-  width: 90px;
-  border-radius: 100%;
-  border-style: solid;
-  border-width: 2px;
-  border-color: black;
-  background-color: #ff7423;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 25px;
-  font-weight: 700;
-  padding-left: 3px;
-  padding-right: 3px;
+.hoverBtn {
+  cursor: pointer;
 }
 
 .gameBtn {
   background-color: rgb(133, 133, 43);
 }
 
-.playButton {
+.startBtn {
   display: none;
   position: absolute;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 60px;
+  width: 160px;
+  height: 40px;
   border-radius: 16px;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -100,6 +87,7 @@ label {
   font-size: 18px;
   align-items: center;
   justify-items: center;
+  cursor: pointer;
 }
 
 .playButton:hover {
@@ -132,10 +120,12 @@ label {
 
 .jump {
   display: flex;
+  justify-content: center;
 }
 
 .throw {
   display: flex;
+  justify-content: center;
   margin-right: 15px;
 }
 
@@ -168,9 +158,9 @@ label {
   width: 120px;
 }
 
-.impressum {
+.impressumBtn {
   display: flex;
-  width: 200px;
+  width: 160px;
   height: 40px;
   background-color: #ff7423;
   border-radius: 16px;
@@ -178,7 +168,6 @@ label {
   border-width: 2px;
   align-items: center;
   justify-content: center;
-  padding: 5px;
   margin-top: 15px;
 
   a {
@@ -192,7 +181,6 @@ label {
   cursor: pointer;
 }
 
-
 .Impress_Close {
   display: flex;
   flex-direction: column;
@@ -203,7 +191,7 @@ label {
 .Impress_Close img {
   width: 40px;
   height: 40px;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
   border-radius: 100%;
 }
 
@@ -211,12 +199,11 @@ label {
   background-color: gray;
 }
 
-
 /*Impressum */
 
 .div-impressum_position {
-  height: 100%;
-  width: 1300px;
+  height: auto;
+  width: auto;
   margin-top: 50px;
   margin-bottom: 50px;
   bottom: 10px;
@@ -226,4 +213,81 @@ label {
   border-radius: 12px;
   text-align: center;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 720px) {
+  canvas {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
+}
+
+@media (max-height: 650px) {
+  .impressum {
+    display: none;
+  }
+
+  body {
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  canvas {
+    border-radius: 0;
+    margin-top: 70px;
+  }
+
+  button {
+    height: 55px;
+    width: 55px;
+  }
+
+  .jump_Img {
+    display: none;
+  }
+
+  .throwBtn_Text {
+    display: none;
+  }
+
+  .throw {
+    margin: 0;
+  }
+
+  .navigation {
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0;
+  }
+
+  .navi_left {
+    flex-direction: column;
+    margin-top: 110px;
+    margin-left: 5px;
+  }
+
+  .navi_right {
+    flex-direction: column-reverse;
+    margin-top: 110px;
+    margin-right: 5px;
+  }
+
+  .startBtn {
+    position: absolute;
+    top: 40px;
+  }
+
+  .impressumBtn {
+    display: none !important;
+  }
 }

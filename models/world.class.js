@@ -71,7 +71,7 @@ class World {
      */
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getCollisionSide(enemy)) {  //ist true oder false
+            if (this.character.getCollisionSide(enemy) && (!this.character.getcollisionBottom(enemy))) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }

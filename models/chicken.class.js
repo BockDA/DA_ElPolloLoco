@@ -19,16 +19,24 @@ class Chicken extends MovableObject {
     ];
 
 
+    offset = {
+        top: 60,
+        left: 20,
+        right: 40,
+        bottom: 85
+    }
+
     constructor(world) {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.world = world;
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 1100 + Math.random() * 1400;
-        this.speed += Math.random() * 0.4;
+        this.x = 1200 + Math.random() * 2600;
+        this.speed += Math.random() * 0.2;
         this.animate();
     }
+
 
     /**
      *start the animation and let the chicken run to the left
@@ -38,7 +46,7 @@ class Chicken extends MovableObject {
         setInterval(() => {
             if (this.dead) return;
             this.playAnmimation(this.IMAGES_WALKING);
-        }, 50);
+        }, 60);
     }
 
     /**
@@ -53,25 +61,11 @@ class Chicken extends MovableObject {
     /**
      *dive down at collision
      */
-    /*deadCollision() {
-        console.log("Huhn tot");
-        this.playAnmimation(this.IMAGES_DEAD, 0);
-        this.sound.soundPlay(this.soundDead, 1, false);
-        setTimeout(() => {
-            clearInterval(this.intervalId);
-        }, 100);
-    }
-*/
-
     deadCollision() {
-        console.log("Huhn tot");
-
         const images = this.IMAGES_DEAD;
         let frame = 0;
         const speed = 150; // ms pro Frame
         const totalFrames = images.length;
-
-        // Animation manuell Schritt für Schritt durchlaufen
         const animationInterval = setInterval(() => {
             if (frame < totalFrames) {
                 const path = images[frame];
@@ -80,16 +74,8 @@ class Chicken extends MovableObject {
             } else {
                 clearInterval(animationInterval); // Animation vorbei
                 clearInterval(this.intervalId);   // z. B. GameLoop stoppen
-                console.log("Todesanimation beendet");
             }
         }, speed);
-
-        // Sound abspielen
         this.sound.soundPlay(this.soundDead, 1, false);
     }
-
-
-
-
-
 }

@@ -122,7 +122,9 @@ class Character extends MovableObject {
         }, 1000 / 25);
     }
 
-
+    /**
+     * call sleep animation
+     */
     sleeping() {
         if (this.sleep) {
             this.playAnmimation(this.IMAGES_LONG_IDLE);
@@ -133,7 +135,9 @@ class Character extends MovableObject {
         }
     }
 
-
+    /**
+     * if character is dead then call the animation
+     */
     dead() {
         if (this.isDead()) {
             this.playAnmimation(this.IMAGES_DEAD);
@@ -144,7 +148,9 @@ class Character extends MovableObject {
         }
     }
 
-
+    /**
+     * if character is injured or has had a collision call this function
+     */
     hurt() {
         if (this.isHurt()) {
             this.playAnmimation(this.IMAGES_HURT);
@@ -152,7 +158,9 @@ class Character extends MovableObject {
         }
     }
 
-
+    /**
+     * move right with the arrow key pressed
+     */
     moveRightKey() {
         this.moveRight();
         this.sleep = false;
@@ -160,7 +168,9 @@ class Character extends MovableObject {
         this.sound.soundPlay(this.soundWalking, 1, false);
     }
 
-
+    /**
+     * move left with the arrow key pressed
+     */
     moveLeftKey() {
         this.moveLeft();
         this.sleep = false;
@@ -168,12 +178,14 @@ class Character extends MovableObject {
         this.sound.soundPlay(this.soundWalking, 1, false);
     }
 
+    /**
+     * jump with the space key pressed
+     */
     spaceKey() {
         this.sleep = false;
         this.speedY = 30;
         this.playAnmimation(this.IMAGES_JUMPING);
         this.sound.soundPlay(this.soundJump, 1, false);
-
     }
 
 }

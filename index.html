@@ -1,90 +1,128 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" type="image/png" href="./img/icons/favicon.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+    <script src="./models/drawable-object.class.js"></script>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/sounds.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/chicken.class.js"></script>
+    <script src="./models/chicken-small.class.js"></script>
+    <script src="./models/coins.class.js"></script>
+    <script src="./models/bootle.class.js"></script>
+    <script src="./models/coins-bar.class.js"></script>
+    <script src="./models/endboss-bar.class.js"></script>
+    <script src="./models/bootle-bar.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/cloud.class.js"></script>
+    <script src="./models/status-bar.class.js"></script>
+    <script src="./models/backround-objekt.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
+    <script src="./models/level.class.js"></script>
+    <script src="./models/level/level.js"></script>
+    <script src="./js/game.js"></script>
+    <title>El Polo Logo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="icon" type="image/png" href="./img/icons/favicon.png" />
-  <link rel="stylesheet" href="./style_mobile.css" />
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./fonts/fonts.css" />
-  <script src="./models/drawable-object.class.js"></script>
-  <script src="./models/movable-object.class.js"></script>
-  <script src="./models/throwable-object.class.js"></script>
-  <script src="./models/sounds.class.js"></script>
-  <script src="./models/character.class.js"></script>
-  <script src="./models/chicken.class.js"></script>
-  <script src="./models/chicken-small.class.js"></script>
-  <script src="./models/coins.class.js"></script>
-  <script src="./models/bootle.class.js"></script>
-  <script src="./models/coins-bar.class.js"></script>
-  <script src="./models/endboss-bar.class.js"></script>
-  <script src="./models/bootle-bar.class.js"></script>
-  <script src="./models/world.class.js"></script>
-  <script src="./models/cloud.class.js"></script>
-  <script src="./models/status-bar.class.js"></script>
-  <script src="./models/backround-objekt.class.js"></script>
-  <script src="./models/keyboard.class.js"></script>
-  <script src="./models/endboss.class.js"></script>
-  <script src="./models/level.class.js"></script>
-  <script src="./models/level/level.js"></script>
-  <script src="./js/game.js"></script>
-  <title>El Polo Logo</title>
-</head>
+  <body onload="init()" oncontextmenu="return false;">
+    <div class="gameCanvas">
+      <canvas id="canvas" tabindex="0" width="720" height="480"> </canvas>
+    </div>
 
-<body onload="init()" oncontextmenu="return false;">
-  <div class="gameCanvas">
-    <canvas id="canvas" tabindex="0" width="720" height="480"> </canvas>
-  </div>
-  <div id="gameSteering" class="gameSteering">
-    <button id="startBtn" class="playButton" onclick="startGame()">
-      <h2>Play Game</h2>
-    </button>
-    <button id="refreshtBtn" class="refreshtBtn" onclick="init()">
-      <h2>New Game</h2>
-    </button>
-  </div>
-  <div class="navigation">
-    <div class="navi_left">
-      <label class="gameBtn">
-        <img id="touchLeft" src="./img/icons/arrow_back.svg" width="30" oncontextmenu="return false;"
-          draggable="false" />
-      </label>
-      <label id="touchJump" class="gameBtn">
-        <div class="jump">
-          <img src="./img/icons/space.svg" width="30" oncontextmenu="return false;" draggable="false" />
-          <h3>Jump</h3>
-        </div>
-      </label>
-      <button class="gameRefresh" onclick="refreshGame()">
-        <img src="./img/icons/renew.svg" width="30" oncontextmenu="return false;" draggable="false" />
+    <div id="gameSteering" class="gameSteering">
+      <button id="startBtn" class="startBtn" onclick="startGame()">
+        <h2>Play Game</h2>
       </button>
     </div>
-    <div class="navi_right">
-      <button class="muteMusik" onclick="muteMusik()">
-        <img id="musicPlay" src="./img/icons/volume-off.png" width="30" oncontextmenu="return false;"
-          draggable="false" />
-      </button>
-      <label class="gameBtn">
-        <div class="throw">
-          <img id="touchThrow" class="trowBottle" src="./img/6_salsa_bottle/salsa_bottle.png" width="50"
-            oncontextmenu="return false;" draggable="false" />
-          <h3>D</h3>
-        </div>
-      </label>
-      <label class="gameBtn">
-        <img id="touchRight" src="./img/icons/arrow_forward.svg" width="30" oncontextmenu="return false;"
-          draggable="false" />
-      </label>
-    </div>
-  </div>
-  <div id="impressumBtn" class="impressum">
-    <h2><a href="impressum.html">Impressum</a></h2>
-  </div>
-  <div id="rotateDisplay" class="rotateDisplay" style="display: none">
-    <p>Turn your Display to play</p>
-    <img src="./img/icons/rotateDisplay.svg" oncontextmenu="return false;" draggable="false" />
-  </div>
-</body>
 
+    <div class="navigation">
+      <div class="navi_left">
+        <button id="touchLeft" class="gameBtn">
+          <img
+            src="./img/icons/arrow_back.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
+        </button>
+
+        <button id="touchJump" class="gameBtn">
+          <div class="jump">
+            <img
+              class="jump_Img"
+              src="./img/icons/space.svg"
+              width="30"
+              oncontextmenu="return false;"
+              draggable="false"
+            />
+            <h3>Jump</h3>
+          </div>
+        </button>
+
+        <button class="gameRefresh hoverBtn" onclick="refreshGame()">
+          <img
+            src="./img/icons/renew.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
+        </button>
+      </div>
+      <div class="navi_right">
+        <button id="musicPlay" class="muteMusik hoverBtn" onclick="muteMusik()">
+          <img
+            id="musicPlayImg"
+            src="./img/icons/volume-off.png"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
+        </button>
+
+        <button id="touchThrow" class="gameBtn">
+          <div class="throw">
+            <img
+              id="touchThrow"
+              class="trowBottle"
+              src="./img/6_salsa_bottle/salsa_bottle.png"
+              width="50"
+              oncontextmenu="return false;"
+              draggable="false"
+            />
+            <h3 class="throwBtn_Text">D</h3>
+          </div>
+        </button>
+
+        <button id="touchRight" class="gameBtn">
+          <img
+            id="touchRight"
+            src="./img/icons/arrow_forward.svg"
+            width="30"
+            oncontextmenu="return false;"
+            draggable="false"
+          />
+        </button>
+      </div>
+    </div>
+    <div id="impressumBtn" class="impressumBtn">
+      <h2><a href="impressum.html">Impressum</a></h2>
+    </div>
+    <div id="rotateDisplay" class="rotateDisplay" style="display: none">
+      <p>Turn your Display to play</p>
+      <img
+        src="./img/icons/rotateDisplay.svg"
+        oncontextmenu="return false;"
+        draggable="false"
+      />
+    </div>
+  </body>
 </html>

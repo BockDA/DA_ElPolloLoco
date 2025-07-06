@@ -23,31 +23,10 @@ function checkResize() {
 
 
 /**
- *function to check if a mobile device is being used
- */
-function checkMobil() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const isMobileSize = width <= 1024 || height <= 480;
-    if (isMobileSize) {
-        document.body.classList.add("mobilVersion");
-    } else {
-        document.body.classList.remove("mobilVersion");
-    }
-}
-
-
-/**
  *checks whether the screen is mobile or desktop and starts the function for evaluation
  */
-window.addEventListener('load', () => {
-    checkResize();
-    checkMobil();
-});
-
 window.addEventListener('resize', () => {
     checkResize();
-    checkMobil();
 });
 
 
@@ -55,12 +34,10 @@ window.addEventListener('resize', () => {
  *start function that is called in the index.html
  */
 function init() {
-    //checkMobil();
     mute = localStorage.getItem('mute');
     muteIconWrite(mute);
     initLevel();
     canvas = document.getElementById('canvas');
-    document.getElementById('refreshtBtn').style.display = 'none';
     document.getElementById('startBtn').style.display = 'flex';
     document.getElementById('impressumBtn').style.display = 'flex';
     ctx = canvas.getContext('2d');
@@ -106,9 +83,9 @@ function muteMusik() {
  */
 function muteIconWrite(mute) {
     if (mute == "off") {
-        document.getElementById('musicPlay').src = './img/icons/volume-off.png';
+        document.getElementById('musicPlayImg').src = 'img/icons/volume-off.png';
     } else {
-        document.getElementById('musicPlay').src = './img/icons/volume-on.png';
+        document.getElementById('musicPlayImg').src = 'img/icons/volume-on.png';
     }
 }
 

@@ -5,7 +5,7 @@ class ChickenSmall extends MovableObject {
     width = 40;
     dead = false;
     speed = 1.5;
-    setIntervalId;
+    IntervalIdSmall
     soundDead = 'audio/smallchicken.mp3';
 
 
@@ -17,18 +17,26 @@ class ChickenSmall extends MovableObject {
     ];
 
 
-    IMAGES_DEAD = [
+    IMAGES_DEAD_SMALL = [
         "img/3_enemies_chicken/chicken_small/2_dead/dead.png"
     ]
+
+
+    offset = {
+        top: 45,
+        left: 5,
+        right: 10,
+        bottom: 75
+    }
 
 
     constructor() {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
-        this.loadImages(this.IMAGES_DEAD);
-        this.x = 1000 + Math.random() * 1400;
-        this.speed += Math.random() * 0.4;
+        this.loadImages(this.IMAGES_DEAD_SMALL);
+        this.x = 800 + Math.random() * 2800;
+        this.speed += Math.random() * 0.3;
         this.animate();
 
     }
@@ -40,7 +48,7 @@ class ChickenSmall extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
-            this.playAnmimation(this.IMAGES_WALKING_SMALL, 2);
+            this.playAnmimation(this.IMAGES_WALKING_SMALL);
         }, 50);
     }
 
@@ -48,7 +56,7 @@ class ChickenSmall extends MovableObject {
      *move smallchicken to the left
      */
     moveLeft() {
-        this.IntervalId = setInterval(() => {
+        this.IntervalIdSmall = setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
@@ -57,8 +65,20 @@ class ChickenSmall extends MovableObject {
      *dive down at collision
      */
     deadCollision() {
-        clearInterval(this.IntervalId);
-        this.playAnmimation(this.IMAGES_DEAD);
+        const images = this.IMAGES_DEAD_SMALL;
+        let frame = 0;
+        const speed = 150; // ms pro Frame
+        const totalFrames = images.length;
+        const animationInterval = setInterval(() => {
+            if (frame < totalFrames) {
+                const path = images[frame];
+                this.img = this.imageCache[path];
+                frame++;
+            } else {
+                clearInterval(animationInterval); // Animation vorbei
+                clearInterval(this.IntervalIdSmall);   // z. B. GameLoop stoppen
+            }
+        }, speed);
         this.sound.soundPlay(this.soundDead, 1, false);
     }
 }

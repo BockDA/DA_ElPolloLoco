@@ -1,5 +1,4 @@
 class ThrowableObject extends MovableObject {
-
     IMAGES_TROW = [
         "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
         "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -24,11 +23,10 @@ class ThrowableObject extends MovableObject {
     speedY = 20;
     acceleration = 1.5;
     test = 100;
-    soundArise = '/audio/bottlearise.mp3';
-    soundBottleTrow = '/audio/bottlethrow.mp3';
+    soundArise = 'audio/bottlearise.mp3';
+    soundBottleTrow = 'audio/bottlethrow.mp3';
     level = level1;
     endboss = level1.endboss[0];
-
 
 
     constructor(x, y, CharDirection, world) {
@@ -42,7 +40,7 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.world = world;
         this.groundlevel = 300;
-        this.StartTrow();
+        this.startTrow();
         this.trow();
     }
 
@@ -54,22 +52,26 @@ class ThrowableObject extends MovableObject {
         this.trowIntervalId = setInterval(() => {
             this.playAnmimation(this.IMAGES_TROW, 10);
             this.x += this.direktion ? -6 : +6;
+            if (this.x >= this.endboss.x) {
+                this.bootleMeetsEndboss();
+                return;
+            }
             if (this.y < this.groundlevel) {
                 this.sound.soundPlay(this.soundBottleTrow, 1, false)
             };
             if (this.y >= this.groundlevel) {
                 this.sound.stopSound(this.soundBottleTrow);
-                this.Bootlearise();
+                this.bootlearise();
                 clearInterval(this.trowIntervalId);
             }
         }, 20);
-    }
 
+    }
 
     /**
      *Check the direction in which the bottle is thrown
      */
-    StartTrow() {
+    startTrow() {
         this.direktion = this.CharDirektion;
         this.x += this.CharDirektion ? -100 : 0;
     }
@@ -77,8 +79,7 @@ class ThrowableObject extends MovableObject {
     /**
      * start animation when bottle falls to the floor
      */
-
-    Bootlearise(option) {
+    bootlearise(option) {
         if (option) {
             this.BootleCollisonEndboss()
             return;
@@ -94,4 +95,11 @@ class ThrowableObject extends MovableObject {
         this.sound.soundPlay(this.soundArise, 1, false);
     }
 
+    /**
+     * bottle hits endboss then make the bottle disappear
+     */
+    bootleMeetsEndboss() {
+        clearInterval(this.trowIntervalId);
+        this.y = 800;
+    }
 }

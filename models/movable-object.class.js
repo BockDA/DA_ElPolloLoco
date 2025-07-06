@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     collisonRight = false;
 
 
+
     offset = {
         top: 0,
         left: 0,
@@ -59,11 +60,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
-
-
-
-
     /**
      *Moves the object to the right by its speed.
      */
@@ -104,10 +100,10 @@ class MovableObject extends DrawableObject {
         const enemyTop = enemy.y;
         const verticalOverlap =
             characterBottom >= enemyTop &&
-            characterBottom <= enemyTop + 60;
+            characterBottom <= enemyTop + enemy.offset.top;
         const horizontalOverlap =
-            this.x + this.width > enemy.x + 20 &&    // 10px Spielraum links
-            this.x < enemy.x + enemy.width + 20;     // 10px Spielraum rechts
+            this.x + this.width > enemy.x + enemy.offset.left &&    // 10px Spielraum links
+            this.x < enemy.x + enemy.width + enemy.offset.right;     // 10px Spielraum rechts
         return verticalOverlap && horizontalOverlap;
     }
 
@@ -138,8 +134,9 @@ class MovableObject extends DrawableObject {
      * @returns
      */
     getCollisionBottle(bottleTrow, enemies, endboss) {
-        if (this.isColliding(bottleTrow, endboss)) return 1;
-        if (this.isColliding(bottleTrow, enemies)) return 2;
+        if (this.isColliding(bottleTrow, endboss)) {
+            return 1;
+        }
     }
 
     /**
@@ -176,8 +173,8 @@ class MovableObject extends DrawableObject {
      *When boss collides with enemy, play injured animation
      */
     hit() {
-        const now = Date.now();
-        if (now - this.lastHit < 100) {
+        const Timenow = Date.now();
+        if (Timenow - this.lastHit < 100) {
             return;
         }
         this.energy -= 5;
@@ -185,8 +182,9 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
             this.isDead();
         }
-        this.lastHit = now;
+        this.lastHit = Timenow;
     }
+
 
     /**
      *If the final boss gets stuck, pause for 0.5 seconds
@@ -194,9 +192,10 @@ class MovableObject extends DrawableObject {
      */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 50;
+        timepassed = timepassed / 100;
         return timepassed < 1;
     }
+
 
     /**
      *if character is dead then energy to zero
