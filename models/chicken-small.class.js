@@ -1,10 +1,11 @@
 class ChickenSmall extends MovableObject {
 
     y = 380;
+    x = 400;//800
     height = 40;
     width = 40;
     dead = false;
-    speed = 1.5;
+    speed = 0.2;
     IntervalIdSmall
     soundDead = 'audio/smallchicken.mp3';
 
@@ -23,10 +24,10 @@ class ChickenSmall extends MovableObject {
 
 
     offset = {
-        top: 45,
-        left: 5,
-        right: 10,
-        bottom: 75
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
     }
 
 
@@ -35,7 +36,7 @@ class ChickenSmall extends MovableObject {
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD_SMALL);
-        this.x = 800 + Math.random() * 2800;
+        this.x + Math.random() * 2800;
         this.speed += Math.random() * 0.3;
         this.animate();
 
@@ -48,7 +49,7 @@ class ChickenSmall extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
-            this.playAnmimation(this.IMAGES_WALKING_SMALL);
+            this.playAnimation(this.IMAGES_WALKING_SMALL);
         }, 50);
     }
 

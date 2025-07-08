@@ -1,6 +1,7 @@
 class Chicken extends MovableObject {
 
     y = 360;
+    x = 600; //1200
     height = 60;
     width = 80;
     dead = false;
@@ -20,10 +21,10 @@ class Chicken extends MovableObject {
 
 
     offset = {
-        top: 60,
-        left: 20,
-        right: 40,
-        bottom: 85
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 5
     }
 
     constructor(world) {
@@ -32,7 +33,7 @@ class Chicken extends MovableObject {
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 1200 + Math.random() * 2600;
+        this.x + Math.random() * 2600;
         this.speed += Math.random() * 0.2;
         this.animate();
     }
@@ -45,7 +46,7 @@ class Chicken extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
-            this.playAnmimation(this.IMAGES_WALKING);
+            this.playAnimation(this.IMAGES_WALKING);
         }, 60);
     }
 

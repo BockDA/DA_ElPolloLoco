@@ -1,12 +1,11 @@
 class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
-    speedY = 0;//0
-    acceleration = 2.5//2.5
+    speedY = 0;
+    acceleration = 2.5;
     energy = 100;
     lastHit = 0;
     collisonRight = false;
-
 
 
     offset = {
@@ -26,6 +25,7 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration
+                // this.playAnimation(this.IMAGES_JUMPING);
             }
         }, 1000 / 25);
     }
@@ -36,7 +36,7 @@ class MovableObject extends DrawableObject {
      */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return this.y < 290
+            return true;
         } else {
             return this.y < 180;
         }
@@ -48,7 +48,8 @@ class MovableObject extends DrawableObject {
      * @param {*} images -Array of image paths for the animation
      * @param {*} speed
      */
-    playAnmimation(images, speed) {
+    playAnimation(images, speed) {
+        if (!images || images.length === 0) return;
         speed = speed || 5;
         if (!this.animationFrameCounter) this.animationFrameCounter = 0;
         this.animationFrameCounter++;
@@ -65,7 +66,7 @@ class MovableObject extends DrawableObject {
      */
     moveRight() {
         this.x += this.speed;
-        this.playAnmimation(this.IMAGES_WALKING);
+        this.playAnimation(this.IMAGES_WALKING);
     }
 
     /**
@@ -73,8 +74,11 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
-        this.playAnmimation(this.IMAGES_WALKING);
+        this.playAnimation(this.IMAGES_WALKING);
     }
+
+
+
 
 
     /**

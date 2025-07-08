@@ -44,13 +44,12 @@ class DrawableObject {
      * @param {*} ctx- canvas element
      */
     drawFrame(ctx) {
-        /* if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof Coins || this instanceof Bootle || this instanceof ThrowableObject) {
-             ctx.beginPath();
-             ctx.lineWidth = '2';
-             ctx.strokeStyle = 'red';
-             // ctx.rect(this.x + 20, this.y + 20, this.width - 40, this.height - 40);
-             ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
-             ctx.stroke();
-         }*/
+        if (this instanceof Chicken || this instanceof ChickenSmall || this instanceof Character || this instanceof Coins || this instanceof Bootle || this instanceof ThrowableObject) {
+            ctx.beginPath();
+            ctx.lineWidth = '1';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
     }
 }

@@ -62,7 +62,7 @@ class World {
             this.checkCollisonBottleTrow();
             this.checkCharaterPos();
             this.checkCollisonEndboss();
-        }, 60);
+        }, 1000 / 60);
 
     }
 
@@ -171,7 +171,7 @@ class World {
             let count = 0;
             setInterval(() => {
                 if (count <= 10) {
-                    this.character.playAnmimation(this.character.IMAGES_DEAD);
+                    this.character.playAnimation(this.character.IMAGES_DEAD);
                     this.character.y += 5;
                     count++;
                 } else {
@@ -245,7 +245,7 @@ class World {
         this.addToMap(this.character);
         this.addToMap(this.endboss);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.bootle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
@@ -322,6 +322,7 @@ class World {
                 this.bootle.push(newbottle);
             }
         }, 100);
+
     }
 
     /**

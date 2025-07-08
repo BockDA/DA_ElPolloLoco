@@ -1,5 +1,4 @@
 class Coins extends MovableObject {
-
     IMAGES_COINS = [
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png',
@@ -12,13 +11,11 @@ class Coins extends MovableObject {
         bottom: 100
     }
 
-    speed = 0.02;
-
     constructor() {
         super().loadImage('img/8_coin/coin_1.png');
+        this.x = 100 + Math.random() * 1400;
+        this.y = 30 + Math.random() * 120;
         this.loadImages(this.IMAGES_COINS);
-        this.x = 100 + Math.random() * 2500;
-        this.y = 30 + Math.random() * 150;
         this.animateCoins();
     }
 
@@ -33,5 +30,4 @@ class Coins extends MovableObject {
             this.currentImage++;
         }, 250);
     }
-
 }

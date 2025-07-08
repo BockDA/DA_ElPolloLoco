@@ -50,7 +50,7 @@ class ThrowableObject extends MovableObject {
     trow() {
         this.applyGravity(this.acceleration);
         this.trowIntervalId = setInterval(() => {
-            this.playAnmimation(this.IMAGES_TROW, 10);
+            this.playAnimation(this.IMAGES_TROW, 10);
             this.x += this.direktion ? -6 : +6;
             if (this.x >= this.endboss.x) {
                 this.bootleMeetsEndboss();
@@ -85,7 +85,7 @@ class ThrowableObject extends MovableObject {
             return;
         }
         this.test = setInterval(() => {
-            this.playAnmimation(this.IMAGES_ARISE);
+            this.playAnimation(this.IMAGES_ARISE);
         }, 20);
         setTimeout(() => {
             clearInterval(this.test);

@@ -1,4 +1,5 @@
 class Character extends MovableObject {
+    width = 150;
     height = 250;
     y = 180;
     speed = 15;
@@ -27,7 +28,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-37.png',
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
-    ]
+    ];
 
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -37,14 +38,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
-    ]
+    ];
 
 
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
-    ]
+    ];
 
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -57,7 +58,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
         'img/2_character_pepe/1_idle/idle/I-10.png',
-    ]
+    ];
 
 
     IMAGES_LONG_IDLE = [
@@ -71,14 +72,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-18.png',
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img/2_character_pepe/1_idle/long_idle/I-20.png',
-    ]
+    ];
 
 
     offset = {
-        top: 85,
-        left: 20,
-        right: 40,
-        bottom: 85
+        top: 100,
+        left: 10,
+        right: 50,
+        bottom: 105
     }
 
 
@@ -103,6 +104,7 @@ class Character extends MovableObject {
      */
     startAnimation() {
         setInterval(() => {
+            if (this.y < 180) return
             this.sleep = true
         }, 5000);
     }
@@ -112,14 +114,15 @@ class Character extends MovableObject {
      */
     animate() {
         setInterval(() => {
+            if (this.y < 180) this.playAnimation(this.IMAGES_JUMPING);
             this.sleeping();
             this.dead();
             this.hurt();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRightKey();
             if (this.world.keyboard.LEFT && this.x > 0) this.moveLeftKey();
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) this.spaceKey();
+            if (this.world.keyboard.SPACE) this.spaceKey();
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 25);
+        }, 1000 / 15);
     }
 
     /**
@@ -127,10 +130,10 @@ class Character extends MovableObject {
      */
     sleeping() {
         if (this.sleep) {
-            this.playAnmimation(this.IMAGES_LONG_IDLE);
+            this.playAnimation(this.IMAGES_LONG_IDLE);
             this.sound.soundPlay(this.soundSleep, 0.5, false);
         } else {
-            this.playAnmimation(this.IMAGES_IDLE);
+            this.playAnimation(this.IMAGES_IDLE);
             this.sound.stopSound(this.soundSleep);
         }
     }
@@ -140,7 +143,7 @@ class Character extends MovableObject {
      */
     dead() {
         if (this.isDead()) {
-            this.playAnmimation(this.IMAGES_DEAD);
+            this.playAnimation(this.IMAGES_DEAD);
             this.y += 5;
             setTimeout(() => {
                 this.world.endOfGame();
@@ -153,7 +156,7 @@ class Character extends MovableObject {
      */
     hurt() {
         if (this.isHurt()) {
-            this.playAnmimation(this.IMAGES_HURT);
+            this.playAnimation(this.IMAGES_HURT);
             this.sound.soundPlay(this.soundHurt, 1, false);
         }
     }
@@ -183,8 +186,8 @@ class Character extends MovableObject {
      */
     spaceKey() {
         this.sleep = false;
-        this.speedY = 30;
-        this.playAnmimation(this.IMAGES_JUMPING);
+        if (this.isAboveGround()) return;
+        this.speedY = 25;
         this.sound.soundPlay(this.soundJump, 1, false);
     }
 
