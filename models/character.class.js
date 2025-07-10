@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-    width = 150;
+    width = 135;
     height = 250;
     y = 180;
     speed = 15;
@@ -77,9 +77,9 @@ class Character extends MovableObject {
 
     offset = {
         top: 100,
-        left: 10,
-        right: 50,
-        bottom: 105
+        left: 30,//10,
+        right: 60,//50,
+        bottom: 105,//105
     }
 
 
@@ -187,7 +187,7 @@ class Character extends MovableObject {
     spaceKey() {
         this.sleep = false;
         if (this.isAboveGround()) return;
-        this.speedY = 25;
+        this.speedY = 35;
         this.sound.soundPlay(this.soundJump, 1, false);
     }
 

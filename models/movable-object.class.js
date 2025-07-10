@@ -83,33 +83,33 @@ class MovableObject extends DrawableObject {
 
     /**
      *collision from side with an enemy
-     * @param {*} enemy -chicken, small chicken
+     * @param {*} mo -chicken, small chicken
      * @returns
      */
-    getCollisionSide(enemy) {
-        const isBootle = enemy instanceof Bootle;
-        if (!isBootle && enemy.dead) return false;
-        return (
-            this.x + this.width > enemy.x + this.offset.left &&
-            this.x < enemy.x + enemy.width &&
-            this.y + this.height > enemy.y &&
-            this.y < enemy.y + enemy.height
-        );
+    getCollisionSide(mo, buffer) {
+        const isBootle = mo instanceof Bootle;
+        if (!isBootle && mo.dead) return false;
+        if (this.y >= 180) {
+            return (
+                this.x + this.width - buffer > mo.x + buffer &&
+                this.y + this.height > mo.y &&
+                this.x < mo.x + mo.width &&
+                this.y < mo.y + mo.height)
+        }
     }
 
 
     /**collision with an enemy from above */
-    getcollisionBottom(enemy) {
-        const characterBottom = this.y + this.height;
-        const enemyTop = enemy.y;
-        const verticalOverlap =
-            characterBottom >= enemyTop &&
-            characterBottom <= enemyTop + enemy.offset.top;
-        const horizontalOverlap =
-            this.x + this.width > enemy.x + enemy.offset.left &&    // 10px Spielraum links
-            this.x < enemy.x + enemy.width + enemy.offset.right;     // 10px Spielraum rechts
-        return verticalOverlap && horizontalOverlap;
+    getcollisionBottom(mo, buffer) {
+        if (this.y < 180) {
+            return (
+                this.x + this.width - buffer > mo.x + buffer &&
+                this.y + this.height > mo.y &&
+                this.x < mo.x + mo.width &&
+                this.y < mo.y + mo.height)
+        }
     }
+
 
     /**
      *collision with coins
@@ -178,7 +178,7 @@ class MovableObject extends DrawableObject {
      */
     hit() {
         const Timenow = Date.now();
-        if (Timenow - this.lastHit < 100) {
+        if (Timenow - this.lastHit < 500) {
             return;
         }
         this.energy -= 5;

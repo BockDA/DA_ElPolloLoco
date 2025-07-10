@@ -54,15 +54,16 @@ class World {
     run() {
         if (!this.gameOn) return;
         this.intervalId = setInterval(() => {
+
             this.checkCollisionsRight();
             this.checkCollisionBottom();
-            this.checkCollisionCoins();
-            this.checkThrowObjects();
+            // this.checkCollisionCoins();
+            //  this.checkThrowObjects();
             this.checkCollisonBootle();
-            this.checkCollisonBottleTrow();
-            this.checkCharaterPos();
-            this.checkCollisonEndboss();
-        }, 1000 / 60);
+            //  this.checkCollisonBottleTrow();
+            //  this.checkCharaterPos();
+            //  this.checkCollisonEndboss();
+        }, 1000 / 60); //60
 
     }
 
@@ -71,10 +72,13 @@ class World {
      */
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getCollisionSide(enemy) && (!this.character.getcollisionBottom(enemy))) {
+            if (this.character.getCollisionSide(enemy, 30)) {
+                console.log("Treffer");
+                console.log(this.character.y + this.character.height, enemy.y + enemy.height);
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
+
         });
     }
 
@@ -83,7 +87,11 @@ class World {
      */
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getcollisionBottom(enemy)) {
+            //if (this.character.getcollisionBottom(enemy)) {
+            if (this.character.getcollisionBottom(enemy, 10)) {
+                console.log("Platt");
+                console.log(this.character.y + this.character.height, enemy.y + enemy.height);
+
                 enemy.dead = true;
                 enemy.deadCollision();
             }
@@ -109,7 +117,7 @@ class World {
      */
     checkCollisonBootle() {
         this.level.bootle.forEach((bootle) => {
-            if (this.character.getCollisionSide(bootle)) {
+            if (this.character.getCollisionSide(bootle, 40)) {
                 this.bottleCollected(bootle);
                 this.bottleScoreWrite(true);
             };
