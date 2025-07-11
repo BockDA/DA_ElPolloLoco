@@ -5,6 +5,7 @@ class Character extends MovableObject {
     speed = 15;
     world;
     sleep = false;
+    hitStatus = false;
     soundSleep = 'audio/snoring.mp3';
     soundWalking = 'audio/walkingChar.mp3';
     soundJump = 'audio/jump.mp3';
@@ -97,6 +98,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.startAnimation();
         this.animate();
+
     }
 
     /**
@@ -160,6 +162,27 @@ class Character extends MovableObject {
             this.sound.soundPlay(this.soundHurt, 1, false);
         }
     }
+
+
+    /**
+       *When boss collides with enemy, play injured animation
+       */
+    hit() {
+        const Timenow = Date.now();
+        if (Timenow - this.lastHit < 500) {
+            return;
+        }
+        this.energy -= 5;
+        if (this.energy <= 0) {
+            this.energy = 0;
+            this.isDead();
+        }
+        this.lastHit = Timenow;
+
+    }
+
+
+
 
     /**
      * move right with the arrow key pressed

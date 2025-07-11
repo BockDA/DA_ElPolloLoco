@@ -57,7 +57,7 @@ class World {
 
             this.checkCollisionsRight();
             this.checkCollisionBottom();
-            // this.checkCollisionCoins();
+            this.checkCollisionCoins();
             //  this.checkThrowObjects();
             this.checkCollisonBootle();
             //  this.checkCollisonBottleTrow();
@@ -72,14 +72,14 @@ class World {
      */
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getCollisionSide(enemy, 30)) {
+            if (this.character.getCollisionSide(enemy, 10)) {
                 console.log("Treffer");
-                console.log(this.character.y + this.character.height, enemy.y + enemy.height);
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            }
 
+            }
         });
+
     }
 
     /**
@@ -87,13 +87,14 @@ class World {
      */
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
-            //if (this.character.getcollisionBottom(enemy)) {
-            if (this.character.getcollisionBottom(enemy, 10)) {
-                console.log("Platt");
-                console.log(this.character.y + this.character.height, enemy.y + enemy.height);
+            console.log("Y-Pos enemy ", enemy.y);
+            console.log("Y-Pos Car ", this.character.y + this.character.height - this.character.offset.top + 30)
 
+            if (this.character.getcollisionBottom(enemy, 30)) {
+                console.log("Platt");
                 enemy.dead = true;
                 enemy.deadCollision();
+                // debugger;
             }
         });
     }

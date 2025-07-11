@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     collisonRight = false;
+    world;
+
 
 
     offset = {
@@ -25,9 +27,10 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration
-                // this.playAnimation(this.IMAGES_JUMPING);
             }
         }, 1000 / 25);
+
+
     }
 
     /**
@@ -101,12 +104,21 @@ class MovableObject extends DrawableObject {
 
     /**collision with an enemy from above */
     getcollisionBottom(mo, buffer) {
-        if (this.y < 180) {
+        console.log(this.speedY);
+
+
+        if (this.speedY < -5 && this.speedY > -20) {
+            console.log("springe nach untzen");
             return (
                 this.x + this.width - buffer > mo.x + buffer &&
-                this.y + this.height > mo.y &&
                 this.x < mo.x + mo.width &&
-                this.y < mo.y + mo.height)
+                this.y + this.height - this.offset.top <= mo.y
+
+
+
+                //   this.y + this.height + this.offset.top - 30 < 250 //mo.y - mo.height + 50
+
+            )
         }
     }
 
@@ -117,17 +129,8 @@ class MovableObject extends DrawableObject {
      * @returns
      */
     getCollisionCoins(mo) {
-        const thisLeft = this.x + this.offset.left + 10;
-        const thisRight = this.x + this.width - this.offset.right;
-        const thisTop = this.y + this.offset.top;
-        const thisBottom = this.y + this.height - this.offset.bottom;
-        const moLeft = mo.x + mo.offset.left + 10;
-        const moRight = mo.x + mo.width - mo.offset.right;
-        const moTop = mo.y + mo.offset.top;
-        const moBottom = mo.y + mo.height - mo.offset.bottom;
-        const horizontalOverlap = thisRight > moLeft && thisLeft < moRight;
-        const verticalOverlap = thisBottom > moTop && thisTop < moBottom;
-        return horizontalOverlap && verticalOverlap;
+
+        return
     }
 
     /**
@@ -173,21 +176,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    /**
-     *When boss collides with enemy, play injured animation
-     */
-    hit() {
-        const Timenow = Date.now();
-        if (Timenow - this.lastHit < 500) {
-            return;
-        }
-        this.energy -= 5;
-        if (this.energy <= 0) {
-            this.energy = 0;
-            this.isDead();
-        }
-        this.lastHit = Timenow;
-    }
 
 
     /**
