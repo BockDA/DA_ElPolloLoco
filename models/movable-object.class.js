@@ -7,9 +7,14 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     collisonRight = false;
     world;
-
-
-
+    c1;
+    c2;
+    c3;
+    c4;
+    m1;
+    m2;
+    m3;
+    m4;
     offset = {
         top: 0,
         left: 0,
@@ -29,8 +34,6 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration
             }
         }, 1000 / 25);
-
-
     }
 
     /**
@@ -44,7 +47,6 @@ class MovableObject extends DrawableObject {
             return this.y < 180;
         }
     }
-
 
     /**
      * Plays the animation based on the provided array of images.
@@ -80,9 +82,20 @@ class MovableObject extends DrawableObject {
         this.playAnimation(this.IMAGES_WALKING);
     }
 
-
-
-
+    /**
+     * Help function for collision points
+     * @param {String},object for coordinates opponent
+     */
+    referencePoint(mo) {
+        this.c1 = this.x + this.offset.left;
+        this.c2 = this.x + (this.width - this.offset.right);
+        this.c3 = this.y + this.offset.top;
+        this.c4 = this.y + this.height
+        this.m1 = mo.x;
+        this.m2 = mo.x + mo.width;
+        this.m3 = mo.y;
+        this.m4 = mo.y + (mo.height - mo.offset.bottom);
+    }
 
     /**
      *collision from side with an enemy
@@ -92,70 +105,58 @@ class MovableObject extends DrawableObject {
     getCollisionSide(mo, buffer) {
         const isBootle = mo instanceof Bootle;
         if (!isBootle && mo.dead) return false;
-        if (this.y >= 180) {
+        this.referencePoint(mo);
+        if (this.c3 >= 180) {
             return (
-                this.x + this.width - buffer > mo.x + buffer &&
-                this.y + this.height > mo.y &&
-                this.x < mo.x + mo.width &&
-                this.y < mo.y + mo.height)
-        }
-    }
-
-
-    /**collision with an enemy from above */
-    getcollisionBottom(mo, buffer) {
-        console.log(this.speedY);
-
-
-        if (this.speedY < -5 && this.speedY > -20) {
-            console.log("springe nach untzen");
-            return (
-                this.x + this.width - buffer > mo.x + buffer &&
-                this.x < mo.x + mo.width &&
-                this.y + this.height - this.offset.top <= mo.y
-
-
-
-                //   this.y + this.height + this.offset.top - 30 < 250 //mo.y - mo.height + 50
-
+                this.c1 < this.m2 + buffer &&
+                this.c2 > this.m1 - buffer &&
+                this.c3 < this.m4 &&
+                this.c4 > this.m3
             )
         }
     }
 
+    /**collision with an enemy from above */
+    getcollisionBottom(mo, buffer) {
+        if (this.speedY < -5 && this.speedY > -45) {
+            this.referencePoint(mo);
+            return (
+                this.c1 < this.m2 - buffer &&
+                this.c2 > this.m1 + buffer &&
+                this.c3 > 90 &&
+                this.c4 > 90
+            )
+        }
+    }
 
     /**
      *collision with coins
      * @param {*} mo
      * @returns
      */
-    getCollisionCoins(mo) {
-
-        return
+    getCollisionCoins(mo, buffer) {
+        this.referencePoint(mo);
+        return (
+            this.c1 < this.m2 - buffer &&
+            this.c2 > this.m1 + buffer &&
+            this.c3 < this.m4
+        )
     }
 
     /**
-     *
+     *Check collision with bootle and endboss
      * @param {collision with coins} bottleTrow
      * @param {string} enemies
      * @param {string} endboss
      * @returns
      */
-    getCollisionBottle(bottleTrow, enemies, endboss) {
-        if (this.isColliding(bottleTrow, endboss)) {
-            return 1;
-        }
+    getCollisionBottle(bottleTrow, endboss) {
+        this.referencePoint(endboss);
+        return (
+            bottleTrow.x + bottleTrow.width > this.m1 &&
+            bottleTrow.x < this.m2
+        )
     }
-
-    /**
-     * auxiliary function for collision with bottle
-     */
-    isColliding(a, b) {
-        return a.x + a.width > b.x &&
-            a.x < b.x + b.width &&
-            a.y + a.height > b.y &&
-            a.y < b.y + b.height;
-    }
-
 
     /**
      *collision with final boss
@@ -163,20 +164,12 @@ class MovableObject extends DrawableObject {
      * @returns
      */
     getCollisionEndboss(endboss) {
-        const cx = this.x, cy = this.y, cw = this.width, ch = this.height;
-        const ex = endboss.x, ey = endboss.y, ew = endboss.width, eh = endboss.height;
-        const h = cx + cw > ex && cx < ex + ew;
-        const v = cy + ch > ey && cy < ey + eh;
-        if (h && v) {
-            const cMid = cx + cw / 2;
-            const eMid = ex + ew / 2;
-            return cMid !== eMid;
-        }
-        return false;
+        this.referencePoint(endboss);
+        return (
+            this.c2 > this.m1 &&
+            this.c1 < this.m2
+        )
     }
-
-
-
 
     /**
      *If the final boss gets stuck, pause for 0.5 seconds
@@ -187,7 +180,6 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 100;
         return timepassed < 1;
     }
-
 
     /**
      *if character is dead then energy to zero

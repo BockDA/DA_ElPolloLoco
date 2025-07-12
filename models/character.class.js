@@ -83,7 +83,6 @@ class Character extends MovableObject {
         bottom: 105,//105
     }
 
-
     constructor(keyboard, world) {
         super().loadImage("img/2_character_pepe/2_walk/W-21.png");
         this.keyboard = keyboard;
@@ -169,7 +168,7 @@ class Character extends MovableObject {
        */
     hit() {
         const Timenow = Date.now();
-        if (Timenow - this.lastHit < 500) {
+        if (Timenow - this.lastHit < 100) {
             return;
         }
         this.energy -= 5;

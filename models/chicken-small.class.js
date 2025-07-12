@@ -1,14 +1,13 @@
 class ChickenSmall extends MovableObject {
 
     y = 380;
-    x = 400;//800
+    x = 250;
     height = 40;
     width = 40;
     dead = false;
-    speed = 0.2;
+    speed = 0.5;
     IntervalIdSmall
     soundDead = 'audio/smallchicken.mp3';
-
 
 
     IMAGES_WALKING_SMALL = [
@@ -36,7 +35,7 @@ class ChickenSmall extends MovableObject {
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING_SMALL);
         this.loadImages(this.IMAGES_DEAD_SMALL);
-        this.x + Math.random() * 2800;
+        this.x = this.x + 100 * Math.random() * 40;
         this.speed += Math.random() * 0.3;
         this.animate();
 

@@ -23,7 +23,6 @@ class EndbossBar extends DrawableObject {
 
   }
 
-
   /**
      *game data for the status bar endboss
      * @param {*} percentage -percentage 0-100

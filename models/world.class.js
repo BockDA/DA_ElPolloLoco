@@ -26,8 +26,6 @@ class World {
     soundWinGame = 'audio/gamewin.mp3'
     soundCoinsCollect = 'audio/coinCollect.mp3';
 
-
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -37,7 +35,6 @@ class World {
         this.setWorld();
         this.run();
         this.createNewBootle();
-
     }
 
     /**
@@ -54,29 +51,26 @@ class World {
     run() {
         if (!this.gameOn) return;
         this.intervalId = setInterval(() => {
-
             this.checkCollisionsRight();
             this.checkCollisionBottom();
             this.checkCollisionCoins();
-            //  this.checkThrowObjects();
+            this.checkThrowObjects();
             this.checkCollisonBootle();
-            //  this.checkCollisonBottleTrow();
-            //  this.checkCharaterPos();
-            //  this.checkCollisonEndboss();
-        }, 1000 / 60); //60
-
+            this.checkCollisonBottleTrow();
+            this.checkCharaterPos();
+            this.checkCollisonEndboss();
+        }, 1000 / 60);
     }
+
 
     /**
      *collision with chicken right check in interval of run
      */
     checkCollisionsRight() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.getCollisionSide(enemy, 10)) {
-                console.log("Treffer");
+            if (this.character.getCollisionSide(enemy, 20)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-
             }
         });
 
@@ -87,14 +81,9 @@ class World {
      */
     checkCollisionBottom() {
         this.level.enemies.forEach((enemy) => {
-            console.log("Y-Pos enemy ", enemy.y);
-            console.log("Y-Pos Car ", this.character.y + this.character.height - this.character.offset.top + 30)
-
-            if (this.character.getcollisionBottom(enemy, 30)) {
-                console.log("Platt");
+            if (this.character.getcollisionBottom(enemy, 20)) {
                 enemy.dead = true;
                 enemy.deadCollision();
-                // debugger;
             }
         });
     }
@@ -104,7 +93,7 @@ class World {
      */
     checkCollisionCoins() {
         this.level.coins.forEach((coins) => {
-            if (this.character.getCollisionCoins(coins)) {
+            if (this.character.getCollisionCoins(coins, 20)) {
                 this.coinsCollected(coins);
                 this.coinsScoreWrite();
                 this.sound.soundPlay(this.soundCoinsCollect, 1, false);
@@ -112,13 +101,12 @@ class World {
         });
     }
 
-
     /**
      *collision with bottle check in interval of run
      */
     checkCollisonBootle() {
         this.level.bootle.forEach((bootle) => {
-            if (this.character.getCollisionSide(bootle, 40)) {
+            if (this.character.getCollisionSide(bootle, -10)) {
                 this.bottleCollected(bootle);
                 this.bottleScoreWrite(true);
             };
@@ -130,14 +118,15 @@ class World {
      */
     checkCollisonBottleTrow() {
         if (this.bottleTrow) {
-            let colli = this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies, this.endboss);
-            if (colli == 1) {
+            if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.endboss)) {
                 this.endboss.start = true;
-                this.endboss.hurtEndboss();
                 this.bottleTrow = false;
+                this.endboss.hurtEndboss();
                 this.endbossScoreWrite();
             }
-            if (this.endboosScore == 0) this.endBossNoLive();
+            if (this.endboosScore == 0) {
+                this.endBossNoLive();
+            }
         }
     }
 
@@ -181,7 +170,7 @@ class World {
             setInterval(() => {
                 if (count <= 10) {
                     this.character.playAnimation(this.character.IMAGES_DEAD);
-                    this.character.y += 5;
+                    this.character.y += 2;
                     count++;
                 } else {
                     this.endOfGame();
@@ -306,7 +295,6 @@ class World {
         mo.x = mo.x * -1;
     }
 
-
     /**
      * rotate object back
      * @param {string} mo - Objekt z.b. chicken,smallchicken
@@ -315,7 +303,6 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 
     /**
      *create new bottle
@@ -331,7 +318,6 @@ class World {
                 this.bootle.push(newbottle);
             }
         }, 100);
-
     }
 
     /**

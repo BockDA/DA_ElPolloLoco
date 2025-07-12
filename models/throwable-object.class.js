@@ -31,6 +31,7 @@ class ThrowableObject extends MovableObject {
 
     constructor(x, y, CharDirection, world) {
         super();
+
         this.sound = new Sound();
         this.CharDirektion = CharDirection;
         this.loadImage('img/6_salsa_bottle/salsa_bottle.png');
@@ -42,6 +43,7 @@ class ThrowableObject extends MovableObject {
         this.groundlevel = 300;
         this.startTrow();
         this.trow();
+
     }
 
     /**

@@ -1,7 +1,7 @@
 class Chicken extends MovableObject {
 
     y = 360;
-    x = 600; //1200
+    x = 300;
     height = 60;
     width = 80;
     dead = false;
@@ -27,13 +27,13 @@ class Chicken extends MovableObject {
         bottom: 5
     }
 
-    constructor(world) {
+    constructor(world, x) {
         super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.world = world;
         this.sound = new Sound();
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x + Math.random() * 1800;
+        this.x = this.x + 100 * Math.random() * 50;
         this.speed += Math.random() * 0.2;
         this.animate();
     }

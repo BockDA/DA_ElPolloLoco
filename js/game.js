@@ -7,6 +7,8 @@ startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
 let song = new Audio('./audio/startmusic.mp3')
 let music = false;
 let mute = "on";
+let startTime = 0;
+let maxTime = 200;
 
 
 /**
@@ -114,11 +116,12 @@ function refreshGame() {
     init();
 }
 
+
 /**
  *checking keyboard input
  */
 window.addEventListener('keydown', (event) => {
-
+    const keyTime = Date.now();
     if (event.key == 'ArrowRight') {
         keyboard.RIGHT = true;
     }
@@ -129,7 +132,10 @@ window.addEventListener('keydown', (event) => {
         keyboard.SPACE = true;
     }
     if (event.key == 'd') {
-        keyboard.D = true;
+        if (keyTime - startTime >= maxTime) {
+            keyboard.D = true;
+            startTime = keyTime;
+        }
     }
 });
 

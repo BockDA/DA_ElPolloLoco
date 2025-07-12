@@ -221,6 +221,13 @@ button {
   }
 }
 
+@media only screen and (min-height: 834px) {
+  .navigation {
+    position: absolute;
+    top: 90%;
+  }
+}
+
 @media only screen and (max-height: 480px) {
   canvas {
     height: 100vh;
@@ -288,6 +295,10 @@ button {
   }
 
   .impressumBtn {
-    display: none !important;
+    position: absolute;
+    top: 85%;
+    height: 25px;
+    font-size: 12x;
+    /* display: none !important; */
   }
 }
