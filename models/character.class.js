@@ -106,7 +106,7 @@ class Character extends MovableObject {
      */
     startAnimation() {
         setInterval(() => {
-            if (this.y < 180) return
+            if (this.y < 180 && !this.hitStatus) return
             this.sleep = true
         }, 5000);
     }
@@ -168,6 +168,7 @@ class Character extends MovableObject {
        *When boss collides with enemy, play injured animation
        */
     hit() {
+        this.sleep = false;
         const Timenow = Date.now();
         if (Timenow - this.lastHit < 100) {
             return;
@@ -208,10 +209,9 @@ class Character extends MovableObject {
      * jump with the space key pressed
      */
     spaceKey() {
-
         this.sleep = false;
         if (this.isAboveGround()) return;
-        this.speedY = 35;
+        this.speedY = 25;
         this.sound.soundPlay(this.soundJump, 1, false);
     }
 
