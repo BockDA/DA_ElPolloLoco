@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     collisonRight = false;
     world;
+
     c1;
     c2;
     c3;
@@ -15,6 +16,7 @@ class MovableObject extends DrawableObject {
     m2;
     m3;
     m4;
+
     offset = {
         top: 0,
         left: 0,
@@ -118,7 +120,7 @@ class MovableObject extends DrawableObject {
 
     /**collision with an enemy from above */
     getcollisionBottom(mo, buffer) {
-        if (this.speedY < -5 && this.speedY > -45) {
+        if (this.speedY < -5 && this.speedY > -25) {
             this.referencePoint(mo);
             return (
                 this.c1 < this.m2 - buffer &&
