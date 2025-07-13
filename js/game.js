@@ -42,6 +42,7 @@ function init() {
     canvas = document.getElementById('canvas');
     document.getElementById('startBtn').style.display = 'flex';
     document.getElementById('impressumBtn').style.display = 'flex';
+    playBtnChange('block');
     ctx = canvas.getContext('2d');
     if (this.world instanceof World) {
         this.world.cleanup();
@@ -56,9 +57,23 @@ function init() {
 function startGame() {
     document.getElementById('startBtn').style.display = 'none';
     document.getElementById('impressumBtn').style.display = 'none';
+    playBtnChange('none');
     initLevel();
     this.world = new World(canvas, keyboard);
     playMusik();
+}
+
+/**
+ * show or hide game button
+ * @param {string} flag - flex or none
+ */
+function playBtnChange(flag) {
+    const touchDevide = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!touchDevide) {
+        document.querySelectorAll('.gameBtn').forEach(btn => {
+            btn.style.display = flag;
+        })
+    }
 }
 
 /**

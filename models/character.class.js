@@ -11,6 +11,7 @@ class Character extends MovableObject {
     soundJump = 'audio/jump.mp3';
     soundHurt = 'audio/hurt.mp3';
 
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-22.png',
         'img/2_character_pepe/2_walk/W-23.png',
@@ -121,7 +122,7 @@ class Character extends MovableObject {
             this.hurt();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRightKey();
             if (this.world.keyboard.LEFT && this.x > 0) this.moveLeftKey();
-            if (this.world.keyboard.SPACE) this.spaceKey();
+            if (this.world.keyboard.SPACE && this.energy > 0) this.spaceKey();
             this.world.camera_x = -this.x + 100;
         }, 1000 / 15);
     }
@@ -207,6 +208,7 @@ class Character extends MovableObject {
      * jump with the space key pressed
      */
     spaceKey() {
+
         this.sleep = false;
         if (this.isAboveGround()) return;
         this.speedY = 35;
