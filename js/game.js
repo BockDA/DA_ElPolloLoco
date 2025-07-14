@@ -41,7 +41,10 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     document.getElementById('startBtn').style.display = 'flex';
-    document.getElementById('impressumBtn').style.display = 'flex';
+    document.getElementById('infoBtn').style.display = 'flex';
+    document.getElementById('navigation').style.display = 'none';
+
+
     playBtnChange('block');
     ctx = canvas.getContext('2d');
     if (this.world instanceof World) {
@@ -56,7 +59,8 @@ function init() {
  */
 function startGame() {
     document.getElementById('startBtn').style.display = 'none';
-    document.getElementById('impressumBtn').style.display = 'none';
+    document.getElementById('infoBtn').style.display = 'none';
+    document.getElementById('navigation').style.display = 'flex';
     playBtnChange('none');
     initLevel();
     this.world = new World(canvas, keyboard);

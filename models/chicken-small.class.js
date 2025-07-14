@@ -23,8 +23,8 @@ class ChickenSmall extends MovableObject {
 
     offset = {
         top: 0,
-        left: 10,
-        right: 10,
+        left: 5,
+        right: 5,
         bottom: 0
     }
 
