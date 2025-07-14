@@ -9,7 +9,6 @@ class Endboss extends MovableObject {
     soundEndbossHurt = 'audio/endboss_hurt.mp3'
     soundEndboosAttack = 'audio/boss_alarm.mp3'
 
-
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -21,14 +20,12 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
 
-
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
-
 
     IMAGES_ATTACK = [
         'img/4_enemie_boss_chicken/3_attack/G13.png',
@@ -41,7 +38,6 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/3_attack/G19.png',
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ]
-
 
     IMAGES_HURT = [
         'img/4_enemie_boss_chicken/4_hurt/G21.png',
