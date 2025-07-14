@@ -211,7 +211,7 @@ class Character extends MovableObject {
     spaceKey() {
         this.sleep = false;
         if (this.isAboveGround()) return;
-        this.speedY = 27;
+        this.speedY = 25;
         this.sound.soundPlay(this.soundJump, 1, false);
     }
 
