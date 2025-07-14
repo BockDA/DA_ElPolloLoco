@@ -120,11 +120,11 @@ class MovableObject extends DrawableObject {
 
     /**collision with an enemy from above */
     getcollisionBottom(mo, buffer) {
-        if (this.speedY < -5 && this.speedY > -25) {
+        if (this.speedY < -15 && this.speedY > -25) {
             this.referencePoint(mo);
             return (
-                this.c1 < this.m2 - buffer &&
-                this.c2 > this.m1 + buffer &&
+                this.c1 < this.m2 + buffer &&
+                this.c2 > this.m1 - buffer &&
                 this.c3 > 90 &&
                 this.c4 > 90
             )

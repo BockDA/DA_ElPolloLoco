@@ -59,7 +59,7 @@ class World {
             this.checkCollisonBottleTrow();
             this.checkCharaterPos();
             this.checkCollisonEndboss();
-        }, 1000 / 60);
+        }, 1000 / 100);
     }
 
 

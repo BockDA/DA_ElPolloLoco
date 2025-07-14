@@ -173,7 +173,7 @@ class Character extends MovableObject {
         if (Timenow - this.lastHit < 100) {
             return;
         }
-        this.energy -= 5;
+        this.energy -= 2;
         if (this.energy <= 0) {
             this.energy = 0;
             this.isDead();
@@ -181,8 +181,6 @@ class Character extends MovableObject {
         this.lastHit = Timenow;
 
     }
-
-
 
 
     /**
@@ -195,6 +193,7 @@ class Character extends MovableObject {
         this.sound.soundPlay(this.soundWalking, 1, false);
     }
 
+
     /**
      * move left with the arrow key pressed
      */
@@ -204,6 +203,7 @@ class Character extends MovableObject {
         this.otherDirection = true;
         this.sound.soundPlay(this.soundWalking, 1, false);
     }
+
 
     /**
      * jump with the space key pressed
