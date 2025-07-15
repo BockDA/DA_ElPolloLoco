@@ -73,6 +73,7 @@ class MovableObject extends DrawableObject {
      */
     moveRight() {
         this.x += this.speed;
+        if (this.jump) return;
         this.playAnimation(this.IMAGES_WALKING);
     }
 
@@ -81,7 +82,13 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
+        if (this.jump) return;
         this.playAnimation(this.IMAGES_WALKING);
+    }
+
+
+    jumping() {
+        this.playAnimation(this.IMAGES_JUMPING);
     }
 
     /**

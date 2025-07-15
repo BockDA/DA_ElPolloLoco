@@ -5,6 +5,7 @@ class Character extends MovableObject {
     speed = 15;
     world;
     sleep = false;
+    jump = false;
     hitStatus = false;
     soundSleep = 'audio/snoring.mp3';
     soundWalking = 'audio/walkingChar.mp3';
@@ -18,7 +19,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-24.png',
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png'
-    ];
+    ]
 
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
@@ -30,7 +31,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-37.png',
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
-    ];
+    ]
 
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -40,14 +41,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
-    ];
+    ]
 
 
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
-    ];
+    ]
 
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -60,7 +61,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
         'img/2_character_pepe/1_idle/idle/I-10.png',
-    ];
+    ]
 
 
     IMAGES_LONG_IDLE = [
@@ -74,7 +75,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-18.png',
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img/2_character_pepe/1_idle/long_idle/I-20.png',
-    ];
+    ]
 
 
     offset = {
@@ -116,6 +117,7 @@ class Character extends MovableObject {
      */
     animate() {
         setInterval(() => {
+            this.jump = false;
             if (this.y < 180) this.playAnimation(this.IMAGES_JUMPING);
             this.sleeping();
             this.dead();
@@ -209,10 +211,15 @@ class Character extends MovableObject {
      * jump with the space key pressed
      */
     spaceKey() {
+        console.log("Springe");
+        this.jump = true;
         this.sleep = false;
-        if (this.isAboveGround()) return;
-        this.speedY = 25;
-        this.sound.soundPlay(this.soundJump, 1, false);
-    }
+        //if (this.isAboveGround()) return;
+        this.jumping();
+        //this.playAnimation(this.IMAGES_JUMPING, 2);
+        //this.speedY = 25;
+        //this.sound.soundPlay(this.soundJump, 1, false);
 
+
+    }
 }
