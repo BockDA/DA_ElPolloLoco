@@ -134,7 +134,7 @@ class World {
 
     checkCollisonBottleTrowEnemy() {
         if (this.bottleTrow) {
-            if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level)) {
+            if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies)) {
                 console.log("Treffe enemya");
                 enemy.dead = true;
                 enemy.deadCollision();
