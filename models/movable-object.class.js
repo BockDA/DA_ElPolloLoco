@@ -35,7 +35,7 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration
             }
-        }, 1000 / 25);
+        }, 1000 / 20);
     }
 
     /**
@@ -88,7 +88,7 @@ class MovableObject extends DrawableObject {
 
 
     jumping() {
-        this.playAnimation(this.IMAGES_JUMPING);
+        this.playAnimation(this.IMAGES_JUMPING, 5);
     }
 
     /**
@@ -155,12 +155,11 @@ class MovableObject extends DrawableObject {
     /**
      *Check collision with bootle and endboss
      * @param {collision with coins} bottleTrow
-     * @param {string} enemies
      * @param {string} endboss
      * @returns
      */
-    getCollisionBottle(bottleTrow, endboss) {
-        this.referencePoint(endboss);
+    getCollisionBottle(bottleTrow, mo) {
+        this.referencePoint(mo);
         return (
             bottleTrow.x + bottleTrow.width > this.m1 &&
             bottleTrow.x < this.m2

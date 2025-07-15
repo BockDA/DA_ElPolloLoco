@@ -39,8 +39,6 @@ class Chicken extends MovableObject {
     }
 
 
-
-
     /**
      *start the animation and let the chicken run to the left
      */

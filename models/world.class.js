@@ -56,7 +56,8 @@ class World {
             this.checkCollisionCoins();
             this.checkThrowObjects();
             this.checkCollisonBootle();
-            this.checkCollisonBottleTrow();
+            this.checkCollisonBottleTrowEndboss();
+            this.checkCollisonBottleTrowEnemy();
             this.checkCharaterPos();
             this.checkCollisonEndboss();
         }, 1000 / 100);
@@ -116,7 +117,7 @@ class World {
     /**
      *Check collision with thrown bottle in interval of run
      */
-    checkCollisonBottleTrow() {
+    checkCollisonBottleTrowEndboss() {
         if (this.bottleTrow) {
             if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.endboss)) {
                 this.endboss.start = true;
@@ -129,6 +130,22 @@ class World {
             }
         }
     }
+
+
+    checkCollisonBottleTrowEnemy() {
+        if (this.bottleTrow) {
+            if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level)) {
+                console.log("Treffe enemya");
+                enemy.dead = true;
+                enemy.deadCollision();
+
+            }
+        }
+    }
+
+
+
+
 
     /**
      *Reduce the Enboss's life when hit with a bottle
@@ -222,6 +239,7 @@ class World {
      */
     checkThrowObjects() {
         if (this.keyboard.D && this.bottleScore > 0) {
+            this.character.sleep = false;
             this.bottleTrow = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection, this);
             this.throwableObjects.push(this.bottleTrow);
             this.bottleScoreWrite(false);
