@@ -160,10 +160,19 @@ class MovableObject extends DrawableObject {
      */
     getCollisionBottle(bottleTrow, mo) {
         this.referencePoint(mo);
-        return (
-            bottleTrow.x + bottleTrow.width > this.m1 &&
-            bottleTrow.x < this.m2
-        )
+        if (mo === this.endboss) {
+            return (
+                bottleTrow.x + bottleTrow.width > this.m1 &&
+                bottleTrow.x < this.m2
+            )
+        } else {
+            return (
+                bottleTrow.x < this.m2 - 20 &&
+                bottleTrow.x + bottleTrow.width > this.m1 - 20 && -
+                bottleTrow.y < this.m4 &&
+                bottleTrow.y + bottleTrow.height > this.m3
+            )
+        }
     }
 
     /**

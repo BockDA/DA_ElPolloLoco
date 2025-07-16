@@ -52,8 +52,8 @@ class ThrowableObject extends MovableObject {
     trow() {
         this.applyGravity(this.acceleration);
         this.trowIntervalId = setInterval(() => {
-            this.playAnimation(this.IMAGES_TROW, 10);
-            this.x += this.direktion ? -6 : +6;
+            this.playAnimation(this.IMAGES_TROW, 5);
+            this.x += this.direktion ? -4 : +4;
             if (this.x >= this.endboss.x) {
                 this.bootleMeetsEndboss();
                 return;

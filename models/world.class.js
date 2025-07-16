@@ -114,8 +114,9 @@ class World {
         });
     }
 
+
     /**
-     *Check collision with thrown bottle in interval of run
+     *Check collision with bottle and final boss
      */
     checkCollisonBottleTrowEndboss() {
         if (this.bottleTrow) {
@@ -132,19 +133,19 @@ class World {
     }
 
 
+    /**
+    *Check collision with bottle and chicken
+    */
     checkCollisonBottleTrowEnemy() {
         if (this.bottleTrow) {
-            if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, this.level.enemies)) {
-                console.log("Treffe enemya");
-                enemy.dead = true;
-                enemy.deadCollision();
-
-            }
+            this.level.enemies.forEach(enemy => {
+                if (this.throwableObjects[0].getCollisionBottle(this.bottleTrow, enemy)) {
+                    enemy.dead = true;
+                    enemy.deadCollision();
+                }
+            });
         }
     }
-
-
-
 
 
     /**
