@@ -212,6 +212,7 @@ class Character extends MovableObject {
      * move right with the arrow key pressed
      */
     moveRightKey() {
+
         this.moveRight();
         this.sleep = false;
         this.otherDirection = false;
@@ -234,6 +235,7 @@ class Character extends MovableObject {
      * jump with the space key pressed
      */
     spaceKey() {
+        console.log("springe");
         this.jump = true;
         this.sleep = false;
         if (this.isAboveGround()) return;
