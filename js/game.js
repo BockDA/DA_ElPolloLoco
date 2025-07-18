@@ -44,8 +44,6 @@ function init() {
     document.getElementById('startBtn').style.display = 'flex';
     document.getElementById('infoBtn').style.display = 'flex';
     document.getElementById('navigation').style.display = 'none';
-
-
     playBtnChange('block');
     ctx = canvas.getContext('2d');
     if (this.world instanceof World) {

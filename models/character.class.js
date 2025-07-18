@@ -108,7 +108,7 @@ class Character extends MovableObject {
      */
     startAnimation() {
         setInterval(() => {
-            if (this.y < 180 && !this.hitStatus && !this.jump) return
+            if (this.y < 180 && !this.hitStatus) return
             this.sleep = true
         }, 5000);
     }
@@ -123,7 +123,7 @@ class Character extends MovableObject {
             this.hurt();
             if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING, 6)
-                this.isJumpingAnimation = true;
+                this.isJumpingAnimation = false;
             }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRightKey();
             if (this.world.keyboard.LEFT && this.x > 0) this.moveLeftKey();
@@ -150,7 +150,7 @@ class Character extends MovableObject {
      */
     dead() {
         if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD, 10);
+            this.playAnimation(this.IMAGES_DEAD, 5);
             this.y += 5;
             setTimeout(() => {
                 this.world.endOfGame();
@@ -163,7 +163,7 @@ class Character extends MovableObject {
      */
     hurt() {
         if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT, 10);
+            this.playAnimation(this.IMAGES_HURT, 5);
             this.sound.soundPlay(this.soundHurt, 1, false);
         }
     }
@@ -217,7 +217,7 @@ class Character extends MovableObject {
         if (this.isAboveGround()) return
         this.speedY = 30;
         this.currentImage = 0;
-        this.isJumpingAnimation = false;
+        this.isJumpingAnimation = true;
         this.sound.soundPlay(this.soundJump, 1, false);
     }
 

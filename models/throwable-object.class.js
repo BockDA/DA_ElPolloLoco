@@ -87,7 +87,7 @@ class ThrowableObject extends MovableObject {
             return;
         }
         this.test = setInterval(() => {
-            this.playAnimation(this.IMAGES_ARISE);
+            this.playAnimation(this.IMAGES_ARISE, 5);
         }, 20);
         setTimeout(() => {
             clearInterval(this.test);
