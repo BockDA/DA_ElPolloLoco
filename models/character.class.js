@@ -2,10 +2,11 @@ class Character extends MovableObject {
     width = 135;
     height = 250;
     y = 180;
+
     speed = 15;
     world;
     sleep = false;
-    jump = false;
+    isJumpingAnimation = false;
     hitStatus = false;
     soundSleep = 'audio/snoring.mp3';
     soundWalking = 'audio/walkingChar.mp3';
@@ -23,7 +24,6 @@ class Character extends MovableObject {
     ]
 
     IMAGES_JUMPING = [
-        /*
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
@@ -33,27 +33,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-37.png',
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
-        */
-        'img/2_character_pepe/3_jump/J-33.png',
-        'img/2_character_pepe/3_jump/J-33.png',
-        'img/2_character_pepe/3_jump/J-33.png',
-        'img/2_character_pepe/3_jump/J-33.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-34.png',
-        'img/2_character_pepe/3_jump/J-35.png',
-        'img/2_character_pepe/3_jump/J-36.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-37.png',
-        'img/2_character_pepe/3_jump/J-37.png',
     ]
 
     IMAGES_DEAD = [
@@ -122,7 +101,6 @@ class Character extends MovableObject {
         this.applyGravity();
         this.startAnimation();
         this.animate();
-
     }
 
     /**
@@ -130,7 +108,7 @@ class Character extends MovableObject {
      */
     startAnimation() {
         setInterval(() => {
-            if (this.y < 180 && !this.hitStatus) return
+            if (this.y < 180 && !this.hitStatus && !this.jump) return
             this.sleep = true
         }, 5000);
     }
@@ -140,27 +118,29 @@ class Character extends MovableObject {
      */
     animate() {
         setInterval(() => {
-            this.jump = false;
-            if (this.y < 180) this.playAnimation(this.IMAGES_JUMPING);
             this.sleeping();
             this.dead();
             this.hurt();
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING, 6)
+                this.isJumpingAnimation = true;
+            }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRightKey();
             if (this.world.keyboard.LEFT && this.x > 0) this.moveLeftKey();
             if (this.world.keyboard.SPACE && this.energy > 0) this.spaceKey();
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 15);
+        }, 1000 / 20);
     }
 
     /**
      * call sleep animation
      */
     sleeping() {
-        if (this.sleep) {
-            this.playAnimation(this.IMAGES_LONG_IDLE);
+        if (this.sleep && !this.isJumpingAnimation) {
+            this.playAnimation(this.IMAGES_LONG_IDLE, 10);
             this.sound.soundPlay(this.soundSleep, 0.5, false);
         } else {
-            this.playAnimation(this.IMAGES_IDLE);
+            this.playAnimation(this.IMAGES_IDLE, 10);
             this.sound.stopSound(this.soundSleep);
         }
     }
@@ -170,7 +150,7 @@ class Character extends MovableObject {
      */
     dead() {
         if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
+            this.playAnimation(this.IMAGES_DEAD, 10);
             this.y += 5;
             setTimeout(() => {
                 this.world.endOfGame();
@@ -183,7 +163,7 @@ class Character extends MovableObject {
      */
     hurt() {
         if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
+            this.playAnimation(this.IMAGES_HURT, 10);
             this.sound.soundPlay(this.soundHurt, 1, false);
         }
     }
@@ -204,7 +184,6 @@ class Character extends MovableObject {
             this.isDead();
         }
         this.lastHit = Timenow;
-
     }
 
 
@@ -212,9 +191,8 @@ class Character extends MovableObject {
      * move right with the arrow key pressed
      */
     moveRightKey() {
-
-        this.moveRight();
         this.sleep = false;
+        this.moveRight();
         this.otherDirection = false;
         this.sound.soundPlay(this.soundWalking, 1, false);
     }
@@ -235,14 +213,13 @@ class Character extends MovableObject {
      * jump with the space key pressed
      */
     spaceKey() {
-        console.log("springe");
-        this.jump = true;
         this.sleep = false;
-        if (this.isAboveGround()) return;
-        this.jumping();
-        this.speedY = 25;
+        if (this.isAboveGround()) return
+        this.speedY = 30;
+        this.currentImage = 0;
+        this.isJumpingAnimation = false;
         this.sound.soundPlay(this.soundJump, 1, false);
-
-
     }
+
+
 }

@@ -35,7 +35,7 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration
             }
-        }, 1000 / 20);
+        }, 1000 / 25);
     }
 
     /**
@@ -57,24 +57,28 @@ class MovableObject extends DrawableObject {
      */
     playAnimation(images, speed) {
         if (!images || images.length === 0) return;
-        speed = speed || 5;
-        if (!this.animationFrameCounter) this.animationFrameCounter = 0;
+        if (this.animationFrameCounter === undefined) {
+            this.animationFrameCounter = 0;
+        }
         this.animationFrameCounter++;
-        if (this.animationFrameCounter % speed === 0) {
+        if (this.animationFrameCounter >= speed) {
             let i = this.currentImage % images.length;
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
+            this.animationFrameCounter = 0;
         }
+
     }
+
 
     /**
      *Moves the object to the right by its speed.
      */
     moveRight() {
         this.x += this.speed;
-        if (this.jump) return;
-        this.playAnimation(this.IMAGES_WALKING);
+        if (this.isJumpAnimation) return;
+        this.playAnimation(this.IMAGES_WALKING, 6);
     }
 
     /**
@@ -82,14 +86,10 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
-        if (this.jump) return;
-        this.playAnimation(this.IMAGES_WALKING);
+        if (this.isJumpAnimation) return;
+        this.playAnimation(this.IMAGES_WALKING, 6);
     }
 
-
-    jumping() {
-        this.playAnimation(this.IMAGES_JUMPING, 5);
-    }
 
     /**
      * Help function for collision points

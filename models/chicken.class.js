@@ -46,7 +46,7 @@ class Chicken extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
-            this.playAnimation(this.IMAGES_WALKING);
+            this.playAnimation(this.IMAGES_WALKING, 3);
         }, 60);
     }
 
@@ -78,5 +78,8 @@ class Chicken extends MovableObject {
             }
         }, speed);
         this.sound.soundPlay(this.soundDead, 1, false);
+        setTimeout(() => {
+            this.y = 800;
+        }, 2000);
     }
 }

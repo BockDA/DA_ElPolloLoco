@@ -26,7 +26,7 @@ class World {
     soundWinGame = 'audio/gamewin.mp3'
     soundCoinsCollect = 'audio/coinCollect.mp3';
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, x) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;

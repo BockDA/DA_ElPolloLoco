@@ -15,10 +15,10 @@ class BoodleBar extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES_BOOTLE);
-        this.x = 30;
-        this.y = 100;
+        this.x = 10;
+        this.y = 80;
         this.width = 200;
-        this.height = 60;
+        this.height = 50;
         this.setBootle(0);
     }
 

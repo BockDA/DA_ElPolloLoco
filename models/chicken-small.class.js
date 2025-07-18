@@ -46,7 +46,7 @@ class ChickenSmall extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.dead) return;
-            this.playAnimation(this.IMAGES_WALKING_SMALL);
+            this.playAnimation(this.IMAGES_WALKING_SMALL, 5);
         }, 50);
     }
 
@@ -78,5 +78,8 @@ class ChickenSmall extends MovableObject {
             }
         }, speed);
         this.sound.soundPlay(this.soundDead, 1, false);
+        setTimeout(() => {
+            this.y = 800;
+        }, 2000);
     }
 }

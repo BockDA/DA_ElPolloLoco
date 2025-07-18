@@ -8,7 +8,8 @@ let song = new Audio('./audio/startmusic.mp3')
 let music = false;
 let mute = "on";
 let startTime = 0;
-let maxTime = 200;
+let maxTimeTrow = 200;
+let maxTimeJump = 50;
 
 
 /**
@@ -148,10 +149,13 @@ window.addEventListener('keydown', (event) => {
         keyboard.LEFT = true;
     }
     if (event.key == ' ') {
-        keyboard.SPACE = true;
+        if (keyTime - startTime >= maxTimeJump) {
+            keyboard.SPACE = true;
+            startTime = keyTime;
+        }
     }
     if (event.key == 'd') {
-        if (keyTime - startTime >= maxTime) {
+        if (keyTime - startTime >= maxTimeTrow) {
             keyboard.D = true;
             startTime = keyTime;
         }
